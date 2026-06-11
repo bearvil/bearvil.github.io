@@ -9,7 +9,8 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 ├── index.html                          # Landing page (night-sky animation, side nav)
 ├── 404.html                            # Custom 404 page, served for all missing paths
 ├── privacy-policies/
-│   └── touchy-fingies-pp.html          # Privacy policy for the Touchy Fingies app
+│   ├── touchy-fingies-pp.html          # Privacy policy for the Touchy Fingies app
+│   └── frend-ai-pp.html                # Privacy policy for the Frend AI app
 └── README.md
 ```
 
@@ -21,7 +22,7 @@ Everything is plain static HTML/CSS/JS — no build step, no frameworks, no depe
 |---|---|---|
 | `/` | `index.html` | Live |
 | `/privacy-policies/touchy-fingies-pp` | `privacy-policies/touchy-fingies-pp.html` | Live |
-| `/privacy-policies/frend-ai` | — | Planned (404 for now) |
+| `/privacy-policies/frend-ai-pp` | `privacy-policies/frend-ai-pp.html` | Live |
 | `/work`, `/about`, `/contact` | — | Planned (404 for now) |
 
 GitHub Pages serves extensionless URLs (`/privacy-policies/touchy-fingies-pp` → `touchy-fingies-pp.html`) and automatically uses the root `404.html` for any missing path.
