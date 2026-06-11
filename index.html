@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Security -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- SEO / social -->
@@ -25,6 +25,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300&display=block" />
+
+  <!-- Shared components: <site-nav>, <night-sky>, email copy, font reveal -->
+  <script src="/assets/components.js" defer></script>
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,74 +52,8 @@
       border-radius: 4px;
     }
 
-    /* SKY */
-    .sky {
-      position: fixed; inset: 0;
-      background: radial-gradient(ellipse 120% 80% at 50% 110%,
-        #1a3a6e 0%, #0d1f40 35%, #07090f 70%);
-      animation: skyBreath 20s ease-in-out infinite alternate;
-    }
-    @keyframes skyBreath {
-      0%   { filter: brightness(0.9); }
-      100% { filter: brightness(1.1); }
-    }
-
-    /* STARS */
-    .stars { position: fixed; inset: 0; pointer-events: none; }
-    .star {
-      position: absolute; border-radius: 50%; background: white;
-      animation: twinkle var(--d) ease-in-out infinite alternate var(--dl);
-    }
-    @keyframes twinkle {
-      0%   { opacity: 0.05; transform: scale(0.7); }
-      100% { opacity: var(--o); transform: scale(1.1); }
-    }
-
-    /* CLOUDS */
-    .clouds { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
-    .cloud {
-      position: absolute;
-      background: radial-gradient(ellipse at 40% 50%, rgba(100,160,255,0.12), transparent 70%);
-      border-radius: 50%;
-      filter: blur(var(--blur));
-      animation: cloudDrift var(--spd) linear infinite var(--dl);
-    }
-    @keyframes cloudDrift {
-      from { transform: translateX(var(--x0)); }
-      to   { transform: translateX(var(--x1)); }
-    }
-
-    /* MIST */
-    .mist {
-      position: fixed; left: -5%; width: 110%; border-radius: 50%;
-      background: radial-gradient(ellipse at 50% 50%, rgba(74,158,255,0.08), transparent 65%);
-      filter: blur(50px); pointer-events: none;
-      animation: mistMove var(--ms) ease-in-out infinite alternate;
-    }
-    @keyframes mistMove {
-      0%   { transform: translateX(-2%) scaleX(1);    opacity: var(--mo); }
-      100% { transform: translateX(2%)  scaleX(1.03); opacity: calc(var(--mo)*1.4); }
-    }
-
-    /* HORIZON */
-    .horizon {
-      position: fixed; bottom: 0; left: 0; width: 100%; height: 40%;
-      background: linear-gradient(0deg, rgba(74,158,255,0.12) 0%, rgba(74,158,255,0.04) 40%, transparent 100%);
-      pointer-events: none;
-    }
-
-    /* PARTICLES */
-    .particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 5; }
-    .particle {
-      position: absolute; border-radius: 50%; background: rgba(74,158,255,0.5);
-      animation: rise var(--pd) ease-in infinite var(--pde);
-    }
-    @keyframes rise {
-      0%   { transform: translateY(110vh) translateX(0) scale(0); opacity: 0; }
-      8%   { opacity: 0.6; transform: translateY(90vh) translateX(var(--px)) scale(1); }
-      90%  { opacity: 0.15; }
-      100% { transform: translateY(-10vh) translateX(calc(var(--px)*2)) scale(0.2); opacity: 0; }
-    }
+    /* Sky, stars, clouds, mist, horizon, particles, nav:
+       shared styles live in /assets/components.js */
 
     /* CONTENT — hidden until JS reveals */
     .content {
@@ -176,118 +113,6 @@
       100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
     }
 
-    /* NAV TOGGLE — floating circle, top-left */
-    .nav-toggle {
-      position: fixed; top: 1.6rem; left: 1.6rem; z-index: 40;
-      width: 52px; height: 52px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(74,158,255,0.08);
-      border: 1px solid rgba(126,207,255,0.25);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      cursor: pointer;
-      transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-    }
-    .nav-toggle:hover {
-      background: rgba(74,158,255,0.16);
-      border-color: rgba(126,207,255,0.5);
-      transform: scale(1.05);
-    }
-    .nav-toggle span {
-      position: absolute; left: 50%; top: 50%;
-      width: 20px; height: 1.6px; border-radius: 2px;
-      background: var(--white);
-      transform: translate(-50%, -50%);
-      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease;
-    }
-    .nav-toggle span:nth-child(1) { transform: translate(-50%, -7px); }
-    .nav-toggle span:nth-child(3) { transform: translate(-50%, 7px); }
-    /* Open state — morph to X */
-    body.nav-open .nav-toggle span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
-    body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
-    body.nav-open .nav-toggle span:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
-
-    /* SIDE NAV — hidden off-screen to the left */
-    .side-nav {
-      position: fixed; top: 0; left: 0; z-index: 35;
-      width: min(300px, 80vw); height: 100%;
-      padding: 6.5rem 2.2rem 2.2rem;
-      background: rgba(7,12,24,0.78);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-right: 1px solid rgba(126,207,255,0.15);
-      transform: translateX(-100%);
-      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
-      visibility: hidden;
-      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), visibility 0s 0.5s;
-    }
-    body.nav-open .side-nav {
-      transform: translateX(0);
-      visibility: visible;
-      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), visibility 0s 0s;
-    }
-
-    .side-nav ul { list-style: none; }
-    .side-nav li { margin: 0.2rem 0; }
-    .side-nav a {
-      display: block; padding: 0.65rem 0;
-      font-size: 1rem; font-weight: 300; letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(180,200,230,0.6);
-      text-decoration: none;
-      transition: color 0.3s ease, padding-left 0.3s ease;
-    }
-    .side-nav a:hover, .side-nav a:focus-visible { color: var(--accent2); padding-left: 0.4rem; }
-
-    /* SUBMENU — Privacy Policies */
-    .sub-toggle {
-      display: flex; align-items: center; gap: 0.55em;
-      width: 100%; padding: 0.65rem 0;
-      background: none; border: none; cursor: pointer;
-      font-family: inherit;
-      font-size: 1rem; font-weight: 300; letter-spacing: 0.22em;
-      text-transform: uppercase; text-align: left;
-      color: rgba(180,200,230,0.6);
-      transition: color 0.3s ease, padding-left 0.3s ease;
-    }
-    .sub-toggle:hover, .sub-toggle:focus-visible { color: var(--accent2); padding-left: 0.4rem; }
-    .sub-toggle .chev {
-      flex: none;
-      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
-    }
-    .has-sub.open .sub-toggle .chev { transform: rotate(180deg); }
-
-    .sub-menu {
-      list-style: none; overflow: hidden;
-      max-height: 0; opacity: 0;
-      transition: max-height 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.35s ease;
-    }
-    .has-sub.open .sub-menu { max-height: 8rem; opacity: 1; }
-    .sub-menu li { margin: 0; }
-    .sub-menu a {
-      padding: 0.45rem 0 0.45rem 1.3rem;
-      font-size: 0.82rem;
-      color: rgba(180,200,230,0.45);
-      border-left: 1px solid rgba(126,207,255,0.18);
-    }
-    .sub-menu a:hover, .sub-menu a:focus-visible { padding-left: 1.7rem; }
-
-    /* OVERLAY — dims page when nav open */
-    .nav-overlay {
-      position: fixed; inset: 0; z-index: 30;
-      background: rgba(3,6,14,0.5);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.5s ease;
-    }
-    body.nav-open .nav-overlay { opacity: 1; pointer-events: auto; }
-
-    /* ACCESSIBILITY — reduced motion: stop only continuous background drift,
-       keep the one-time fade-in and blur intact */
-    @media (prefers-reduced-motion: reduce) {
-      .particle { display: none; }
-      .cloud { animation: none; }
-      .star { animation: none; opacity: var(--o); }
-      .sky { animation: none; }
-      .mist { animation: none; opacity: var(--mo); }
-    }
   </style>
 
   <!-- If JS is disabled, show content immediately -->
@@ -295,152 +120,20 @@
 </head>
 <body>
 
-  <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="side-nav">
-    <span></span><span></span><span></span>
-  </button>
+  <site-nav></site-nav>
 
-  <nav class="side-nav" id="side-nav" aria-label="Main navigation">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/work">Work</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-      <li class="has-sub">
-        <button class="sub-toggle" id="privacy-toggle" aria-expanded="false" aria-controls="privacy-sub">
-          Privacy Policies
-          <svg class="chev" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 L5 6.5 L8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <ul class="sub-menu" id="privacy-sub">
-          <li><a href="/privacy-policies/touchy-fingies-pp" target="_blank" rel="noopener">Touchy Fingies</a></li>
-          <li><a href="/privacy-policies/frend-ai-pp" target="_blank" rel="noopener">Frend AI</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+  <night-sky stars="140" clouds particles>
+    <div class="mist" style="top:50%;height:200px;--ms:16s;--mo:0.8;"></div>
+    <div class="mist" style="top:65%;height:140px;--ms:22s;--mo:0.5;animation-direction:alternate-reverse;"></div>
+    <div class="mist" style="top:76%;height:100px;--ms:13s;--mo:0.4;"></div>
+  </night-sky>
 
-  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
-
-  <div class="sky" aria-hidden="true"></div>
-  <div class="stars" id="stars" aria-hidden="true"></div>
-  <div class="clouds" id="clouds" aria-hidden="true"></div>
-  <div class="mist" style="top:50%;height:200px;--ms:16s;--mo:0.8;" aria-hidden="true"></div>
-  <div class="mist" style="top:65%;height:140px;--ms:22s;--mo:0.5;animation-direction:alternate-reverse;" aria-hidden="true"></div>
-  <div class="mist" style="top:76%;height:100px;--ms:13s;--mo:0.4;" aria-hidden="true"></div>
-  <div class="horizon" aria-hidden="true"></div>
-  <div class="particles" id="particles" aria-hidden="true"></div>
-
-  <main class="content" id="content">
+  <main class="content" id="content" data-font-reveal>
     <h1 class="wordmark"><span>Bearvil</span></h1>
     <div class="contact">
       <span class="copied-toast" id="toast" role="status">Copied</span>
-      <a id="email-link" href="mailto:bearvil.co@gmail.com">bearvil.co@gmail.com</a>
+      <a id="email-link" data-copy-email href="mailto:bearvil.co@gmail.com">bearvil.co@gmail.com</a>
     </div>
   </main>
-
-  <script>
-    'use strict';
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isSmallScreen = window.matchMedia('(max-width: 600px)').matches;
-
-    // Build stars, clouds, particles first (no font dependency)
-    const starsEl = document.getElementById('stars');
-    const starCount = isSmallScreen ? 80 : 140; // fewer DOM nodes on mobile
-    let starHtml = '';
-    for (let i = 0; i < starCount; i++) {
-      const sz = (Math.random() * 2 + 0.4).toFixed(2);
-      starHtml += `<div class="star" style="width:${sz}px;height:${sz}px;left:${(Math.random()*100).toFixed(2)}%;top:${(Math.random()*70).toFixed(2)}%;--d:${(Math.random()*4+2).toFixed(1)}s;--dl:-${(Math.random()*6).toFixed(1)}s;--o:${(Math.random()*0.6+0.2).toFixed(2)};"></div>`;
-    }
-    starsEl.innerHTML = starHtml; // single DOM write instead of 140 appends
-
-    const cloudsEl = document.getElementById('clouds');
-    [
-      { w:500, h:200, top:10, blur:'65px', spd:'100s', x0:'-25%', x1:'115%', dl:'-20s' },
-      { w:350, h:150, top:20, blur:'50px', spd:'75s',  x0:'110%', x1:'-20%', dl:'-40s' },
-      { w:600, h:220, top:6,  blur:'80px', spd:'130s', x0:'-30%', x1:'120%', dl:'-60s' },
-      { w:280, h:120, top:32, blur:'40px', spd:'60s',  x0:'108%', x1:'-18%', dl:'-10s' },
-    ].forEach(c => {
-      const el = document.createElement('div');
-      el.className = 'cloud';
-      el.style.cssText = `width:${c.w}px;height:${c.h}px;top:${c.top}%;--blur:${c.blur};--spd:${c.spd};--x0:${c.x0};--x1:${c.x1};--dl:${c.dl};`;
-      cloudsEl.appendChild(el);
-    });
-
-    if (!reducedMotion) {
-      const particlesEl = document.getElementById('particles');
-      let pHtml = '';
-      for (let i = 0; i < 18; i++) {
-        const sz = (Math.random() * 3 + 1).toFixed(2);
-        pHtml += `<div class="particle" style="width:${sz}px;height:${sz}px;left:${(Math.random()*100).toFixed(2)}%;--pd:${(Math.random()*14+9).toFixed(1)}s;--pde:-${(Math.random()*14).toFixed(1)}s;--px:${(Math.random()*60-30).toFixed(0)}px;"></div>`;
-      }
-      particlesEl.innerHTML = pHtml;
-    }
-
-    // Reveal content only after font is confirmed loaded
-    const content = document.getElementById('content');
-    let revealed = false;
-
-    function reveal() {
-      if (revealed) return;
-      revealed = true;
-      content.style.animation = 'fadeInUp 2.8s cubic-bezier(0.16,1,0.3,1) forwards';
-    }
-
-    document.fonts.load('600 1em "Cormorant Garamond"').then(() => {
-      // Small rAF delay so browser has painted the font
-      requestAnimationFrame(() => requestAnimationFrame(reveal));
-    }).catch(() => {
-      // Fallback if font load fails
-      setTimeout(reveal, 800);
-    });
-
-    // Hard fallback after 2s
-    setTimeout(reveal, 2000);
-
-    // Side nav toggle
-    const navToggle = document.getElementById('nav-toggle');
-    const navOverlay = document.getElementById('nav-overlay');
-    function closeNav(returnFocus) {
-      if (!document.body.classList.contains('nav-open')) return;
-      document.body.classList.remove('nav-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      const sub = document.querySelector('.has-sub.open');
-      if (sub) {
-        sub.classList.remove('open');
-        sub.querySelector('.sub-toggle').setAttribute('aria-expanded', 'false');
-      }
-      if (returnFocus) navToggle.focus();
-    }
-    navToggle.addEventListener('click', () => {
-      const open = document.body.classList.toggle('nav-open');
-      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (open) {
-        const first = document.querySelector('.side-nav a');
-        if (first) first.focus();
-      }
-    });
-    navOverlay.addEventListener('click', () => closeNav(false));
-
-    // Privacy Policies submenu
-    const privacyToggle = document.getElementById('privacy-toggle');
-    privacyToggle.addEventListener('click', () => {
-      const open = privacyToggle.parentElement.classList.toggle('open');
-      privacyToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    document.querySelectorAll('.side-nav a').forEach(a => a.addEventListener('click', () => closeNav(false)));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(true); });
-
-    // Email copy — with fallback to mailto if Clipboard API unavailable
-    document.getElementById('email-link').addEventListener('click', function (e) {
-      if (!navigator.clipboard || !window.isSecureContext) return; // let mailto work
-      e.preventDefault();
-      navigator.clipboard.writeText('bearvil.co@gmail.com').then(() => {
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 1800);
-      }).catch(() => {
-        window.location.href = 'mailto:bearvil.co@gmail.com';
-      });
-    });
-  </script>
 </body>
 </html>
