@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title>404 — Bearvil</title>
+  <meta name="description" content="This page doesn't exist yet." />
+  <meta name="robots" content="noindex" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#07090f" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090f'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='600' fill='%237ecfff' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300&display=block" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #4a9eff;
+      --accent2: #7ecfff;
+      --white: #e8f0fe;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      background: #07090f;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent2);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .sky {
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse 120% 80% at 50% 110%,
+        #1a3a6e 0%, #0d1f40 35%, #07090f 70%);
+      animation: skyBreath 20s ease-in-out infinite alternate;
+    }
+    @keyframes skyBreath {
+      0%   { filter: brightness(0.9); }
+      100% { filter: brightness(1.1); }
+    }
+
+    .stars { position: fixed; inset: 0; pointer-events: none; }
+    .star {
+      position: absolute; border-radius: 50%; background: white;
+      animation: twinkle var(--d) ease-in-out infinite alternate var(--dl);
+    }
+    @keyframes twinkle {
+      0%   { opacity: 0.05; transform: scale(0.7); }
+      100% { opacity: var(--o); transform: scale(1.1); }
+    }
+
+    .horizon {
+      position: fixed; bottom: 0; left: 0; width: 100%; height: 40%;
+      background: linear-gradient(0deg, rgba(74,158,255,0.12) 0%, rgba(74,158,255,0.04) 40%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
+      animation: fadeInUp 1.6s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes fadeInUp {
+      0%   { opacity: 0; transform: translateY(16px); filter: blur(12px); }
+      60%  { filter: blur(2px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+    }
+
+    .code {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(4rem, 18vw, 11rem);
+      letter-spacing: 0.2em;
+      text-indent: 0.2em;
+      line-height: 1;
+      background: linear-gradient(135deg, #e8f0fe 0%, #7ecfff 55%, #4a9eff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .message {
+      margin-top: 1.4rem;
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      font-weight: 300; letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(150, 170, 200, 0.55);
+    }
+
+    .home-link {
+      margin-top: 2.6rem;
+      display: inline-block;
+      padding: 0.8rem 2.2rem;
+      border: 1px solid rgba(126,207,255,0.25);
+      border-radius: 999px;
+      font-size: 0.8rem; font-weight: 300; letter-spacing: 0.25em;
+      text-transform: uppercase; text-decoration: none;
+      color: rgba(180, 200, 230, 0.7);
+      background: rgba(74,158,255,0.06);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+    .home-link:hover, .home-link:focus-visible {
+      color: var(--accent2);
+      border-color: rgba(126,207,255,0.5);
+      background: rgba(74,158,255,0.14);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .star { animation: none; opacity: var(--o); }
+      .sky { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sky" aria-hidden="true"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="horizon" aria-hidden="true"></div>
+
+  <main class="content">
+    <h1 class="code">404</h1>
+    <p class="message">This page doesn't exist&nbsp;yet</p>
+    <a class="home-link" href="/">Back home</a>
+  </main>
+
+  <script>
+    'use strict';
+    const starsEl = document.getElementById('stars');
+    const starCount = window.matchMedia('(max-width: 600px)').matches ? 60 : 110;
+    let html = '';
+    for (let i = 0; i < starCount; i++) {
+      const sz = (Math.random() * 2 + 0.4).toFixed(2);
+      html += `<div class="star" style="width:${sz}px;height:${sz}px;left:${(Math.random()*100).toFixed(2)}%;top:${(Math.random()*70).toFixed(2)}%;--d:${(Math.random()*4+2).toFixed(1)}s;--dl:-${(Math.random()*6).toFixed(1)}s;--o:${(Math.random()*0.6+0.2).toFixed(2)};"></div>`;
+    }
+    starsEl.innerHTML = html;
+  </script>
+</body>
+</html>

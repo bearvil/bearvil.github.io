@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Touchy Fingies — Privacy Policy</title>
+<meta name="description" content="Privacy Policy for Touchy Fingies. The app collects no data, shows no ads, and works fully offline.">
+<style>
+  :root {
+    --bg: #0b1d33;
+    --bg2: #102542;
+    --card: #fdfdff;
+    --ink: #0b1d33;
+    --muted: #7a8699;
+    --body: #5a6675;
+    --teal: #118ab2;
+    --green: #06d6a0;
+    --yellow: #ffd166;
+    --pink: #ef476f;
+    --purple: #9b5de5;
+    --soft: #eff6fb;
+    --line: #eef1f6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(160deg, #0b1d33 0%, #1a1b3a 45%, #2a1b4d 100%);
+    min-height: 100vh;
+    color: var(--ink);
+    padding: 24px 16px 64px;
+    position: relative;
+    overflow-x: hidden;
+  }
+  /* floating emoji background, like the smash surface */
+  .float {
+    position: fixed;
+    font-size: 32px;
+    opacity: 0.18;
+    animation: drift 14s ease-in-out infinite;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(-6deg); }
+    50% { transform: translateY(-24px) rotate(8deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .float { animation: none; }
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  header { text-align: center; padding: 28px 0 24px; }
+  .logo {
+    font-size: 56px;
+    line-height: 1;
+    display: inline-block;
+    animation: pop 2.6s ease-in-out infinite;
+  }
+  @keyframes pop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12) rotate(-4deg); }
+  }
+  h1 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-top: 10px;
+  }
+  .subtitle {
+    color: var(--yellow);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 6px;
+  }
+  .lang-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .lang-btn {
+    border: 2px solid transparent;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 9px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  .lang-btn:hover { background: rgba(255,255,255,0.22); }
+  .lang-btn.active {
+    background: var(--teal);
+    border-color: #0b6f93;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 28px 26px;
+    margin-top: 20px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+  }
+  .tldr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .badge {
+    flex: 1 1 130px;
+    background: var(--soft);
+    border-radius: 18px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .badge .big { font-size: 30px; }
+  .badge .cap {
+    display: block;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+  }
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    margin-top: 22px;
+  }
+  h2 .emoji { font-size: 16px; margin-right: 6px; }
+  p, li {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--body);
+    margin-top: 10px;
+  }
+  ul { padding-left: 20px; }
+  li { margin-top: 6px; }
+  strong { color: var(--ink); }
+  .highlight {
+    background: linear-gradient(180deg, transparent 60%, rgba(6,214,160,0.35) 60%);
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .contact-box {
+    margin-top: 14px;
+    background: var(--soft);
+    border-radius: 16px;
+    padding: 16px 18px;
+  }
+  .contact-box a {
+    color: var(--teal);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .contact-box a:hover { text-decoration: underline; }
+  .updated {
+    margin-top: 22px;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+  footer {
+    text-align: center;
+    margin-top: 26px;
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+  }
+  footer .emojis { font-size: 20px; letter-spacing: 6px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<span class="float" style="top:8%;  left:6%;  animation-delay:0s;">⭐</span>
+<span class="float" style="top:18%; right:8%;  animation-delay:1.2s;">🚀</span>
+<span class="float" style="top:48%; left:4%;  animation-delay:2.4s;">🐠</span>
+<span class="float" style="top:64%; right:5%;  animation-delay:0.8s;">🦁</span>
+<span class="float" style="top:84%; left:10%; animation-delay:1.8s;">🍭</span>
+<span class="float" style="top:90%; right:12%; animation-delay:3s;">🌈</span>
+
+<div class="wrap">
+  <header>
+    <span class="logo">👶✨</span>
+    <h1>Touchy Fingies</h1>
+    <p class="subtitle" id="subtitle">Privacy Policy</p>
+    <div class="lang-row" role="group" aria-label="Language" id="lang-row"></div>
+  </header>
+
+  <main class="card" id="policy-card"><!-- filled by script --></main>
+
+  <p class="updated">
+    <span id="updated-label">Last updated:</span> June 11, 2026 · v1.2
+  </p>
+
+  <footer>
+    <div class="emojis">⭐ 🐬 🦜 🍭 🌈</div>
+    <p style="margin-top:8px;">Touchy Fingies - Bearvil</p>
+  </footer>
+</div>
+
+<script>
+  // All translations live in this object; the card is rendered from it.
+  // Languages mirror the in-app list in src/i18n.js:
+  // en, hr, de, es, fr, it, pt, ru, ja, zh.
+  const EMAIL = 'bearvil.co@gmail.com';
+  const I18N = {
+    en: {
+      btn: '🇬🇧 English',
+      subtitle: 'Privacy Policy',
+      updated: 'Last updated:',
+      badges: ['No data collected', 'No ads', 'Works offline'],
+      short: '<strong>The short version:</strong> <span class="highlight">Touchy Fingies collects no personal data whatsoever.</span> No accounts, no analytics, no ads, no tracking, no internet. Everything stays on your device.',
+      sections: [
+        ['👶', 'About the app', '<p>Touchy Fingies is a simple tap-and-play app for babies and toddlers. Touching the screen makes colorful emojis and friendly sounds appear. It is designed for children and built to be as private as technically possible.</p>'],
+        ['🔒', 'Data we collect', '<p><strong>None.</strong> Touchy Fingies does not collect, store, transmit, or share any personal data. Specifically, the app has:</p><ul><li><strong>No internet access</strong> — the Android version explicitly blocks the internet permission, so the app is technically unable to send anything anywhere.</li><li><strong>No accounts or sign-up</strong> — there is nothing to register and no user IDs.</li><li><strong>No analytics or tracking SDKs</strong> — no third-party services are embedded.</li><li><strong>No advertising</strong> — the app shows no ads of any kind.</li><li><strong>No access to camera, microphone, location, contacts, or files.</strong></li></ul>'],
+        ['📱', 'Data stored on your device', '<p>The app saves your preferences (theme, language, sound, vibration, speech, night mode, play timer, screen orientation and other play settings) and a simple tap counter <strong>locally on your device only</strong>. This data never leaves the device and is deleted when you uninstall the app. You can also reset the statistics at any time from the parent panel.</p>'],
+        ['📳', 'Permissions', '<p>The only permission the app uses is <strong>vibration</strong>, for gentle haptic feedback when the screen is tapped. It can be turned off in the parent panel.</p>'],
+        ['🗣️', 'On-device features', '<p>Newer features also run entirely on your device — no network is ever involved:</p><ul><li><strong>Speaking letters aloud</strong> — this optional feature uses your device\'s built-in offline text-to-speech voice. The app records nothing and never uses the microphone.</li><li><strong>Device language</strong> — on first launch the app reads the device\'s language setting (on the device itself) only to pick its starting language; you can change it any time in the parent panel.</li><li><strong>Screen stays awake</strong> — during play the screen is kept on using a standard system feature that needs no special permission.</li></ul>'],
+        ['🔗', 'External links', '<p>The only link in the app leads to this privacy policy and opens in your device\'s web browser. It sits in the parent panel behind a parental gate (a small arithmetic question), so a child cannot leave the app by accident. The app itself never connects to the internet.</p>'],
+        ['🧒', "Children's privacy (COPPA / GDPR)", "<p>Touchy Fingies is intended for young children and complies with the US Children's Online Privacy Protection Act (COPPA) and the EU General Data Protection Regulation (GDPR) the simplest way possible: <strong>by collecting no data at all</strong>. No personal information is ever collected from children or anyone else.</p>"],
+        ['🔁', 'Changes to this policy', '<p>If this policy ever changes (for example, in a future app update), the new version will be published at this same address with an updated date below.</p>'],
+      ],
+      contactTitle: 'Contact',
+      contact: "Questions about privacy? We're happy to help:",
+    },
+    hr: {
+      btn: '🇭🇷 Hrvatski',
+      subtitle: 'Pravila privatnosti',
+      updated: 'Zadnja izmjena:',
+      badges: ['Bez prikupljanja podataka', 'Bez oglasa', 'Radi offline'],
+      short: '<strong>Ukratko:</strong> <span class="highlight">Touchy Fingies ne prikuplja nikakve osobne podatke.</span> Bez računa, bez analitike, bez oglasa, bez praćenja, bez interneta. Sve ostaje na vašem uređaju.',
+      sections: [
+        ['👶', 'O aplikaciji', '<p>Touchy Fingies je jednostavna aplikacija za bebe i malu djecu. Dodirom ekrana pojavljuju se šareni smajlići i veseli zvukovi. Namijenjena je djeci i izrađena da bude privatna koliko je to tehnički moguće.</p>'],
+        ['🔒', 'Podaci koje prikupljamo', '<p><strong>Nikakvi.</strong> Touchy Fingies ne prikuplja, ne pohranjuje, ne šalje niti dijeli osobne podatke. Konkretno, aplikacija ima:</p><ul><li><strong>Bez pristupa internetu</strong> — Android verzija izričito blokira dozvolu za internet, pa aplikacija tehnički ne može ništa nikamo poslati.</li><li><strong>Bez računa i registracije</strong> — nema se što registrirati, nema korisničkih ID-eva.</li><li><strong>Bez analitike i SDK-ova za praćenje</strong> — nema ugrađenih servisa trećih strana.</li><li><strong>Bez oglasa</strong> — aplikacija ne prikazuje nikakve oglase.</li><li><strong>Bez pristupa kameri, mikrofonu, lokaciji, kontaktima ili datotekama.</strong></li></ul>'],
+        ['📱', 'Podaci na vašem uređaju', '<p>Aplikacija sprema vaše postavke (temu, jezik, zvuk, vibraciju, govor, noćni način, mjerač igre, orijentaciju ekrana i ostale postavke igre) i jednostavan brojač dodira <strong>isključivo lokalno na uređaju</strong>. Ti podaci nikada ne napuštaju uređaj i brišu se deinstalacijom aplikacije. Statistiku možete u bilo kojem trenutku poništiti u roditeljskom panelu.</p>'],
+        ['📳', 'Dozvole', '<p>Jedina dozvola koju aplikacija koristi je <strong>vibracija</strong>, za nježnu haptičku povratnu informaciju pri dodiru ekrana. Može se isključiti u roditeljskom panelu.</p>'],
+        ['🗣️', 'Značajke na uređaju', '<p>I novije značajke rade u potpunosti na vašem uređaju — mreža se nikada ne koristi:</p><ul><li><strong>Izgovaranje slova naglas</strong> — ova opcionalna značajka koristi ugrađeni offline glas uređaja (tekst-u-govor). Aplikacija ništa ne snima i nikada ne koristi mikrofon.</li><li><strong>Jezik uređaja</strong> — pri prvom pokretanju aplikacija očitava jezik uređaja (na samom uređaju) samo kako bi odabrala početni jezik; u roditeljskom panelu možete ga promijeniti u bilo kojem trenutku.</li><li><strong>Ekran ostaje budan</strong> — tijekom igre ekran ostaje uključen putem standardne sistemske značajke koja ne traži posebnu dozvolu.</li></ul>'],
+        ['🔗', 'Vanjske poveznice', '<p>Jedina poveznica u aplikaciji vodi na ova pravila privatnosti i otvara se u pregledniku uređaja. Nalazi se u roditeljskom panelu iza roditeljske zaštite (kratkog računskog zadatka), pa dijete ne može slučajno napustiti aplikaciju. Sama aplikacija nikada se ne spaja na internet.</p>'],
+        ['🧒', 'Privatnost djece (COPPA / GDPR)', '<p>Touchy Fingies je namijenjen maloj djeci te je usklađen s američkim zakonom COPPA i europskom Općom uredbom o zaštiti podataka (GDPR) na najjednostavniji mogući način: <strong>ne prikuplja nikakve podatke</strong>. Osobni podaci se nikada ne prikupljaju ni od djece ni od bilo koga drugoga.</p>'],
+        ['🔁', 'Izmjene ovih pravila', '<p>Ako se ova pravila ikada promijene (npr. u budućoj nadogradnji aplikacije), nova verzija bit će objavljena na ovoj istoj adresi s ažuriranim datumom u nastavku.</p>'],
+      ],
+      contactTitle: 'Kontakt',
+      contact: 'Pitanja o privatnosti? Rado ćemo pomoći:',
+    },
+    de: {
+      btn: '🇩🇪 Deutsch',
+      subtitle: 'Datenschutzerklärung',
+      updated: 'Zuletzt aktualisiert:',
+      badges: ['Keine Datenerfassung', 'Keine Werbung', 'Funktioniert offline'],
+      short: '<strong>Kurz gesagt:</strong> <span class="highlight">Touchy Fingies sammelt keinerlei personenbezogene Daten.</span> Keine Konten, keine Analysen, keine Werbung, kein Tracking, kein Internet. Alles bleibt auf Ihrem Gerät.',
+      sections: [
+        ['👶', 'Über die App', '<p>Touchy Fingies ist eine einfache Tipp-und-Spiel-App für Babys und Kleinkinder. Beim Berühren des Bildschirms erscheinen bunte Emojis und freundliche Töne. Sie ist für Kinder gemacht und so privat wie technisch möglich gestaltet.</p>'],
+        ['🔒', 'Daten, die wir erfassen', '<p><strong>Keine.</strong> Touchy Fingies erfasst, speichert, überträgt oder teilt keine personenbezogenen Daten. Konkret hat die App:</p><ul><li><strong>Keinen Internetzugang</strong> — die Android-Version blockiert die Internet-Berechtigung ausdrücklich, sodass die App technisch nichts senden kann.</li><li><strong>Keine Konten oder Registrierung</strong> — es gibt nichts zu registrieren und keine Nutzer-IDs.</li><li><strong>Keine Analyse- oder Tracking-SDKs</strong> — keine Dienste von Drittanbietern sind eingebettet.</li><li><strong>Keine Werbung</strong> — die App zeigt keinerlei Anzeigen.</li><li><strong>Keinen Zugriff auf Kamera, Mikrofon, Standort, Kontakte oder Dateien.</strong></li></ul>'],
+        ['📱', 'Auf Ihrem Gerät gespeicherte Daten', '<p>Die App speichert Ihre Einstellungen (Thema, Sprache, Ton, Vibration, Sprachausgabe, Nachtmodus, Spieltimer, Bildschirmausrichtung und weitere Spieleinstellungen) und einen einfachen Tippzähler <strong>nur lokal auf Ihrem Gerät</strong>. Diese Daten verlassen das Gerät nie und werden beim Deinstallieren der App gelöscht. Die Statistik kann jederzeit im Elternbereich zurückgesetzt werden.</p>'],
+        ['📳', 'Berechtigungen', '<p>Die einzige Berechtigung der App ist <strong>Vibration</strong>, für sanftes haptisches Feedback beim Tippen. Sie kann im Elternbereich ausgeschaltet werden.</p>'],
+        ['🗣️', 'Funktionen auf dem Gerät', '<p>Auch neuere Funktionen laufen vollständig auf Ihrem Gerät — ein Netzwerk ist nie beteiligt:</p><ul><li><strong>Buchstaben vorlesen</strong> — diese optionale Funktion nutzt die integrierte Offline-Sprachausgabe (Text-zu-Sprache) Ihres Geräts. Die App nimmt nichts auf und verwendet niemals das Mikrofon.</li><li><strong>Gerätesprache</strong> — beim ersten Start liest die App die Spracheinstellung des Geräts (auf dem Gerät selbst), nur um die Startsprache zu wählen; im Elternbereich können Sie sie jederzeit ändern.</li><li><strong>Bildschirm bleibt an</strong> — während des Spielens bleibt der Bildschirm über eine Standard-Systemfunktion eingeschaltet, die keine besondere Berechtigung benötigt.</li></ul>'],
+        ['🔗', 'Externe Links', '<p>Der einzige Link in der App führt zu dieser Datenschutzerklärung und öffnet sich im Browser Ihres Geräts. Er befindet sich im Elternbereich hinter einer Elternsicherung (einer kleinen Rechenaufgabe), damit ein Kind die App nicht versehentlich verlassen kann. Die App selbst verbindet sich niemals mit dem Internet.</p>'],
+        ['🧒', 'Datenschutz für Kinder (COPPA / DSGVO)', '<p>Touchy Fingies ist für kleine Kinder gedacht und erfüllt das US-Gesetz COPPA und die EU-Datenschutz-Grundverordnung (DSGVO) auf die einfachste mögliche Weise: <strong>es werden überhaupt keine Daten erfasst</strong>. Es werden niemals personenbezogene Informationen von Kindern oder anderen Personen erhoben.</p>'],
+        ['🔁', 'Änderungen dieser Erklärung', '<p>Sollte sich diese Erklärung jemals ändern (z. B. durch ein App-Update), wird die neue Version unter derselben Adresse mit aktualisiertem Datum veröffentlicht.</p>'],
+      ],
+      contactTitle: 'Kontakt',
+      contact: 'Fragen zum Datenschutz? Wir helfen gerne:',
+    },
+    es: {
+      btn: '🇪🇸 Español',
+      subtitle: 'Política de privacidad',
+      updated: 'Última actualización:',
+      badges: ['No se recopilan datos', 'Sin anuncios', 'Funciona sin conexión'],
+      short: '<strong>En resumen:</strong> <span class="highlight">Touchy Fingies no recopila ningún dato personal.</span> Sin cuentas, sin analíticas, sin anuncios, sin rastreo, sin internet. Todo permanece en su dispositivo.',
+      sections: [
+        ['👶', 'Sobre la app', '<p>Touchy Fingies es una app sencilla de tocar y jugar para bebés y niños pequeños. Al tocar la pantalla aparecen emojis coloridos y sonidos amables. Está diseñada para niños y construida para ser tan privada como sea técnicamente posible.</p>'],
+        ['🔒', 'Datos que recopilamos', '<p><strong>Ninguno.</strong> Touchy Fingies no recopila, almacena, transmite ni comparte datos personales. En concreto, la app tiene:</p><ul><li><strong>Sin acceso a internet</strong> — la versión de Android bloquea explícitamente el permiso de internet, por lo que la app es técnicamente incapaz de enviar nada.</li><li><strong>Sin cuentas ni registro</strong> — no hay nada que registrar ni identificadores de usuario.</li><li><strong>Sin SDK de analítica o rastreo</strong> — no hay servicios de terceros integrados.</li><li><strong>Sin publicidad</strong> — la app no muestra ningún tipo de anuncios.</li><li><strong>Sin acceso a cámara, micrófono, ubicación, contactos o archivos.</strong></li></ul>'],
+        ['📱', 'Datos guardados en su dispositivo', '<p>La app guarda sus preferencias (tema, idioma, sonido, vibración, voz, modo nocturno, temporizador de juego, orientación de pantalla y otros ajustes de juego) y un simple contador de toques <strong>solo localmente en su dispositivo</strong>. Estos datos nunca salen del dispositivo y se eliminan al desinstalar la app. También puede reiniciar las estadísticas en cualquier momento desde el panel de padres.</p>'],
+        ['📳', 'Permisos', '<p>El único permiso que usa la app es la <strong>vibración</strong>, para una respuesta háptica suave al tocar la pantalla. Puede desactivarse en el panel de padres.</p>'],
+        ['🗣️', 'Funciones en el dispositivo', '<p>Las funciones más recientes también se ejecutan completamente en su dispositivo — nunca interviene la red:</p><ul><li><strong>Leer letras en voz alta</strong> — esta función opcional usa la voz sin conexión (texto a voz) integrada en su dispositivo. La app no graba nada y nunca usa el micrófono.</li><li><strong>Idioma del dispositivo</strong> — en el primer inicio, la app lee el idioma configurado en el dispositivo (en el propio dispositivo) solo para elegir su idioma inicial; puede cambiarlo en cualquier momento desde el panel de padres.</li><li><strong>La pantalla permanece encendida</strong> — durante el juego, la pantalla se mantiene activa mediante una función estándar del sistema que no requiere ningún permiso especial.</li></ul>'],
+        ['🔗', 'Enlaces externos', '<p>El único enlace de la app lleva a esta política de privacidad y se abre en el navegador del dispositivo. Está en el panel de padres tras un control parental (una pequeña operación aritmética), para que un niño no pueda salir de la app por accidente. La app en sí nunca se conecta a internet.</p>'],
+        ['🧒', 'Privacidad infantil (COPPA / RGPD)', '<p>Touchy Fingies está destinada a niños pequeños y cumple con la ley estadounidense COPPA y el Reglamento General de Protección de Datos de la UE (RGPD) de la forma más simple posible: <strong>no recopilando ningún dato</strong>. Nunca se recopila información personal de niños ni de nadie más.</p>'],
+        ['🔁', 'Cambios en esta política', '<p>Si esta política cambia alguna vez (por ejemplo, en una futura actualización), la nueva versión se publicará en esta misma dirección con la fecha actualizada abajo.</p>'],
+      ],
+      contactTitle: 'Contacto',
+      contact: '¿Preguntas sobre privacidad? Estaremos encantados de ayudar:',
+    },
+    fr: {
+      btn: '🇫🇷 Français',
+      subtitle: 'Politique de confidentialité',
+      updated: 'Dernière mise à jour :',
+      badges: ['Aucune donnée collectée', 'Aucune publicité', 'Fonctionne hors ligne'],
+      short: '<strong>En bref :</strong> <span class="highlight">Touchy Fingies ne collecte aucune donnée personnelle.</span> Pas de compte, pas d’analyses, pas de publicité, pas de suivi, pas d’internet. Tout reste sur votre appareil.',
+      sections: [
+        ['👶', 'À propos de l’application', '<p>Touchy Fingies est une application simple de jeu tactile pour bébés et tout-petits. Toucher l’écran fait apparaître des émojis colorés et des sons amicaux. Elle est conçue pour les enfants et pensée pour être aussi privée que techniquement possible.</p>'],
+        ['🔒', 'Données que nous collectons', '<p><strong>Aucune.</strong> Touchy Fingies ne collecte, ne stocke, ne transmet ni ne partage aucune donnée personnelle. Concrètement, l’application a :</p><ul><li><strong>Aucun accès à internet</strong> — la version Android bloque explicitement la permission internet, l’application est donc techniquement incapable d’envoyer quoi que ce soit.</li><li><strong>Aucun compte ni inscription</strong> — rien à enregistrer, aucun identifiant utilisateur.</li><li><strong>Aucun SDK d’analyse ou de suivi</strong> — aucun service tiers intégré.</li><li><strong>Aucune publicité</strong> — l’application n’affiche aucune annonce.</li><li><strong>Aucun accès à la caméra, au microphone, à la localisation, aux contacts ou aux fichiers.</strong></li></ul>'],
+        ['📱', 'Données stockées sur votre appareil', '<p>L’application enregistre vos préférences (thème, langue, son, vibration, voix, mode nuit, minuteur de jeu, orientation de l’écran et autres réglages de jeu) et un simple compteur de touches <strong>uniquement en local sur votre appareil</strong>. Ces données ne quittent jamais l’appareil et sont supprimées à la désinstallation. Vous pouvez aussi réinitialiser les statistiques à tout moment depuis l’espace parents.</p>'],
+        ['📳', 'Autorisations', '<p>La seule autorisation utilisée est la <strong>vibration</strong>, pour un léger retour haptique au toucher. Elle peut être désactivée dans l’espace parents.</p>'],
+        ['🗣️', 'Fonctions sur l’appareil', '<p>Les fonctions plus récentes s’exécutent elles aussi entièrement sur votre appareil — le réseau n’est jamais utilisé :</p><ul><li><strong>Lecture des lettres à voix haute</strong> — cette fonction optionnelle utilise la voix hors ligne (synthèse vocale) intégrée à votre appareil. L’application n’enregistre rien et n’utilise jamais le microphone.</li><li><strong>Langue de l’appareil</strong> — au premier lancement, l’application lit la langue configurée sur l’appareil (sur l’appareil lui-même) uniquement pour choisir sa langue de départ ; vous pouvez la changer à tout moment dans l’espace parents.</li><li><strong>Écran maintenu allumé</strong> — pendant le jeu, l’écran reste allumé grâce à une fonction système standard qui ne nécessite aucune autorisation particulière.</li></ul>'],
+        ['🔗', 'Liens externes', '<p>Le seul lien de l’application mène à cette politique de confidentialité et s’ouvre dans le navigateur de l’appareil. Il se trouve dans l’espace parents derrière un contrôle parental (une petite question de calcul), afin qu’un enfant ne puisse pas quitter l’application par accident. L’application elle-même ne se connecte jamais à internet.</p>'],
+        ['🧒', 'Vie privée des enfants (COPPA / RGPD)', '<p>Touchy Fingies est destinée aux jeunes enfants et respecte la loi américaine COPPA et le Règlement général sur la protection des données de l’UE (RGPD) de la manière la plus simple possible : <strong>en ne collectant aucune donnée</strong>. Aucune information personnelle n’est jamais collectée, ni auprès des enfants ni de quiconque.</p>'],
+        ['🔁', 'Modifications de cette politique', '<p>Si cette politique change un jour (par exemple lors d’une mise à jour), la nouvelle version sera publiée à cette même adresse avec une date mise à jour ci-dessous.</p>'],
+      ],
+      contactTitle: 'Contact',
+      contact: 'Des questions sur la confidentialité ? Nous serons ravis d’aider :',
+    },
+    it: {
+      btn: '🇮🇹 Italiano',
+      subtitle: 'Informativa sulla privacy',
+      updated: 'Ultimo aggiornamento:',
+      badges: ['Nessun dato raccolto', 'Nessuna pubblicità', 'Funziona offline'],
+      short: '<strong>In breve:</strong> <span class="highlight">Touchy Fingies non raccoglie alcun dato personale.</span> Nessun account, nessuna analisi, nessuna pubblicità, nessun tracciamento, nessun internet. Tutto resta sul vostro dispositivo.',
+      sections: [
+        ['👶', 'Informazioni sull’app', '<p>Touchy Fingies è una semplice app tocca-e-gioca per neonati e bambini piccoli. Toccando lo schermo appaiono emoji colorate e suoni amichevoli. È pensata per i bambini e costruita per essere privata quanto tecnicamente possibile.</p>'],
+        ['🔒', 'Dati che raccogliamo', '<p><strong>Nessuno.</strong> Touchy Fingies non raccoglie, memorizza, trasmette né condivide alcun dato personale. In concreto, l’app ha:</p><ul><li><strong>Nessun accesso a internet</strong> — la versione Android blocca esplicitamente il permesso internet, quindi l’app è tecnicamente incapace di inviare qualsiasi cosa.</li><li><strong>Nessun account o registrazione</strong> — non c’è nulla da registrare e nessun ID utente.</li><li><strong>Nessun SDK di analisi o tracciamento</strong> — nessun servizio di terze parti integrato.</li><li><strong>Nessuna pubblicità</strong> — l’app non mostra alcun tipo di annuncio.</li><li><strong>Nessun accesso a fotocamera, microfono, posizione, contatti o file.</strong></li></ul>'],
+        ['📱', 'Dati salvati sul vostro dispositivo', '<p>L’app salva le vostre preferenze (tema, lingua, suono, vibrazione, voce, modalità notte, timer di gioco, orientamento dello schermo e altre impostazioni di gioco) e un semplice contatore di tocchi <strong>solo localmente sul dispositivo</strong>. Questi dati non lasciano mai il dispositivo e vengono eliminati disinstallando l’app. Le statistiche possono essere azzerate in qualsiasi momento dal pannello genitori.</p>'],
+        ['📳', 'Autorizzazioni', '<p>L’unica autorizzazione usata dall’app è la <strong>vibrazione</strong>, per un delicato feedback aptico al tocco. Può essere disattivata nel pannello genitori.</p>'],
+        ['🗣️', 'Funzioni sul dispositivo', '<p>Anche le funzioni più recenti girano interamente sul vostro dispositivo — la rete non è mai coinvolta:</p><ul><li><strong>Lettura delle lettere ad alta voce</strong> — questa funzione opzionale usa la voce offline (sintesi vocale) integrata nel dispositivo. L’app non registra nulla e non usa mai il microfono.</li><li><strong>Lingua del dispositivo</strong> — al primo avvio l’app legge la lingua impostata sul dispositivo (sul dispositivo stesso) solo per scegliere la lingua iniziale; potete cambiarla in qualsiasi momento dal pannello genitori.</li><li><strong>Schermo sempre attivo</strong> — durante il gioco lo schermo resta acceso tramite una funzione di sistema standard che non richiede permessi speciali.</li></ul>'],
+        ['🔗', 'Link esterni', '<p>L’unico link nell’app porta a questa informativa sulla privacy e si apre nel browser del dispositivo. Si trova nel pannello genitori dietro un controllo parentale (una piccola domanda di aritmetica), così un bambino non può uscire dall’app per sbaglio. L’app in sé non si connette mai a internet.</p>'],
+        ['🧒', 'Privacy dei bambini (COPPA / GDPR)', '<p>Touchy Fingies è destinata ai bambini piccoli e rispetta la legge statunitense COPPA e il Regolamento generale sulla protezione dei dati dell’UE (GDPR) nel modo più semplice possibile: <strong>non raccogliendo alcun dato</strong>. Nessuna informazione personale viene mai raccolta dai bambini né da chiunque altro.</p>'],
+        ['🔁', 'Modifiche a questa informativa', '<p>Se questa informativa dovesse cambiare (ad esempio in un futuro aggiornamento), la nuova versione sarà pubblicata a questo stesso indirizzo con la data aggiornata qui sotto.</p>'],
+      ],
+      contactTitle: 'Contatto',
+      contact: 'Domande sulla privacy? Saremo felici di aiutare:',
+    },
+    pt: {
+      btn: '🇵🇹 Português',
+      subtitle: 'Política de privacidade',
+      updated: 'Última atualização:',
+      badges: ['Nenhum dado recolhido', 'Sem anúncios', 'Funciona offline'],
+      short: '<strong>Resumindo:</strong> <span class="highlight">O Touchy Fingies não recolhe quaisquer dados pessoais.</span> Sem contas, sem análises, sem anúncios, sem rastreamento, sem internet. Tudo fica no seu dispositivo.',
+      sections: [
+        ['👶', 'Sobre a aplicação', '<p>O Touchy Fingies é uma aplicação simples de tocar e brincar para bebés e crianças pequenas. Tocar no ecrã faz aparecer emojis coloridos e sons amigáveis. É concebida para crianças e construída para ser tão privada quanto tecnicamente possível.</p>'],
+        ['🔒', 'Dados que recolhemos', '<p><strong>Nenhuns.</strong> O Touchy Fingies não recolhe, armazena, transmite nem partilha dados pessoais. Em concreto, a aplicação tem:</p><ul><li><strong>Sem acesso à internet</strong> — a versão Android bloqueia explicitamente a permissão de internet, pelo que a aplicação é tecnicamente incapaz de enviar o que quer que seja.</li><li><strong>Sem contas ou registo</strong> — não há nada para registar e não existem IDs de utilizador.</li><li><strong>Sem SDKs de análise ou rastreamento</strong> — nenhum serviço de terceiros está incorporado.</li><li><strong>Sem publicidade</strong> — a aplicação não mostra anúncios de qualquer tipo.</li><li><strong>Sem acesso à câmara, microfone, localização, contactos ou ficheiros.</strong></li></ul>'],
+        ['📱', 'Dados guardados no seu dispositivo', '<p>A aplicação guarda as suas preferências (tema, idioma, som, vibração, voz, modo noturno, temporizador de jogo, orientação do ecrã e outras definições de jogo) e um simples contador de toques <strong>apenas localmente no seu dispositivo</strong>. Estes dados nunca saem do dispositivo e são eliminados ao desinstalar a aplicação. Pode também repor as estatísticas a qualquer momento no painel dos pais.</p>'],
+        ['📳', 'Permissões', '<p>A única permissão usada pela aplicação é a <strong>vibração</strong>, para um suave feedback háptico ao tocar no ecrã. Pode ser desligada no painel dos pais.</p>'],
+        ['🗣️', 'Funções no dispositivo', '<p>As funções mais recentes também correm inteiramente no seu dispositivo — a rede nunca é envolvida:</p><ul><li><strong>Ler letras em voz alta</strong> — esta função opcional usa a voz offline (texto-para-fala) integrada no dispositivo. A aplicação não grava nada e nunca usa o microfone.</li><li><strong>Idioma do dispositivo</strong> — no primeiro arranque, a aplicação lê o idioma configurado no dispositivo (no próprio dispositivo) apenas para escolher o idioma inicial; pode alterá-lo a qualquer momento no painel dos pais.</li><li><strong>Ecrã sempre ligado</strong> — durante o jogo, o ecrã mantém-se aceso através de uma função padrão do sistema que não requer nenhuma permissão especial.</li></ul>'],
+        ['🔗', 'Ligações externas', '<p>A única ligação na aplicação leva a esta política de privacidade e abre no navegador do dispositivo. Está no painel dos pais atrás de um controlo parental (uma pequena conta de aritmética), para que uma criança não possa sair da aplicação por acidente. A própria aplicação nunca se liga à internet.</p>'],
+        ['🧒', 'Privacidade das crianças (COPPA / RGPD)', '<p>O Touchy Fingies destina-se a crianças pequenas e cumpre a lei norte-americana COPPA e o Regulamento Geral sobre a Proteção de Dados da UE (RGPD) da forma mais simples possível: <strong>não recolhendo dados de todo</strong>. Nunca é recolhida informação pessoal de crianças nem de ninguém.</p>'],
+        ['🔁', 'Alterações a esta política', '<p>Se esta política alguma vez mudar (por exemplo, numa futura atualização), a nova versão será publicada neste mesmo endereço com a data atualizada abaixo.</p>'],
+      ],
+      contactTitle: 'Contacto',
+      contact: 'Perguntas sobre privacidade? Teremos todo o gosto em ajudar:',
+    },
+    ru: {
+      btn: '🇷🇺 Русский',
+      subtitle: 'Политика конфиденциальности',
+      updated: 'Последнее обновление:',
+      badges: ['Данные не собираются', 'Без рекламы', 'Работает офлайн'],
+      short: '<strong>Кратко:</strong> <span class="highlight">Touchy Fingies не собирает никаких персональных данных.</span> Без аккаунтов, без аналитики, без рекламы, без отслеживания, без интернета. Всё остаётся на вашем устройстве.',
+      sections: [
+        ['👶', 'О приложении', '<p>Touchy Fingies — простое приложение «нажми и играй» для малышей. При касании экрана появляются цветные эмодзи и приятные звуки. Оно создано для детей и сделано настолько приватным, насколько это технически возможно.</p>'],
+        ['🔒', 'Какие данные мы собираем', '<p><strong>Никакие.</strong> Touchy Fingies не собирает, не хранит, не передаёт и не делится персональными данными. В частности, приложение:</p><ul><li><strong>Не имеет доступа к интернету</strong> — Android-версия явно блокирует разрешение на интернет, поэтому приложение технически не может ничего никуда отправить.</li><li><strong>Без аккаунтов и регистрации</strong> — регистрировать нечего, идентификаторов пользователей нет.</li><li><strong>Без SDK аналитики и отслеживания</strong> — сторонние сервисы не встроены.</li><li><strong>Без рекламы</strong> — приложение не показывает никакой рекламы.</li><li><strong>Без доступа к камере, микрофону, местоположению, контактам и файлам.</strong></li></ul>'],
+        ['📱', 'Данные на вашем устройстве', '<p>Приложение сохраняет ваши настройки (тему, язык, звук, вибрацию, озвучивание, ночной режим, таймер игры, ориентацию экрана и другие игровые настройки) и простой счётчик касаний <strong>только локально на устройстве</strong>. Эти данные никогда не покидают устройство и удаляются при удалении приложения. Статистику можно в любой момент сбросить в родительской панели.</p>'],
+        ['📳', 'Разрешения', '<p>Единственное разрешение, используемое приложением, — <strong>вибрация</strong>, для мягкого тактильного отклика при касании экрана. Её можно отключить в родительской панели.</p>'],
+        ['🗣️', 'Функции на устройстве', '<p>Новые функции тоже работают полностью на вашем устройстве — сеть никогда не используется:</p><ul><li><strong>Озвучивание букв</strong> — эта необязательная функция использует встроенный офлайн-голос устройства (синтез речи). Приложение ничего не записывает и никогда не использует микрофон.</li><li><strong>Язык устройства</strong> — при первом запуске приложение считывает язык, установленный на устройстве (на самом устройстве), только чтобы выбрать начальный язык; его можно в любой момент изменить в родительской панели.</li><li><strong>Экран не гаснет</strong> — во время игры экран остаётся включённым с помощью стандартной системной функции, не требующей особых разрешений.</li></ul>'],
+        ['🔗', 'Внешние ссылки', '<p>Единственная ссылка в приложении ведёт на эту политику конфиденциальности и открывается в браузере устройства. Она находится в родительской панели за родительским контролем (небольшой арифметической задачей), поэтому ребёнок не может случайно покинуть приложение. Само приложение никогда не подключается к интернету.</p>'],
+        ['🧒', 'Конфиденциальность детей (COPPA / GDPR)', '<p>Touchy Fingies предназначено для маленьких детей и соответствует американскому закону COPPA и Общему регламенту ЕС по защите данных (GDPR) самым простым способом: <strong>не собирая никаких данных вообще</strong>. Персональная информация никогда не собирается ни у детей, ни у кого-либо ещё.</p>'],
+        ['🔁', 'Изменения этой политики', '<p>Если эта политика когда-либо изменится (например, в будущем обновлении приложения), новая версия будет опубликована по этому же адресу с обновлённой датой ниже.</p>'],
+      ],
+      contactTitle: 'Контакты',
+      contact: 'Вопросы о конфиденциальности? Мы с радостью поможем:',
+    },
+    ja: {
+      btn: '🇯🇵 日本語',
+      subtitle: 'プライバシーポリシー',
+      updated: '最終更新日：',
+      badges: ['データ収集なし', '広告なし', 'オフラインで動作'],
+      short: '<strong>要約：</strong> <span class="highlight">Touchy Fingies は個人データを一切収集しません。</span>アカウントなし、分析なし、広告なし、トラッキングなし、インターネットなし。すべてはお使いの端末内に留まります。',
+      sections: [
+        ['👶', 'アプリについて', '<p>Touchy Fingies は、赤ちゃんや幼児向けのシンプルなタップ遊びアプリです。画面に触れるとカラフルな絵文字と優しい音が現れます。子ども向けに設計され、技術的に可能な限りプライベートに作られています。</p>'],
+        ['🔒', '収集するデータ', '<p><strong>ありません。</strong>Touchy Fingies は個人データを収集、保存、送信、共有しません。具体的には：</p><ul><li><strong>インターネットアクセスなし</strong> — Android 版はインターネット権限を明示的にブロックしているため、技術的に何も送信できません。</li><li><strong>アカウント・登録なし</strong> — 登録するものはなく、ユーザーIDもありません。</li><li><strong>分析・トラッキングSDKなし</strong> — サードパーティのサービスは組み込まれていません。</li><li><strong>広告なし</strong> — いかなる広告も表示しません。</li><li><strong>カメラ、マイク、位置情報、連絡先、ファイルへのアクセスなし。</strong></li></ul>'],
+        ['📱', '端末に保存されるデータ', '<p>アプリは設定（テーマ、言語、サウンド、バイブ、読み上げ、ナイトモード、プレイタイマー、画面の向き、その他のプレイ設定）とシンプルなタップカウンターを<strong>端末内のみに</strong>保存します。これらのデータは端末から外に出ることはなく、アプリを削除すると消去されます。統計は保護者パネルからいつでもリセットできます。</p>'],
+        ['📳', '権限', '<p>アプリが使用する唯一の権限は<strong>バイブレーション</strong>で、画面タップ時の優しい触覚フィードバックのためです。保護者パネルでオフにできます。</p>'],
+        ['🗣️', '端末内で動く機能', '<p>新しい機能もすべて端末内だけで動作し、ネットワークは一切使いません：</p><ul><li><strong>文字の読み上げ</strong> — このオプション機能は端末内蔵のオフライン音声合成（テキスト読み上げ）を使います。アプリは何も録音せず、マイクも一切使用しません。</li><li><strong>端末の言語</strong> — 初回起動時に、開始言語を選ぶためだけに端末の言語設定を（端末内で）読み取ります。言語は保護者パネルでいつでも変更できます。</li><li><strong>画面を消灯させない</strong> — 遊んでいる間、特別な権限を必要としない標準のシステム機能で画面を点灯したままにします。</li></ul>'],
+        ['🔗', '外部リンク', '<p>アプリ内の唯一のリンクはこのプライバシーポリシーへのリンクで、端末のブラウザで開きます。保護者パネル内のペアレンタルゲート（簡単な計算問題）の先にあるため、子どもが誤ってアプリの外に出ることはありません。アプリ自体がインターネットに接続することはありません。</p>'],
+        ['🧒', '子どものプライバシー（COPPA / GDPR）', '<p>Touchy Fingies は小さな子ども向けであり、米国の児童オンラインプライバシー保護法（COPPA）と EU の一般データ保護規則（GDPR）に最もシンプルな方法で準拠しています：<strong>データを一切収集しないこと</strong>です。子どもからも誰からも個人情報を収集することはありません。</p>'],
+        ['🔁', 'このポリシーの変更', '<p>このポリシーが変更される場合（例：将来のアプリ更新時）、新しいバージョンは同じアドレスで、下記の日付を更新して公開されます。</p>'],
+      ],
+      contactTitle: 'お問い合わせ',
+      contact: 'プライバシーに関するご質問はお気軽に：',
+    },
+    zh: {
+      btn: '🇨🇳 中文',
+      subtitle: '隐私政策',
+      updated: '最后更新：',
+      badges: ['不收集数据', '无广告', '可离线使用'],
+      short: '<strong>简而言之：</strong> <span class="highlight">Touchy Fingies 不收集任何个人数据。</span>没有账户、没有分析、没有广告、没有追踪、没有联网。一切都保留在您的设备上。',
+      sections: [
+        ['👶', '关于本应用', '<p>Touchy Fingies 是一款为婴幼儿设计的简单点按游戏应用。触摸屏幕会出现彩色表情和友好的声音。它专为儿童设计，并在技术上尽可能保护隐私。</p>'],
+        ['🔒', '我们收集的数据', '<p><strong>无。</strong>Touchy Fingies 不收集、存储、传输或分享任何个人数据。具体来说，本应用：</p><ul><li><strong>无互联网访问</strong> — Android 版本明确禁用了互联网权限，因此应用在技术上无法向任何地方发送任何内容。</li><li><strong>无账户或注册</strong> — 无需注册，没有用户 ID。</li><li><strong>无分析或追踪 SDK</strong> — 未嵌入任何第三方服务。</li><li><strong>无广告</strong> — 应用不显示任何形式的广告。</li><li><strong>不访问相机、麦克风、位置、通讯录或文件。</strong></li></ul>'],
+        ['📱', '存储在您设备上的数据', '<p>应用会将您的偏好设置（主题、语言、声音、振动、朗读、夜间模式、游戏计时器、屏幕方向及其他游戏设置）以及一个简单的点击计数器<strong>仅保存在本设备上</strong>。这些数据永远不会离开设备，卸载应用即被删除。您也可以随时在家长面板中重置统计。</p>'],
+        ['📳', '权限', '<p>应用使用的唯一权限是<strong>振动</strong>，用于点击屏幕时的轻柔触觉反馈。可在家长面板中关闭。</p>'],
+        ['🗣️', '设备端功能', '<p>较新的功能同样完全在您的设备上运行——从不使用网络：</p><ul><li><strong>朗读字母</strong> — 此可选功能使用设备内置的离线语音（文字转语音）。应用不录制任何内容，也从不使用麦克风。</li><li><strong>设备语言</strong> — 首次启动时，应用会（在设备本机上）读取设备的语言设置，仅用于选择初始语言；您可以随时在家长面板中更改。</li><li><strong>屏幕保持常亮</strong> — 游戏期间通过标准系统功能保持屏幕开启，无需任何特殊权限。</li></ul>'],
+        ['🔗', '外部链接', '<p>应用中唯一的链接指向本隐私政策，并在设备浏览器中打开。它位于家长面板中的家长验证（一道简单的算术题）之后，因此儿童不会意外离开应用。应用本身永远不会联网。</p>'],
+        ['🧒', '儿童隐私（COPPA / GDPR）', '<p>Touchy Fingies 面向幼儿，并以最简单的方式遵守美国《儿童在线隐私保护法》（COPPA）和欧盟《通用数据保护条例》（GDPR）：<strong>完全不收集任何数据</strong>。永远不会收集儿童或任何人的个人信息。</p>'],
+        ['🔁', '政策变更', '<p>如果本政策有任何变更（例如在未来的应用更新中），新版本将发布在同一地址，并在下方更新日期。</p>'],
+      ],
+      contactTitle: '联系我们',
+      contact: '有隐私方面的问题？我们很乐意提供帮助：',
+    },
+  };
+
+  const LANG_ORDER = ['en', 'hr', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'ja', 'zh'];
+  const card = document.getElementById('policy-card');
+  const langRow = document.getElementById('lang-row');
+
+  // Build the language buttons.
+  LANG_ORDER.forEach((key) => {
+    const b = document.createElement('button');
+    b.className = 'lang-btn';
+    b.dataset.lang = key;
+    b.textContent = I18N[key].btn;
+    b.addEventListener('click', () => setLang(key));
+    langRow.appendChild(b);
+  });
+
+  function render(lang) {
+    const d = I18N[lang];
+    const badgeIcons = ['🚫📊', '🚫📢', '🚫🌐'];
+    let html = '<div class="tldr">';
+    d.badges.forEach((cap, i) => {
+      html += `<div class="badge"><span class="big">${badgeIcons[i]}</span><span class="cap">${cap}</span></div>`;
+    });
+    html += '</div>';
+    html += `<p>${d.short}</p>`;
+    d.sections.forEach(([emoji, title, body]) => {
+      html += `<h2><span class="emoji">${emoji}</span>${title}</h2>${body}`;
+    });
+    html += `<h2><span class="emoji">✉️</span>${d.contactTitle}</h2>
+      <div class="contact-box"><p style="margin-top:0;">${d.contact}<br>
+      <a href="mailto:${EMAIL}">${EMAIL}</a></p></div>`;
+    card.innerHTML = html;
+  }
+
+  function setLang(lang) {
+    if (!I18N[lang]) lang = 'en';
+    render(lang);
+    document.getElementById('subtitle').textContent = I18N[lang].subtitle;
+    document.getElementById('updated-label').textContent = I18N[lang].updated;
+    document.querySelectorAll('.lang-btn').forEach((b) =>
+      b.classList.toggle('active', b.dataset.lang === lang)
+    );
+    document.documentElement.lang = lang;
+  }
+
+  // Auto-detect the browser language; fall back to English.
+  const nav = (navigator.language || 'en').toLowerCase().slice(0, 2);
+  setLang(LANG_ORDER.includes(nav) ? nav : 'en');
+</script>
+</body>
+</html>
