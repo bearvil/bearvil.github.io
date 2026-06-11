@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bearvil</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300&display=block');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #4a9eff;
+      --accent2: #7ecfff;
+      --white: #e8f0fe;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      background: #07090f;
+    }
+
+    /* SKY */
+    .sky {
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse 120% 80% at 50% 110%,
+        #1a3a6e 0%, #0d1f40 35%, #07090f 70%);
+      animation: skyBreath 20s ease-in-out infinite alternate;
+    }
+    @keyframes skyBreath {
+      0%   { filter: brightness(0.9); }
+      100% { filter: brightness(1.1); }
+    }
+
+    /* STARS */
+    .stars { position: fixed; inset: 0; pointer-events: none; }
+    .star {
+      position: absolute; border-radius: 50%; background: white;
+      animation: twinkle var(--d) ease-in-out infinite alternate var(--dl);
+    }
+    @keyframes twinkle {
+      0%   { opacity: 0.05; transform: scale(0.7); }
+      100% { opacity: var(--o); transform: scale(1.1); }
+    }
+
+    /* CLOUDS */
+    .clouds { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+    .cloud {
+      position: absolute;
+      background: radial-gradient(ellipse at 40% 50%, rgba(100,160,255,0.12), transparent 70%);
+      border-radius: 50%;
+      filter: blur(var(--blur));
+      animation: cloudDrift var(--spd) linear infinite var(--dl);
+    }
+    @keyframes cloudDrift {
+      from { transform: translateX(var(--x0)); }
+      to   { transform: translateX(var(--x1)); }
+    }
+
+    /* MIST */
+    .mist {
+      position: fixed; left: -5%; width: 110%; border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(74,158,255,0.08), transparent 65%);
+      filter: blur(50px); pointer-events: none;
+      animation: mistMove var(--ms) ease-in-out infinite alternate;
+    }
+    @keyframes mistMove {
+      0%   { transform: translateX(-2%) scaleX(1);    opacity: var(--mo); }
+      100% { transform: translateX(2%)  scaleX(1.03); opacity: calc(var(--mo)*1.4); }
+    }
+
+    /* HORIZON */
+    .horizon {
+      position: fixed; bottom: 0; left: 0; width: 100%; height: 40%;
+      background: linear-gradient(0deg, rgba(74,158,255,0.12) 0%, rgba(74,158,255,0.04) 40%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* PARTICLES */
+    .particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 5; }
+    .particle {
+      position: absolute; border-radius: 50%; background: rgba(74,158,255,0.5);
+      animation: rise var(--pd) ease-in infinite var(--pde);
+    }
+    @keyframes rise {
+      0%   { transform: translateY(110vh) translateX(0) scale(0); opacity: 0; }
+      8%   { opacity: 0.6; transform: translateY(90vh) translateX(var(--px)) scale(1); }
+      90%  { opacity: 0.15; }
+      100% { transform: translateY(-10vh) translateX(calc(var(--px)*2)) scale(0.2); opacity: 0; }
+    }
+
+    /* CONTENT — hidden until JS reveals */
+    .content {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
+      opacity: 0;
+    }
+
+    /* WORDMARK */
+    .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(2rem, 10vw, 9rem);
+      letter-spacing: 0.35em;
+      text-indent: 0.35em; /* compensate letter-spacing on last char so it's truly centered */
+      text-transform: uppercase;
+      line-height: 1;
+      width: 100%;
+      text-align: center;
+      padding: 0 5vw; /* breathing room on mobile sides */
+    }
+    .wordmark span {
+      background: linear-gradient(135deg, #e8f0fe 0%, #7ecfff 55%, #4a9eff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* EMAIL */
+    .contact { margin-top: 0.8rem; position: relative; }
+    .contact a {
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      font-weight: 300; letter-spacing: 0.2em;
+      color: rgba(150, 170, 200, 0.45);
+      text-decoration: none; cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .contact a:hover { color: rgba(180, 200, 230, 0.7); }
+
+    .copied-toast {
+      position: absolute; top: calc(100% + 0.7rem); left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem; letter-spacing: 0.18em;
+      color: rgba(150, 170, 200, 0.45);
+      opacity: 0; transition: opacity 0.3s ease;
+      pointer-events: none; white-space: nowrap;
+      text-transform: uppercase;
+    }
+    .copied-toast.show { opacity: 1; }
+
+    /* FADE IN KEYFRAME — triggered by JS */
+    @keyframes fadeInUp {
+      0%   { opacity: 0; transform: translateY(16px); filter: blur(12px); }
+      60%  { filter: blur(2px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sky"></div>
+  <div class="stars" id="stars"></div>
+  <div class="clouds" id="clouds"></div>
+  <div class="mist" style="top:50%;height:200px;--ms:16s;--mo:0.8;"></div>
+  <div class="mist" style="top:65%;height:140px;--ms:22s;--mo:0.5;animation-direction:alternate-reverse;"></div>
+  <div class="mist" style="top:76%;height:100px;--ms:13s;--mo:0.4;"></div>
+  <div class="horizon"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="content" id="content">
+    <div class="wordmark"><span>Bearvil</span></div>
+    <div class="contact">
+      <span class="copied-toast" id="toast">Copied</span>
+      <a id="email-link" href="mailto:bearvil.co@gmail.com">bearvil.co@gmail.com</a>
+    </div>
+  </div>
+
+  <script>
+    // Build stars, clouds, particles first (no font dependency)
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 140; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const sz = Math.random() * 2 + 0.4;
+      s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*70}%;--d:${(Math.random()*4+2).toFixed(1)}s;--dl:-${(Math.random()*6).toFixed(1)}s;--o:${(Math.random()*0.6+0.2).toFixed(2)};`;
+      starsEl.appendChild(s);
+    }
+
+    const cloudsEl = document.getElementById('clouds');
+    [
+      { w:500, h:200, top:10, blur:'65px', spd:'100s', x0:'-25%', x1:'115%', dl:'-20s' },
+      { w:350, h:150, top:20, blur:'50px', spd:'75s',  x0:'110%', x1:'-20%', dl:'-40s' },
+      { w:600, h:220, top:6,  blur:'80px', spd:'130s', x0:'-30%', x1:'120%', dl:'-60s' },
+      { w:280, h:120, top:32, blur:'40px', spd:'60s',  x0:'108%', x1:'-18%', dl:'-10s' },
+    ].forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'cloud';
+      el.style.cssText = `width:${c.w}px;height:${c.h}px;top:${c.top}%;--blur:${c.blur};--spd:${c.spd};--x0:${c.x0};--x1:${c.x1};--dl:${c.dl};`;
+      cloudsEl.appendChild(el);
+    });
+
+    const particlesEl = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const sz = Math.random() * 3 + 1;
+      p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;--pd:${(Math.random()*14+9).toFixed(1)}s;--pde:-${(Math.random()*14).toFixed(1)}s;--px:${(Math.random()*60-30).toFixed(0)}px;`;
+      particlesEl.appendChild(p);
+    }
+
+    // Reveal content only after font is confirmed loaded
+    const content = document.getElementById('content');
+
+    function reveal() {
+      content.style.animation = 'fadeInUp 2.8s cubic-bezier(0.16,1,0.3,1) forwards';
+    }
+
+    document.fonts.load('600 1em "Cormorant Garamond"').then(() => {
+      // Small rAF delay so browser has painted the font
+      requestAnimationFrame(() => requestAnimationFrame(reveal));
+    }).catch(() => {
+      // Fallback if font load fails
+      setTimeout(reveal, 800);
+    });
+
+    // Hard fallback after 2s
+    setTimeout(() => {
+      if (content.style.animation === '') reveal();
+    }, 2000);
+
+    // Email copy
+    document.getElementById('email-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText('bearvil.co@gmail.com').then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1800);
+      });
+    });
+  </script>
+</body>
+</html>
