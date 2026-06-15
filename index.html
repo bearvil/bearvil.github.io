@@ -64,7 +64,8 @@
       opacity: 0;
     }
 
-    /* WORDMARK */
+    /* WORDMARK — anchor for centering; logo & contact float around it */
+    .wordmark-block { position: relative; width: 100%; }
     .wordmark {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 600;
@@ -88,13 +89,22 @@
     .site-logo {
       width: clamp(5.5rem, 22vw, 15rem);
       height: auto;
-      display: block;
-      margin: 0 auto 0.25rem;
+      position: absolute;
+      left: 50%;
+      bottom: 100%;
+      transform: translateX(-50%);
+      margin-bottom: 0.25rem;
       opacity: 0.92;
     }
 
     /* EMAIL */
-    .contact { margin-top: 0.8rem; position: relative; }
+    .contact {
+      position: absolute;
+      top: 100%; left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0.8rem;
+      white-space: nowrap;
+    }
     .contact a {
       font-size: clamp(0.85rem, 2vw, 1.1rem);
       font-weight: 300; letter-spacing: 0.2em;
@@ -138,11 +148,15 @@
   </night-sky>
 
   <main class="content" id="content" data-font-reveal>
-    <img src="assets/Bearvil-logo-transparent.png" alt="Bearvil logo" class="site-logo" />
-    <h1 class="wordmark"><span>Bearvil</span></h1>
-    <div class="contact">
-      <span class="copied-toast" id="toast" role="status">Copied</span>
-      <a id="email-link" data-copy-email href="mailto:bearvil.co@gmail.com">bearvil.co@gmail.com</a>
+    <div class="wordmark-block">
+      <h1 class="wordmark">
+        <img src="assets/Bearvil-logo-transparent.png" alt="Bearvil logo" class="site-logo" />
+        <span>Bearvil</span>
+      </h1>
+      <div class="contact">
+        <span class="copied-toast" id="toast" role="status">Copied</span>
+        <a id="email-link" data-copy-email href="mailto:bearvil.co@gmail.com">bearvil.co@gmail.com</a>
+      </div>
     </div>
   </main>
 </body>
