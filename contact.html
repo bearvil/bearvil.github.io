@@ -17,166 +17,35 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bearvil.github.io/contact" />
   <meta name="twitter:card" content="summary" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#07090f" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090f'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='600' fill='%237ecfff' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231fb2ab'/%3E%3Ctext x='32' y='45' font-family='Verdana,sans-serif' font-size='38' font-weight='800' fill='%23fbf9f4' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300&display=block" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" />
 
-  <!-- Shared components: <site-nav>, <night-sky>, email copy -->
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/contact.css" />
+
+  <!-- Shared components: <site-nav>, <calm-sea>, email copy -->
   <script src="/assets/components.js" defer></script>
-
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --accent: #4a9eff;
-      --accent2: #7ecfff;
-      --white: #e8f0fe;
-    }
-
-    html, body {
-      width: 100%; height: 100%;
-      overflow: hidden;
-      font-family: 'Inter', sans-serif;
-      background: #07090f;
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--accent2);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    /* Sky, stars, mist, horizon, nav: shared styles live in /assets/components.js */
-
-    /* CONTENT */
-    .content {
-      position: fixed; inset: 0; z-index: 10;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 2rem;
-      animation: fadeInUp 1.8s cubic-bezier(0.16,1,0.3,1) both;
-    }
-    @keyframes fadeInUp {
-      0%   { opacity: 0; transform: translateY(16px); filter: blur(12px); }
-      60%  { filter: blur(2px); }
-      100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
-    }
-
-    .heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: clamp(2rem, 8vw, 5.5rem);
-      letter-spacing: 0.3em;
-      text-indent: 0.3em;
-      text-transform: uppercase;
-      line-height: 1;
-      background: linear-gradient(135deg, #e8f0fe 0%, #7ecfff 55%, #4a9eff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .tagline {
-      margin-top: 1.6rem;
-      font-size: clamp(0.8rem, 1.8vw, 0.95rem);
-      font-weight: 300; letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(150, 170, 200, 0.5);
-    }
-
-    /* EMAIL CARD — the single point of contact */
-    .email-card {
-      margin-top: 3rem;
-      position: relative;
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1.1rem 1.8rem;
-      border: 1px solid rgba(126,207,255,0.22);
-      border-radius: 999px;
-      background: rgba(74,158,255,0.06);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      text-decoration: none;
-      transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
-    }
-    .email-card:hover, .email-card:focus-visible {
-      border-color: rgba(126,207,255,0.5);
-      background: rgba(74,158,255,0.12);
-      transform: translateY(-2px);
-    }
-
-    .email-card svg {
-      flex: none;
-      width: 20px; height: 20px;
-      stroke: rgba(126,207,255,0.7);
-    }
-
-    .email-card .address {
-      font-size: clamp(0.9rem, 2.4vw, 1.15rem);
-      font-weight: 300; letter-spacing: 0.14em;
-      color: rgba(200, 218, 240, 0.85);
-      transition: color 0.3s ease;
-    }
-    .email-card:hover .address { color: var(--white); }
-
-    .hint {
-      margin-top: 1.1rem;
-      font-size: 0.62rem; letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(150, 170, 200, 0.35);
-    }
-
-    .copied-toast {
-      /* sits below the "Click to copy" hint */
-      position: absolute; top: calc(100% + 3rem); left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.62rem; letter-spacing: 0.18em;
-      color: rgba(126, 207, 255, 0.8);
-      opacity: 0; transition: opacity 0.3s ease;
-      pointer-events: none; white-space: nowrap;
-      text-transform: uppercase;
-    }
-    .copied-toast.show { opacity: 1; }
-
-    /* BACK HOME — shared pill button style (same as 404) */
-    .home-link {
-      margin-top: 3.2rem;
-      display: inline-block;
-      padding: 0.8rem 2.2rem;
-      border: 1px solid rgba(126,207,255,0.25);
-      border-radius: 999px;
-      font-size: 0.8rem; font-weight: 300; letter-spacing: 0.25em;
-      text-transform: uppercase; text-decoration: none;
-      color: rgba(180, 200, 230, 0.7);
-      background: rgba(74,158,255,0.06);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-    }
-    .home-link:hover, .home-link:focus-visible {
-      color: var(--accent2);
-      border-color: rgba(126,207,255,0.5);
-      background: rgba(74,158,255,0.14);
-    }
-
-  </style>
 </head>
-<body>
+<body class="is-fixed">
 
   <site-nav></site-nav>
-
-  <night-sky stars="110">
-    <div class="mist" style="top:55%;height:180px;--ms:16s;--mo:0.7;"></div>
-    <div class="mist" style="top:72%;height:120px;--ms:21s;--mo:0.45;animation-direction:alternate-reverse;"></div>
-  </night-sky>
+  <calm-sea glints="20"></calm-sea>
 
   <main class="content">
-    <h1 class="heading">Contact us</h1>
+    <h1 class="heading gradient-text">Contact us</h1>
     <p class="tagline">We'd love to hear from you</p>
 
     <a class="email-card" id="email-link" data-copy-email href="mailto:bearvil.co@gmail.com">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="3" y="5" width="18" height="14" rx="2.5"/>
         <path d="M3.5 6.5 L12 13 L20.5 6.5"/>
       </svg>

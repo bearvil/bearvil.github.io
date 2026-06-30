@@ -1,0 +1,197 @@
+/* =========================================================================
+   components.css — visual styles for the shared Web Components defined in
+   assets/components.js (<site-nav>, <calm-sea>).
+   Consumes tokens from tokens.css. Link after base.css.
+   UI primitives (buttons, cards, forms, badges) live in ui.css.
+   ========================================================================= */
+
+/* =========================================================================
+   <calm-sea> — light "Caribbean" animated background.
+   Layers: base sand→sea gradient, soft sun glow, water shimmer, wave bands.
+   Sits behind all content; respects prefers-reduced-motion.
+   ========================================================================= */
+.sea {
+  position: fixed; inset: 0; z-index: var(--z-background);
+  overflow: hidden; pointer-events: none;
+  background: linear-gradient(180deg,
+    var(--sand-50)      0%,
+    var(--sand-100)     28%,
+    var(--turquoise-50) 56%,
+    var(--turquoise-100) 80%,
+    var(--turquoise-200) 100%);
+}
+
+/* Warm sunlight wash — a large, soft, NON-circular glow that spreads across the
+   upper sky and bleeds off the top/right edges, so no disc outline is visible. */
+.sea__sun {
+  position: absolute; top: -45%; right: -25%;
+  width: 140%; height: 115%;
+  background:
+    radial-gradient(ellipse 70% 60% at 72% 30%,
+      rgba(255, 178, 122, 0.46) 0%,
+      rgba(255, 198, 150, 0.26) 34%,
+      rgba(255, 236, 222, 0.0) 66%),
+    radial-gradient(ellipse 120% 75% at 60% 0%,
+      rgba(255, 214, 178, 0.30) 0%,
+      rgba(255, 236, 222, 0.0) 60%);
+  filter: blur(24px);
+  transform-origin: 72% 25%;
+  animation: sunBreath 16s ease-in-out infinite alternate;
+}
+@keyframes sunBreath {
+  0%   { transform: scale(1)    translateX(0);    opacity: 0.8; }
+  100% { transform: scale(1.06) translateX(-1.5%); opacity: 1; }
+}
+
+/* Water shimmer — horizontal light streaks over the lower sea band */
+.sea__shimmer {
+  position: absolute; left: -20%; bottom: 0;
+  width: 140%; height: 42%;
+  background: repeating-linear-gradient(115deg,
+    rgba(255, 255, 255, 0.0) 0px,
+    rgba(255, 255, 255, 0.22) 2px,
+    rgba(255, 255, 255, 0.0) 7px,
+    rgba(255, 255, 255, 0.0) 22px);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 60%, #000 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 60%, #000 100%);
+  opacity: 0.6;
+  animation: shimmerDrift 9s linear infinite;
+}
+@keyframes shimmerDrift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(22px); }
+}
+
+/* Wave bands — soft blurred ellipses gliding near the waterline */
+.sea__wave {
+  position: absolute; left: -10%; width: 120%; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(24, 168, 186, 0.18), transparent 68%);
+  filter: blur(28px);
+  animation: waveGlide var(--spd, 18s) ease-in-out infinite alternate var(--dl, 0s);
+}
+@keyframes waveGlide {
+  0%   { transform: translateX(-3%) scaleX(1);    opacity: 0.7; }
+  100% { transform: translateX(3%)  scaleX(1.04); opacity: 1; }
+}
+
+/* Tiny floating sparkles (sun glints on water) */
+.sea__glints { position: absolute; inset: 0; }
+.glint {
+  position: absolute; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  animation: glintTwinkle var(--d, 4s) ease-in-out infinite alternate var(--dl, 0s);
+}
+@keyframes glintTwinkle {
+  0%   { opacity: 0.1; transform: scale(0.6); }
+  100% { opacity: var(--o, 0.8); transform: scale(1); }
+}
+
+/* =========================================================================
+   <site-nav> — menu toggle, slide-in side panel, dimming overlay (light).
+   ========================================================================= */
+
+/* NAV TOGGLE — floating rounded square, top-left */
+.nav-toggle {
+  position: fixed; top: var(--space-5); left: var(--space-5); z-index: var(--z-nav-toggle);
+  width: 52px; height: 52px; border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: background var(--transition-base), border-color var(--transition-base),
+              transform var(--transition-base), box-shadow var(--transition-base);
+}
+.nav-toggle:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.nav-toggle span {
+  position: absolute; left: 50%; top: 50%;
+  width: 20px; height: 2px; border-radius: 2px;
+  background: var(--color-primary-fill);
+  transform: translate(-50%, -50%);
+  transition: transform 0.35s var(--ease-out-expo), opacity var(--transition-fast);
+}
+.nav-toggle span:nth-child(1) { transform: translate(-50%, -7px); }
+.nav-toggle span:nth-child(3) { transform: translate(-50%, 7px); }
+body.nav-open .nav-toggle span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
+body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+body.nav-open .nav-toggle span:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* SIDE NAV — hidden off-screen to the left */
+.side-nav {
+  position: fixed; top: 0; left: 0; z-index: var(--z-nav);
+  width: min(300px, 80vw); height: 100%;
+  padding: 6.5rem var(--space-6) var(--space-6);
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform 0.5s var(--ease-out-expo), visibility 0s 0.5s;
+}
+body.nav-open .side-nav {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.5s var(--ease-out-expo), visibility 0s 0s;
+}
+
+.side-nav ul { list-style: none; margin: 0; padding: 0; }
+.side-nav li { margin: var(--space-1) 0; }
+.side-nav a {
+  display: block; padding: var(--space-3) 0;
+  font-size: var(--text-base); font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-wider); text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color var(--transition-base), padding-left var(--transition-base);
+}
+.side-nav a:hover, .side-nav a:focus-visible { color: var(--color-primary-fill); padding-left: var(--space-2); }
+.side-nav a[aria-current="page"] { color: var(--color-primary-fill); }
+
+/* SUBMENU — Privacy Policies */
+.sub-toggle {
+  display: flex; align-items: center; gap: 0.55em;
+  width: 100%; padding: var(--space-3) 0;
+  background: none; border: none; cursor: pointer;
+  font-family: inherit;
+  font-size: var(--text-base); font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-wider); text-transform: uppercase; text-align: left;
+  color: var(--color-text-muted);
+  transition: color var(--transition-base), padding-left var(--transition-base);
+}
+.sub-toggle:hover, .sub-toggle:focus-visible { color: var(--color-primary-fill); padding-left: var(--space-2); }
+.sub-toggle .chev { flex: none; transition: transform 0.35s var(--ease-out-expo); }
+.has-sub.open .sub-toggle .chev { transform: rotate(180deg); }
+
+.sub-menu {
+  list-style: none; overflow: hidden;
+  max-height: 0; opacity: 0;
+  transition: max-height 0.45s var(--ease-out-expo), opacity 0.35s ease;
+}
+.has-sub.open .sub-menu { max-height: 8rem; opacity: 1; }
+.sub-menu li { margin: 0; }
+.sub-menu a {
+  padding: var(--space-2) 0 var(--space-2) var(--space-5);
+  font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-subtle);
+  border-left: 1px solid var(--color-border);
+}
+.sub-menu a:hover, .sub-menu a:focus-visible { padding-left: 1.7rem; }
+
+/* OVERLAY — dims page when nav open */
+.nav-overlay {
+  position: fixed; inset: 0; z-index: var(--z-overlay);
+  background: rgba(20, 58, 64, 0.28);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+body.nav-open .nav-overlay { opacity: 1; pointer-events: auto; }
+
+/* ACCESSIBILITY — reduced motion: stop continuous background motion */
+@media (prefers-reduced-motion: reduce) {
+  .sea__sun, .sea__shimmer, .sea__wave, .glint { animation: none; }
+  .sea__shimmer { opacity: 0.35; }
+}

@@ -1,0 +1,84 @@
+/* =========================================================================
+   styleguide.css — layout for the living styleguide / playground page
+   (styleguide.html). Demonstrates every token and component; consumes
+   tokens.css like any other page. Not part of the public nav.
+   ========================================================================= */
+
+body.sg { overflow-y: auto; }
+
+.sg-wrap {
+  position: relative; z-index: var(--z-content);
+  max-width: 1100px; margin: 0 auto;
+  padding: var(--space-8) var(--space-5) var(--space-8);
+}
+
+/* HEADER */
+.sg-header { margin-bottom: var(--space-8); }
+.sg-header h1 { font-size: var(--text-5xl); margin-bottom: var(--space-3); }
+.sg-header p { color: var(--color-text-muted); max-width: 60ch; font-size: var(--text-lg); }
+.sg-note {
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-primary-softer);
+  border: 1px solid var(--color-primary-soft);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  color: var(--color-primary-fill);
+  font-size: var(--text-sm);
+}
+.sg-note code { font-weight: var(--font-weight-extra); }
+
+/* SECTIONS */
+.sg-section { margin-bottom: var(--space-8); }
+.sg-eyebrow {
+  font-size: var(--text-xs); font-weight: var(--font-weight-extra);
+  letter-spacing: var(--tracking-wider); text-transform: uppercase;
+  color: var(--color-accent-hover); margin-bottom: var(--space-2);
+}
+.sg-section > h2 { font-size: var(--text-2xl); margin-bottom: var(--space-5); }
+.sg-section > h3 {
+  font-size: var(--text-base); font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted); margin: var(--space-5) 0 var(--space-3);
+}
+
+/* A panel that holds demos (so they read on the sea background) */
+.sg-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+/* COLOR SWATCHES */
+.swatch-grid {
+  display: grid; gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+}
+.swatch { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); background: var(--color-surface); }
+.swatch__chip { height: 68px; }
+.swatch__meta { padding: var(--space-2) var(--space-3); }
+.swatch__name { display: block; font-size: var(--text-sm); font-weight: var(--font-weight-bold); }
+.swatch__hex { display: block; font-size: var(--text-xs); color: var(--color-text-subtle); text-transform: uppercase; }
+
+/* TYPE SCALE */
+.type-row { display: flex; align-items: baseline; gap: var(--space-4); padding: var(--space-2) 0; border-bottom: 1px dashed var(--color-border); }
+.type-row:last-child { border-bottom: none; }
+.type-row .type-tag { flex: none; width: 5rem; font-size: var(--text-xs); color: var(--color-text-subtle); }
+.type-row .type-sample { line-height: var(--leading-snug); }
+
+/* GENERIC ROW — wrap demos (buttons, badges) */
+.sg-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
+.sg-stack { display: flex; flex-direction: column; gap: var(--space-4); }
+
+/* TOKEN TILES (spacing / radius / shadow) */
+.tile-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.tile { text-align: center; font-size: var(--text-xs); color: var(--color-text-muted); }
+.tile__box { background: var(--color-primary-soft); border: 1px solid var(--color-primary); border-radius: var(--radius-sm); margin: 0 auto var(--space-2); }
+.tile__radius { width: 72px; height: 72px; background: var(--color-primary); margin: 0 auto var(--space-2); }
+.tile__shadow { width: 100%; height: 64px; background: var(--color-surface); border-radius: var(--radius-md); margin-bottom: var(--space-2); }
+
+.demo-cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+
+/* Static toast demo (always visible here) */
+.copied-toast.sg-static { position: static; opacity: 1; display: inline-block; pointer-events: auto; }

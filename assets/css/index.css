@@ -1,0 +1,58 @@
+/* =========================================================================
+   index.css — landing page (wordmark, logo, click-to-copy email).
+   Consumes tokens from tokens.css.
+   ========================================================================= */
+
+/* Landing content is hidden until JS reveals it once the display font loads.
+   The page's <noscript> restores opacity for visitors without JS. */
+.content { opacity: 0; }
+
+/* WORDMARK — anchor for centering; logo & contact float around it */
+.wordmark-block { position: relative; width: 100%; }
+.wordmark {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-extra);
+  font-size: clamp(2rem, 10vw, 9rem);
+  letter-spacing: 0.12em;
+  text-indent: 0.12em; /* compensate letter-spacing on last char so it's truly centered */
+  text-transform: uppercase;
+  line-height: 1;
+  width: 100%;
+  text-align: center;
+  padding: 0 5vw; /* breathing room on mobile sides */
+}
+
+/* LOGO */
+.site-logo {
+  width: clamp(5.5rem, 22vw, 15rem);
+  height: auto;
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  margin-bottom: var(--space-2);
+  opacity: 0.95;
+}
+
+/* EMAIL */
+.contact {
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  margin-top: var(--space-4);
+  white-space: nowrap;
+}
+.contact a {
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-weight: var(--font-weight-semibold); letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+.contact a:hover { color: var(--color-link); }
+
+/* Copied toast — positioned below the email; pill appearance from ui.css */
+.copied-toast {
+  position: absolute; top: calc(100% + var(--space-4)); left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}

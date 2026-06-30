@@ -17,141 +17,38 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bearvil.github.io/" />
   <meta name="twitter:card" content="summary" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#07090f" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090f'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='600' fill='%237ecfff' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231fb2ab'/%3E%3Ctext x='32' y='45' font-family='Verdana,sans-serif' font-size='38' font-weight='800' fill='%23fbf9f4' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
 
-  <!-- Fonts: preconnect + non-blocking stylesheet (replaces render-blocking @import) -->
+  <!-- Fonts: preconnect + non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300&display=block" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" />
 
-  <!-- Shared components: <site-nav>, <night-sky>, email copy, font reveal -->
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/index.css" />
+
+  <!-- Shared components: <site-nav>, <calm-sea>, email copy, font reveal -->
   <script src="/assets/components.js" defer></script>
-
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --accent: #4a9eff;
-      --accent2: #7ecfff;
-      --white: #e8f0fe;
-    }
-
-    html, body {
-      width: 100%; height: 100%;
-      overflow: hidden;
-      font-family: 'Inter', sans-serif;
-      background: #07090f;
-    }
-
-    /* Visible keyboard focus */
-    :focus-visible {
-      outline: 2px solid var(--accent2);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    /* Sky, stars, clouds, mist, horizon, particles, nav:
-       shared styles live in /assets/components.js */
-
-    /* CONTENT — hidden until JS reveals */
-    .content {
-      position: fixed; inset: 0; z-index: 10;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 2rem;
-      opacity: 0;
-    }
-
-    /* WORDMARK — anchor for centering; logo & contact float around it */
-    .wordmark-block { position: relative; width: 100%; }
-    .wordmark {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: clamp(2rem, 10vw, 9rem);
-      letter-spacing: 0.35em;
-      text-indent: 0.35em; /* compensate letter-spacing on last char so it's truly centered */
-      text-transform: uppercase;
-      line-height: 1;
-      width: 100%;
-      text-align: center;
-      padding: 0 5vw; /* breathing room on mobile sides */
-    }
-    .wordmark span {
-      background: linear-gradient(135deg, #e8f0fe 0%, #7ecfff 55%, #4a9eff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* LOGO */
-    .site-logo {
-      width: clamp(5.5rem, 22vw, 15rem);
-      height: auto;
-      position: absolute;
-      left: 50%;
-      bottom: 100%;
-      transform: translateX(-50%);
-      margin-bottom: 0.25rem;
-      opacity: 0.92;
-    }
-
-    /* EMAIL */
-    .contact {
-      position: absolute;
-      top: 100%; left: 50%;
-      transform: translateX(-50%);
-      margin-top: 0.8rem;
-      white-space: nowrap;
-    }
-    .contact a {
-      font-size: clamp(0.85rem, 2vw, 1.1rem);
-      font-weight: 300; letter-spacing: 0.2em;
-      color: rgba(150, 170, 200, 0.45);
-      text-decoration: none; cursor: pointer;
-      transition: color 0.3s ease;
-    }
-    .contact a:hover { color: rgba(180, 200, 230, 0.7); }
-
-    .copied-toast {
-      position: absolute; top: calc(100% + 0.7rem); left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.62rem; letter-spacing: 0.18em;
-      color: rgba(150, 170, 200, 0.45);
-      opacity: 0; transition: opacity 0.3s ease;
-      pointer-events: none; white-space: nowrap;
-      text-transform: uppercase;
-    }
-    .copied-toast.show { opacity: 1; }
-
-    /* FADE IN KEYFRAME — triggered by JS */
-    @keyframes fadeInUp {
-      0%   { opacity: 0; transform: translateY(16px); filter: blur(12px); }
-      60%  { filter: blur(2px); }
-      100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
-    }
-
-  </style>
 
   <!-- If JS is disabled, show content immediately -->
   <noscript><style>.content { opacity: 1; }</style></noscript>
 </head>
-<body>
+<body class="is-fixed">
 
   <site-nav></site-nav>
-
-  <night-sky stars="140" clouds particles>
-    <div class="mist" style="top:50%;height:200px;--ms:16s;--mo:0.8;"></div>
-    <div class="mist" style="top:65%;height:140px;--ms:22s;--mo:0.5;animation-direction:alternate-reverse;"></div>
-    <div class="mist" style="top:76%;height:100px;--ms:13s;--mo:0.4;"></div>
-  </night-sky>
+  <calm-sea glints="24"></calm-sea>
 
   <main class="content" id="content" data-font-reveal>
     <div class="wordmark-block">
       <h1 class="wordmark">
         <img src="assets/Bearvil-logo-transparent.png" alt="Bearvil logo" class="site-logo" />
-        <span>Bearvil</span>
+        <span class="gradient-text">Bearvil</span>
       </h1>
       <div class="contact">
         <span class="copied-toast" id="toast" role="status">Copied</span>
