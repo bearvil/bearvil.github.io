@@ -33,16 +33,16 @@
   <link rel="stylesheet" href="/assets/css/ui.css" />
   <link rel="stylesheet" href="/assets/css/index.css" />
 
-  <!-- Shared components: <site-nav>, <calm-sea>, email copy, font reveal -->
+  <!-- Shared components: <top-nav>, <calm-sea>, email copy, font reveal -->
   <script src="/assets/components.js" defer></script>
 
   <!-- If JS is disabled, show content immediately -->
   <noscript><style>.content { opacity: 1; }</style></noscript>
 </head>
-<body class="is-fixed">
+<body>
 
-  <site-nav></site-nav>
-  <calm-sea glints="24"></calm-sea>
+  <top-nav></top-nav>
+  <calm-sea></calm-sea>
 
   <main class="content" id="content" data-font-reveal>
     <div class="wordmark-block">
@@ -56,5 +56,7 @@
       </div>
     </div>
   </main>
+
+  <site-footer></site-footer>
 </body>
 </html>

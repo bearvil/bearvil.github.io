@@ -38,6 +38,7 @@ Tokens are layered so you can retheme at the right level:
 | Page background | `--color-bg` (`--sand-100`) | `#fbf9f4` |
 | Surface (cards) | `--color-surface` | `#ffffff` |
 | Subtle panel | `--color-surface-2` (`--sand-200`) | `#f2eee6` |
+| Border (subtle) | `--color-border-subtle` (`--sand-200`) | `#f2eee6` |
 | Border | `--color-border` (`--sand-300`) | `#e5e0d6` |
 | Text | `--color-text` (`--ink-900`) | `#143a40` |
 | Muted text | `--color-text-muted` (`--ink-500`) | `#5a7a7e` |
@@ -74,6 +75,8 @@ prefer dark text on the orange accent.
 - **Shadow** (`--shadow-sm/md/lg`, `--shadow-focus`): soft, low-contrast for light bg.
 - **Motion** (`--transition-fast/base`, `--ease-out-expo`) and **z-index**
   (`--z-background/content/overlay/nav/nav-toggle/toast`).
+- **Layout** (`--topnav-h`): height of the fixed `<top-nav>` bar; scrollable
+  pages reserve this much top space (plus breathing room) in `base.css`.
 
 ## How to change the theme
 
@@ -87,6 +90,6 @@ prefer dark text on the orange accent.
 ## Components
 
 UI primitives (buttons, cards, form fields, badges, toast) are CSS-only utility
-classes in [`ui.css`](../assets/css/ui.css). Shared interactive pieces (`<site-nav>`,
+classes in [`ui.css`](../assets/css/ui.css). Shared interactive pieces (`<top-nav>`,
 the `<calm-sea>` background) are Web Components — see [components.md](components.md).
 All of them consume the tokens above.

@@ -9,7 +9,8 @@ body.sg { overflow-y: auto; }
 .sg-wrap {
   position: relative; z-index: var(--z-content);
   max-width: 1100px; margin: 0 auto;
-  padding: var(--space-8) var(--space-5) var(--space-8);
+  /* Top clearance for the fixed bar is handled globally (base.css). */
+  padding: 0 var(--space-5) var(--space-8);
 }
 
 /* HEADER */
@@ -36,10 +37,17 @@ body.sg { overflow-y: auto; }
   color: var(--color-accent-hover); margin-bottom: var(--space-2);
 }
 .sg-section > h2 { font-size: var(--text-2xl); margin-bottom: var(--space-5); }
-.sg-section > h3 {
+
+/* Sub-headings inside the demo panels (e.g. "Caribbean blue", "Radius",
+   "Variants", "Sizes") — clear breathing room above and below each.
+   Demo card titles use .card__title outside .sg-panel, so they're untouched. */
+.sg-panel h3 {
   font-size: var(--text-base); font-weight: var(--font-weight-bold);
-  color: var(--color-text-muted); margin: var(--space-5) 0 var(--space-3);
+  color: var(--color-text-muted); margin: var(--space-6) 0 var(--space-4);
 }
+/* The first sub-heading in a panel hugs the panel's top padding (no double gap). */
+.sg-panel > h3:first-child,
+.sg-panel.sg-stack > div:first-child > h3 { margin-top: 0; }
 
 /* A panel that holds demos (so they read on the sea background) */
 .sg-panel {

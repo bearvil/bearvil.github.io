@@ -9,7 +9,7 @@ when selected from the menu.
 
 1. **Create the file** at `privacy-policies/<app-name>-pp.html`. It owns everything
    it needs: its own `<head>`, its own styles (inline or its own stylesheet under
-   `privacy-policies/`), and its own markup. Do **not** add `<site-nav>`,
+   `privacy-policies/`), and its own markup. Do **not** add `<top-nav>`,
    `<calm-sea>`, or link the site's `assets/css/*` files.
 
 2. **Register it in the menu** by adding an entry to `PRIVACY_LINKS` in

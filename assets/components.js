@@ -6,22 +6,23 @@
      <link rel="stylesheet" href="/assets/css/components.css" />
      <script src="/assets/components.js" defer></script>
 
-     <site-nav></site-nav>                      → menu toggle + side nav + overlay
+     <top-nav></top-nav>                        → fixed top bar: logo, links,
+                                                   privacy dropdown, mobile menu
      <calm-sea glints="22"></calm-sea>           → light Caribbean background:
                                                    sand→sea gradient, sun, shimmer, waves
 
    Extra behaviors (opt-in via data attributes):
-     <a data-copy-email href="mailto:...">      → click copies address, shows .copied-toast
+     <a data-copy-email href="mailto:...">      → click copies address; feedback via a
+                                                   nearby .copied-toast or [data-copy-hint]
      <main id="content" data-font-reveal>       → fades in after display font loads
 
    Visual styles for these components live in /assets/css/components.css.
    ========================================================================= */
 'use strict';
 
-const isSmallScreen = window.matchMedia('(max-width: 600px)').matches;
-
 /* ------------------------------------------------------------------ *
- *  <site-nav> — menu toggle + side navigation + overlay
+ *  <top-nav> — fixed top bar: logo, inline links, privacy dropdown,
+ *  and a hamburger that opens a fullscreen menu on small screens.
  *  Edit the links in ONE place here; every page picks them up.
  * ------------------------------------------------------------------ */
 const NAV_LINKS = [
@@ -36,84 +37,162 @@ const PRIVACY_LINKS = [
   { href: '/privacy-policies/frend-ai-pp',       label: 'Frend AI' },
 ];
 
-class SiteNav extends HTMLElement {
+const CHEVRON = '<svg class="chev" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 L5 6.5 L8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* Returns a predicate that marks the link matching the current path with
+   aria-current="page". Shared by <top-nav> and <site-footer>. */
+function currentPathMatcher() {
+  const path = location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  return href => ((href.replace(/\/$/, '') || '/') === path ? ' aria-current="page"' : '');
+}
+
+class TopNav extends HTMLElement {
   connectedCallback() {
     if (this.dataset.rendered) return;
     this.dataset.rendered = 'true';
 
-    const path = location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
-    const links = NAV_LINKS.map(l => {
-      const lPath = l.href.replace(/\/$/, '') || '/';
-      const current = lPath === path ? ' aria-current="page"' : '';
-      return `<li><a href="${l.href}"${current}>${l.label}</a></li>`;
-    }).join('');
+    const current = currentPathMatcher();
 
-    const privacy = PRIVACY_LINKS.map(l =>
+    const navItems = NAV_LINKS.map(l =>
+      `<li><a href="${l.href}"${current(l.href)}>${l.label}</a></li>`
+    ).join('');
+
+    const privacyItems = PRIVACY_LINKS.map(l =>
       `<li><a href="${l.href}" target="_blank" rel="noopener">${l.label}</a></li>`
     ).join('');
 
+    const mobileItems =
+      NAV_LINKS.map(l => `<a href="${l.href}"${current(l.href)}>${l.label}</a>`).join('') +
+      `<span class="topnav-mobile-label">Privacy Policies</span>` +
+      PRIVACY_LINKS.map(l => `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join('');
+
     this.innerHTML = `
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="side-nav">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="side-nav" id="side-nav" aria-label="Main navigation">
-        <ul>
-          ${links}
-          <li class="has-sub">
-            <button class="sub-toggle" id="privacy-toggle" aria-expanded="false" aria-controls="privacy-sub">
-              Privacy Policies
-              <svg class="chev" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 L5 6.5 L8 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <ul class="sub-menu" id="privacy-sub">${privacy}</ul>
-          </li>
-        </ul>
+      <header class="topnav" role="banner">
+        <div class="topnav-inner">
+          <a class="topnav-logo" href="/">
+            <img src="/assets/Bearvil-logo-transparent.png" alt="" aria-hidden="true" />
+            <span>Bearvil</span>
+          </a>
+          <ul class="topnav-links" role="list">
+            ${navItems}
+            <li class="topnav-has-sub">
+              <button class="topnav-sub-toggle" id="topnav-privacy-toggle" aria-expanded="false" aria-controls="topnav-privacy">
+                Privacy Policies ${CHEVRON}
+              </button>
+              <ul class="topnav-sub" id="topnav-privacy">${privacyItems}</ul>
+            </li>
+          </ul>
+          <button class="topnav-burger" id="topnav-burger" aria-label="Menu" aria-expanded="false" aria-controls="topnav-mobile">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </header>
+      <!-- Kept OUTSIDE the frosted .topnav header: an ancestor with
+           backdrop-filter becomes the containing block for position:fixed
+           descendants, which would clip this fullscreen menu to the bar. -->
+      <nav class="topnav-mobile" id="topnav-mobile" aria-label="Mobile navigation" aria-hidden="true">
+        ${mobileItems}
       </nav>
-      <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
     `;
 
-    const navToggle = this.querySelector('#nav-toggle');
-    const navOverlay = this.querySelector('#nav-overlay');
+    const header   = this.querySelector('.topnav');
+    const burger    = this.querySelector('#topnav-burger');
+    const mobile    = this.querySelector('#topnav-mobile');
+    const subWrap   = this.querySelector('.topnav-has-sub');
+    const subToggle = this.querySelector('#topnav-privacy-toggle');
 
-    const closeNav = (returnFocus) => {
-      if (!document.body.classList.contains('nav-open')) return;
-      document.body.classList.remove('nav-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      const sub = this.querySelector('.has-sub.open');
-      if (sub) {
-        sub.classList.remove('open');
-        sub.querySelector('.sub-toggle').setAttribute('aria-expanded', 'false');
-      }
-      if (returnFocus) navToggle.focus();
+    // Translucent/condensed bar once the page is scrolled.
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Privacy dropdown — click/keyboard toggle (hover/focus handled in CSS).
+    const closeSub = () => {
+      subWrap.classList.remove('open');
+      subToggle.setAttribute('aria-expanded', 'false');
     };
-
-    navToggle.addEventListener('click', () => {
-      const open = document.body.classList.toggle('nav-open');
-      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (open) {
-        const first = this.querySelector('.side-nav a');
-        if (first) first.focus();
-      }
+    subToggle.addEventListener('click', () => {
+      const open = subWrap.classList.toggle('open');
+      subToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    navOverlay.addEventListener('click', () => closeNav(false));
+    document.addEventListener('click', e => { if (!subWrap.contains(e.target)) closeSub(); });
 
-    const privacyToggle = this.querySelector('#privacy-toggle');
-    privacyToggle.addEventListener('click', () => {
-      const open = privacyToggle.parentElement.classList.toggle('open');
-      privacyToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    // Fullscreen mobile menu.
+    const closeMobile = returnFocus => {
+      if (!burger.classList.contains('open')) return;
+      burger.classList.remove('open');
+      mobile.classList.remove('open');
+      mobile.setAttribute('aria-hidden', 'true');
+      burger.setAttribute('aria-expanded', 'false');
+      if (returnFocus) burger.focus();
+    };
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      mobile.classList.toggle('open', open);
+      mobile.setAttribute('aria-hidden', open ? 'false' : 'true');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => closeMobile(false)));
 
-    this.querySelectorAll('.side-nav a').forEach(a => a.addEventListener('click', () => closeNav(false)));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(true); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeSub(); closeMobile(true); }
+    });
   }
 }
-customElements.define('site-nav', SiteNav);
+customElements.define('top-nav', TopNav);
+
+/* ------------------------------------------------------------------ *
+ *  <site-footer> — slim footer bar: brand lockup, the same nav +
+ *  privacy links as <top-nav>, an email link, and a dynamic copyright
+ *  year. Reuses NAV_LINKS / PRIVACY_LINKS so links live in one place.
+ * ------------------------------------------------------------------ */
+const FOOTER_EMAIL = 'bearvil.co@gmail.com';
+
+class SiteFooter extends HTMLElement {
+  connectedCallback() {
+    if (this.dataset.rendered) return;
+    this.dataset.rendered = 'true';
+
+    const current = currentPathMatcher();
+    const year = new Date().getFullYear();
+
+    const navItems = NAV_LINKS.map(l =>
+      `<a href="${l.href}"${current(l.href)}>${l.label}</a>`
+    ).join('');
+
+    const privacyItems = PRIVACY_LINKS.map(l =>
+      `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`
+    ).join('');
+
+    this.innerHTML = `
+      <footer class="site-footer" role="contentinfo">
+        <div class="site-footer-inner">
+          <a class="site-footer-brand" href="/">
+            <img src="/assets/Bearvil-logo-transparent.png" alt="" aria-hidden="true" />
+            <span>Bearvil</span>
+          </a>
+          <nav class="site-footer-links" aria-label="Footer">
+            ${navItems}
+            <span class="site-footer-sep" aria-hidden="true"></span>
+            ${privacyItems}
+            <span class="site-footer-sep" aria-hidden="true"></span>
+            <a href="/styleguide"${current('/styleguide')}>Style guide</a>
+            <span class="site-footer-sep" aria-hidden="true"></span>
+            <a href="mailto:${FOOTER_EMAIL}">${FOOTER_EMAIL}</a>
+          </nav>
+        </div>
+        <div class="site-footer-bottom">
+          <small>&copy; ${year} Bearvil</small>
+        </div>
+      </footer>
+    `;
+  }
+}
+customElements.define('site-footer', SiteFooter);
 
 /* ------------------------------------------------------------------ *
  *  <calm-sea> — light "Caribbean" animated background.
- *  Layers: sand→sea gradient (CSS), soft sun, water shimmer, wave bands,
- *  and a few sun glints on the water.
- *  Attributes:
- *    glints="22"  desktop glint count (mobile gets ~55%); default 18
+ *  Layers: sand→sea gradient (CSS), soft sun, water shimmer, wave bands.
  *  Continuous motion respects prefers-reduced-motion (handled in CSS).
  * ------------------------------------------------------------------ */
 class CalmSea extends HTMLElement {
@@ -145,19 +224,6 @@ class CalmSea extends HTMLElement {
       sea.appendChild(el);
     });
 
-    // Sun glints — sparkles on the upper water
-    const glints = document.createElement('div');
-    glints.className = 'sea__glints';
-    const desktopCount = parseInt(this.getAttribute('glints'), 10) || 18;
-    const count = isSmallScreen ? Math.round(desktopCount * 0.55) : desktopCount;
-    let html = '';
-    for (let i = 0; i < count; i++) {
-      const sz = (Math.random() * 2.2 + 0.8).toFixed(2);
-      html += `<div class="glint" style="width:${sz}px;height:${sz}px;left:${(Math.random()*100).toFixed(2)}%;top:${(Math.random()*45+45).toFixed(2)}%;--d:${(Math.random()*3+2).toFixed(1)}s;--dl:-${(Math.random()*5).toFixed(1)}s;--o:${(Math.random()*0.5+0.4).toFixed(2)};"></div>`;
-    }
-    glints.innerHTML = html; // single DOM write
-    sea.appendChild(glints);
-
     this.appendChild(sea);
   }
 }
@@ -165,8 +231,14 @@ customElements.define('calm-sea', CalmSea);
 
 /* ------------------------------------------------------------------ *
  *  Email copy-to-clipboard — any <a data-copy-email href="mailto:...">
- *  Shows the nearest .copied-toast for 1.8s. Falls back to mailto.
+ *  On success it gives feedback for 1.8s in one of two opt-in ways and
+ *  then reverts; falls back to mailto when the Clipboard API is absent:
+ *    • .copied-toast  — a pill near the link is shown (index page).
+ *    • [data-copy-hint] — the nearest hint's text is swapped to its
+ *      data-copied-label and gets .is-copied (contact page).
  * ------------------------------------------------------------------ */
+const COPY_FEEDBACK_MS = 1800;
+
 function initEmailCopy() {
   document.querySelectorAll('a[data-copy-email]').forEach(link => {
     const address = (link.getAttribute('href') || '').replace(/^mailto:/, '');
@@ -175,17 +247,38 @@ function initEmailCopy() {
       if (!navigator.clipboard || !window.isSecureContext) return; // let mailto work
       e.preventDefault();
       navigator.clipboard.writeText(address).then(() => {
-        const toast = link.querySelector('.copied-toast') ||
-                      (link.parentElement && link.parentElement.querySelector('.copied-toast'));
-        if (toast) {
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 1800);
-        }
+        showCopyFeedback(link);
       }).catch(() => {
         window.location.href = 'mailto:' + address;
       });
     });
   });
+}
+
+/* Reveal the feedback for COPY_FEEDBACK_MS, then revert. A timer stored on
+   each element lets repeat clicks restart the countdown instead of stacking. */
+function showCopyFeedback(link) {
+  const near = sel => link.querySelector(sel) ||
+                      (link.parentElement && link.parentElement.querySelector(sel));
+
+  const toast = near('.copied-toast');
+  if (toast) {
+    toast.classList.add('show');
+    clearTimeout(toast._copyTimer);
+    toast._copyTimer = setTimeout(() => toast.classList.remove('show'), COPY_FEEDBACK_MS);
+  }
+
+  const hint = near('[data-copy-hint]');
+  if (hint) {
+    if (hint.dataset.idleLabel == null) hint.dataset.idleLabel = hint.textContent;
+    hint.textContent = hint.dataset.copiedLabel || 'Copied to clipboard';
+    hint.classList.add('is-copied');
+    clearTimeout(hint._copyTimer);
+    hint._copyTimer = setTimeout(() => {
+      hint.textContent = hint.dataset.idleLabel;
+      hint.classList.remove('is-copied');
+    }, COPY_FEEDBACK_MS);
+  }
 }
 
 /* ------------------------------------------------------------------ *

@@ -21,35 +21,37 @@
   color: var(--color-text-muted);
 }
 
-/* EMAIL CARD — the single point of contact */
+/* EMAIL CARD — the single point of contact, styled as the accent CTA
+   (pastel-orange fill, ink text) so it reads as the page's hero action. */
 .email-card {
   margin-top: var(--space-7);
   position: relative;
   display: flex; align-items: center; gap: var(--space-4);
   padding: var(--space-4) var(--space-6);
-  border: 1px solid var(--color-border);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  background: var(--color-surface);
+  background: var(--btn-accent-bg);
   box-shadow: var(--shadow-sm);
   text-decoration: none;
-  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  transition: background var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
 }
 .email-card:hover, .email-card:focus-visible {
-  border-color: var(--color-primary);
+  background: var(--btn-accent-bg-hover);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
+.email-card:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
 
 .email-card svg {
   flex: none;
   width: 22px; height: 22px;
-  stroke: var(--color-primary);
+  stroke: var(--btn-accent-text);
 }
 
 .email-card .address {
   font-size: clamp(0.95rem, 2.4vw, 1.2rem);
   font-weight: var(--font-weight-bold); letter-spacing: 0.02em;
-  color: var(--color-text);
+  color: var(--btn-accent-text);
 }
 
 .hint {
@@ -57,13 +59,9 @@
   font-size: var(--text-xs); letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--color-text-subtle);
+  transition: color var(--transition-base);
 }
-
-/* Copied toast — sits below the "Click to copy" hint; pill from ui.css */
-.copied-toast {
-  position: absolute; top: calc(100% + var(--space-6)); left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
+/* Swapped in by data-copy-hint after a successful copy, then reverted. */
+.hint.is-copied { color: var(--color-primary-fill); }
 
 .home-link { margin-top: var(--space-7); }

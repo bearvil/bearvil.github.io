@@ -25,8 +25,8 @@ For policy pages, see [adding a privacy policy](adding-a-privacy-policy.md) inst
 3. **Add the shared chrome** at the top of `<body>`:
 
    ```html
-   <site-nav></site-nav>
-   <calm-sea glints="20"></calm-sea>
+   <top-nav></top-nav>
+   <calm-sea></calm-sea>
    ```
 
 4. **Write the content** inside `<main class="content"> … </main>`, and put its

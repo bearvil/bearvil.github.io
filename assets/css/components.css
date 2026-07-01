@@ -1,6 +1,6 @@
 /* =========================================================================
    components.css — visual styles for the shared Web Components defined in
-   assets/components.js (<site-nav>, <calm-sea>).
+   assets/components.js (<top-nav>, <calm-sea>, <site-footer>).
    Consumes tokens from tokens.css. Link after base.css.
    UI primitives (buttons, cards, forms, badges) live in ui.css.
    ========================================================================= */
@@ -75,123 +75,272 @@
   100% { transform: translateX(3%)  scaleX(1.04); opacity: 1; }
 }
 
-/* Tiny floating sparkles (sun glints on water) */
-.sea__glints { position: absolute; inset: 0; }
-.glint {
-  position: absolute; border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  animation: glintTwinkle var(--d, 4s) ease-in-out infinite alternate var(--dl, 0s);
-}
-@keyframes glintTwinkle {
-  0%   { opacity: 0.1; transform: scale(0.6); }
-  100% { opacity: var(--o, 0.8); transform: scale(1); }
-}
-
 /* =========================================================================
-   <site-nav> — menu toggle, slide-in side panel, dimming overlay (light).
+   <top-nav> — fixed top bar: logo, inline links, privacy dropdown, and a
+   hamburger that opens a fullscreen menu on small screens. Layout ported
+   from the Clearwave template, themed entirely with Bearvil tokens.
    ========================================================================= */
 
-/* NAV TOGGLE — floating rounded square, top-left */
-.nav-toggle {
-  position: fixed; top: var(--space-5); left: var(--space-5); z-index: var(--z-nav-toggle);
-  width: 52px; height: 52px; border-radius: var(--radius-md);
-  display: flex; align-items: center; justify-content: center;
+/* BAR — fixed across the top, always a frosted-glass surface (translucent sand
+   + blur) so it reads as a real bar and the calm-sea gradient still shows
+   through softly. On scroll it deepens a touch and fades in a subtle hairline
+   bottom border. Height stays constant (no padding change) so the logo/links
+   never shift on scroll. */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-nav-toggle);
+  padding: var(--space-4) 0;
+  background: rgba(251, 249, 244, 0.6);   /* --sand-100 @ 60% — frosted at rest */
+  box-shadow: 0 1px 0 transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* 0.8s "silk" fade for the deepen-on-scroll (--silk-dur / --silk equivalent). */
+  transition: background 0.8s var(--ease-out-expo),
+              box-shadow 0.8s var(--ease-out-expo),
+              backdrop-filter 0.8s var(--ease-out-expo),
+              -webkit-backdrop-filter 0.8s var(--ease-out-expo);
+}
+.topnav.scrolled {
+  background: rgba(251, 249, 244, 0.88);  /* --sand-100 @ 88% */
+  /* Lighter divider token (--sand-200), softer than the default --color-border
+     (--sand-300) which read too heavy on the frosted bar. */
+  box-shadow: 0 1px 0 var(--color-border-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.topnav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-5);
+  max-width: 1160px; margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* LOGO — transparent mark + wordmark, matches the brand lockup elsewhere. */
+.topnav-logo {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl); font-weight: var(--font-weight-extra);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+.topnav-logo:hover { color: var(--color-text); }
+.topnav-logo img { height: 28px; width: auto; display: block; }
+
+/* DESKTOP LINKS — pill hover. */
+.topnav-links {
+  display: flex; align-items: center; gap: var(--space-2);
+  list-style: none; margin: 0; padding: 0;
+}
+.topnav-links > li { position: relative; }
+.topnav-links a, .topnav-sub-toggle {
+  display: inline-flex; align-items: center; gap: 0.45em;
+  font-family: inherit;
+  font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  transition: color var(--transition-base), background var(--transition-base),
+              box-shadow var(--transition-base);
+}
+.topnav-links a {
+  box-shadow: inset 0 0 0 0 transparent;
+}
+.topnav-links a:hover, .topnav-links a:focus-visible {
+  color: var(--color-primary-fill);
+  background: var(--color-primary-softer);
+  box-shadow: inset 0 0 0 1px var(--color-primary-soft);
+}
+.topnav-links a[aria-current="page"] {
+  color: var(--color-primary-fill);
+  background: var(--color-primary-softer);
+}
+
+/* PRIVACY DROPDOWN — opens on hover/focus (CSS) and click (JS). */
+.topnav-sub-toggle {
+  background: none; border: none; cursor: pointer;
+}
+.topnav-sub-toggle:hover, .topnav-sub-toggle:focus-visible,
+.topnav-has-sub:hover .topnav-sub-toggle,
+.topnav-has-sub:focus-within .topnav-sub-toggle {
+  color: var(--color-primary-fill);
+  background: var(--color-primary-softer);
+}
+.topnav-sub-toggle .chev { flex: none; transition: transform var(--transition-base); }
+.topnav-has-sub:hover .topnav-sub-toggle .chev,
+.topnav-has-sub:focus-within .topnav-sub-toggle .chev,
+.topnav-has-sub.open .topnav-sub-toggle .chev { transform: rotate(180deg); }
+
+.topnav-sub {
+  position: absolute; top: calc(100% + var(--space-2)); right: 0;
+  min-width: 200px;
+  list-style: none; margin: 0; padding: var(--space-2);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  transition: background var(--transition-base), border-color var(--transition-base),
-              transform var(--transition-base), box-shadow var(--transition-base);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+              visibility 0s var(--transition-base);
 }
-.nav-toggle:hover {
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+/* Invisible bridge across the gap between the toggle and the panel, so moving
+   the mouse onto the items keeps the hover chain and the menu doesn't close. */
+.topnav-sub::before {
+  content: ""; position: absolute;
+  left: 0; right: 0; top: calc(-1 * var(--space-2)); height: var(--space-2);
 }
-.nav-toggle span {
-  position: absolute; left: 50%; top: 50%;
-  width: 20px; height: 2px; border-radius: 2px;
-  background: var(--color-primary-fill);
-  transform: translate(-50%, -50%);
+.topnav-has-sub:hover .topnav-sub,
+.topnav-has-sub:focus-within .topnav-sub,
+.topnav-has-sub.open .topnav-sub {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+              visibility 0s 0s;
+}
+.topnav-sub li { margin: 0; }
+.topnav-sub a {
+  display: block; white-space: nowrap;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  transition: color var(--transition-base), background var(--transition-base);
+}
+.topnav-sub a:hover, .topnav-sub a:focus-visible {
+  color: var(--color-primary-fill); background: var(--color-primary-softer);
+}
+
+/* HAMBURGER — hidden on desktop, animates into an X when open. */
+.topnav-burger {
+  display: none; flex-direction: column; gap: 5px;
+  width: 30px; padding: 5px; cursor: pointer;
+  background: none; border: none;
+}
+.topnav-burger span {
+  display: block; width: 100%; height: 2px; border-radius: 2px;
+  background: var(--color-text);
   transition: transform 0.35s var(--ease-out-expo), opacity var(--transition-fast);
 }
-.nav-toggle span:nth-child(1) { transform: translate(-50%, -7px); }
-.nav-toggle span:nth-child(3) { transform: translate(-50%, 7px); }
-body.nav-open .nav-toggle span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
-body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
-body.nav-open .nav-toggle span:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
+.topnav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.topnav-burger.open span:nth-child(2) { opacity: 0; }
+.topnav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* SIDE NAV — hidden off-screen to the left */
-.side-nav {
-  position: fixed; top: 0; left: 0; z-index: var(--z-nav);
-  width: min(300px, 80vw); height: 100%;
-  padding: 6.5rem var(--space-6) var(--space-6);
-  background: var(--color-surface);
-  border-right: 1px solid var(--color-border);
-  box-shadow: var(--shadow-lg);
-  transform: translateX(-100%);
-  visibility: hidden;
-  transition: transform 0.5s var(--ease-out-expo), visibility 0s 0.5s;
+/* FULLSCREEN MOBILE MENU. Items list from the top (below the bar) and the menu
+   scrolls if they don't all fit, so every option is always reachable — even on
+   short/narrow viewports. */
+.topnav-mobile {
+  display: none;
+  position: fixed; inset: 0; z-index: var(--z-nav);
+  flex-direction: column; justify-content: flex-start;
+  padding: calc(var(--topnav-h) + var(--space-4)) var(--space-6) var(--space-6);
+  overflow-y: auto;
+  background: var(--color-bg);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--transition-base), visibility 0s var(--transition-base);
 }
-body.nav-open .side-nav {
-  transform: translateX(0);
-  visibility: visible;
-  transition: transform 0.5s var(--ease-out-expo), visibility 0s 0s;
+.topnav-mobile.open {
+  opacity: 1; visibility: visible;
+  transition: opacity var(--transition-base), visibility 0s 0s;
 }
+.topnav-mobile a {
+  padding: var(--space-3) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl); font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-base);
+}
+.topnav-mobile a:hover, .topnav-mobile a:focus-visible,
+.topnav-mobile a[aria-current="page"] { color: var(--color-primary-fill); }
 
-.side-nav ul { list-style: none; margin: 0; padding: 0; }
-.side-nav li { margin: var(--space-1) 0; }
-.side-nav a {
-  display: block; padding: var(--space-3) 0;
-  font-size: var(--text-base); font-weight: var(--font-weight-bold);
+/* "Privacy Policies" group heading above its links in the mobile menu. */
+.topnav-mobile-label {
+  margin-top: var(--space-5);
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm); font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-wider); text-transform: uppercase;
-  color: var(--color-text-muted);
-  transition: color var(--transition-base), padding-left var(--transition-base);
-}
-.side-nav a:hover, .side-nav a:focus-visible { color: var(--color-primary-fill); padding-left: var(--space-2); }
-.side-nav a[aria-current="page"] { color: var(--color-primary-fill); }
-
-/* SUBMENU — Privacy Policies */
-.sub-toggle {
-  display: flex; align-items: center; gap: 0.55em;
-  width: 100%; padding: var(--space-3) 0;
-  background: none; border: none; cursor: pointer;
-  font-family: inherit;
-  font-size: var(--text-base); font-weight: var(--font-weight-bold);
-  letter-spacing: var(--tracking-wider); text-transform: uppercase; text-align: left;
-  color: var(--color-text-muted);
-  transition: color var(--transition-base), padding-left var(--transition-base);
-}
-.sub-toggle:hover, .sub-toggle:focus-visible { color: var(--color-primary-fill); padding-left: var(--space-2); }
-.sub-toggle .chev { flex: none; transition: transform 0.35s var(--ease-out-expo); }
-.has-sub.open .sub-toggle .chev { transform: rotate(180deg); }
-
-.sub-menu {
-  list-style: none; overflow: hidden;
-  max-height: 0; opacity: 0;
-  transition: max-height 0.45s var(--ease-out-expo), opacity 0.35s ease;
-}
-.has-sub.open .sub-menu { max-height: 8rem; opacity: 1; }
-.sub-menu li { margin: 0; }
-.sub-menu a {
-  padding: var(--space-2) 0 var(--space-2) var(--space-5);
-  font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
   color: var(--color-text-subtle);
-  border-left: 1px solid var(--color-border);
 }
-.sub-menu a:hover, .sub-menu a:focus-visible { padding-left: 1.7rem; }
 
-/* OVERLAY — dims page when nav open */
-.nav-overlay {
-  position: fixed; inset: 0; z-index: var(--z-overlay);
-  background: rgba(20, 58, 64, 0.28);
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.5s ease;
+/* RESPONSIVE — swap inline links for the hamburger + fullscreen menu. */
+@media (max-width: 720px) {
+  .topnav-links { display: none; }
+  .topnav-burger { display: flex; }
+  .topnav-mobile { display: flex; }
 }
-body.nav-open .nav-overlay { opacity: 1; pointer-events: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* The bar's frosted background/border/blur fade is a color change, not
+     vestibular motion, so it stays. Only suppress transform-driven movement:
+     the dropdown slide, the chevron rotation, and the hamburger morph. */
+  .topnav-sub, .topnav .chev, .topnav-burger span { transition: none; }
+}
 
 /* ACCESSIBILITY — reduced motion: stop continuous background motion */
 @media (prefers-reduced-motion: reduce) {
-  .sea__sun, .sea__shimmer, .sea__wave, .glint { animation: none; }
+  .sea__sun, .sea__shimmer, .sea__wave { animation: none; }
   .sea__shimmer { opacity: 0.35; }
+}
+
+/* =========================================================================
+   <site-footer> — slim frosted footer bar. Mirrors the <top-nav> frosted
+   surface so the nav and footer bookend the page. Tokens only.
+   ========================================================================= */
+site-footer { display: block; position: relative; z-index: var(--z-content); }
+
+.site-footer {
+  background: rgba(251, 249, 244, 0.6);   /* --sand-100 @ 60% — frosted, matches the nav */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* Lighter divider token (--sand-200) for the top edge — same as the scrolled
+     nav border, softer than the default --color-border on frosted glass. */
+  box-shadow: 0 -1px 0 var(--color-border-subtle);
+}
+.site-footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: var(--space-3) var(--space-5);
+  max-width: 1160px; margin: 0 auto;
+  padding: var(--space-5) var(--space-6) var(--space-4);
+}
+
+.site-footer-brand {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg); font-weight: var(--font-weight-extra);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+.site-footer-brand:hover { color: var(--color-text); }
+.site-footer-brand img { height: 24px; width: auto; display: block; }
+
+.site-footer-links {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+.site-footer-links a {
+  font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  transition: color var(--transition-base);
+}
+.site-footer-links a:hover,
+.site-footer-links a:focus-visible { color: var(--color-primary-fill); }
+.site-footer-links a[aria-current="page"] { color: var(--color-primary-fill); }
+
+/* Hairline divider between the site links and the privacy/email group. */
+.site-footer-sep {
+  width: 1px; height: 1em; background: var(--color-border-strong);
+}
+
+.site-footer-bottom {
+  max-width: 1160px; margin: 0 auto;
+  /* Left padding adds the logo's ~4px transparent inset (--space-1) on top of
+     the --space-6 gutter, so the © text lines up with the visible logo mark
+     in the row above (not the image's transparent left edge). */
+  padding: 0 var(--space-6) var(--space-5) calc(var(--space-6) + var(--space-1));
+  font-size: var(--text-xs); color: var(--color-text-subtle);
+}
+
+@media (max-width: 720px) {
+  .site-footer-inner { justify-content: center; text-align: center; }
+  .site-footer-links { justify-content: center; }
+  .site-footer-sep { display: none; }
+  /* Centered layout — drop the optical left nudge so the © sits truly centered. */
+  .site-footer-bottom { text-align: center; padding-left: var(--space-6); }
 }

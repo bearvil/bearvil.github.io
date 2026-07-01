@@ -60,7 +60,7 @@ These apply to the main site: `index.html`, `contact.html`, `404.html`, future p
   - `<page>.css` — page-specific styles
   Link them with `<link rel="stylesheet" href="/assets/css/...">`.
   > Note: today's main pages still carry large inline `<style>` blocks and `components.js` injects shared CSS via a `SHARED_CSS` string. New work should move toward external `.css` files; refactor existing inline styles out when touching a page (don't do a giant rewrite unless asked).
-- **Behavior → JS files** under `assets/`. Shared UI is built as **vanilla Web Components** (no build step, portable to any static host). Current shared file: `assets/components.js` (`<site-nav>`, `<night-sky>`, `data-copy-email`, `data-font-reveal`).
+- **Behavior → JS files** under `assets/`. Shared UI is built as **vanilla Web Components** (no build step, portable to any static host). Current shared file: `assets/components.js` (`<top-nav>`, `<calm-sea>`, `<site-footer>`, `data-copy-email`, `data-font-reveal`).
 - **Build for reuse and components** when a piece is, or will be, used on more than one page. Define shared data in one place (e.g. `NAV_LINKS` / `PRIVACY_LINKS` in `components.js`) so every page picks it up automatically. Don't duplicate markup that could be a component.
 - **Keep files small: aim for ~300–400 lines max.** If a file genuinely needs more, that's fine — but first ask whether it should be split into smaller files/components.
 - **Accessibility & performance matter** and are already established: keyboard-friendly nav, visible focus, correct ARIA, `prefers-reduced-motion` support, content visible without JS, non-render-blocking fonts. Preserve these when editing.
@@ -77,15 +77,15 @@ Files in `privacy-policies/` are **standalone, self-contained pages**. Each one 
 ## Layout
 
 ```
-index.html        # Landing page (night-sky animation, side nav)
+index.html        # Landing page (calm-sea animation, top nav, footer)
 contact.html      # Contact page (click-to-copy email)
 404.html          # Custom 404, served for any missing path
 assets/
   components.js   # Shared Web Components + behaviors (JS only)
   *.png           # Logo assets
   css/            # External stylesheets
-    base.css        # Reset, variables, shared layout & utility classes
-    components.css   # Styles for the shared Web Components
+    base.css        # Reset, variables, sticky-footer layout & utility classes
+    components.css   # Styles for the shared Web Components (nav, sea, footer)
     index.css / contact.css / 404.css  # Page-specific styles
 privacy-policies/ # Standalone, self-contained policy pages (see exception above)
 docs/             # Detailed documentation (how it works / how to do X)
@@ -101,16 +101,19 @@ README.md         # Overview & quick start
 ## Adding a new site page
 
 1. Copy the `<head>` of an existing page (CSP, fonts, favicon, `components.js` include); update title/description/canonical/og tags.
-2. Add `<site-nav></site-nav>` and `<night-sky>` at the top of `<body>`.
+2. Add `<top-nav></top-nav>` and `<calm-sea>` at the top of `<body>`.
 3. Put content in `<main class="content">`; put styles in an external `.css` file under `assets/css/`.
-4. If it belongs in the menu, add it to `NAV_LINKS` in `assets/components.js`.
+4. Add `<site-footer></site-footer>` just before `</body>`.
+5. If it belongs in the menu, add it to `NAV_LINKS` in `assets/components.js`.
 
 ## Local preview
 
 ```sh
-python3 -m http.server 8000   # http://localhost:8000
+python3 serve.py              # http://localhost:8000  (recommended)
 ```
-Extensionless URLs and the custom 404 are GitHub Pages features and won't work with a plain local file server.
+`serve.py` is a dev-only helper that mimics GitHub Pages routing — it resolves extensionless URLs to `.html` and serves the custom `404.html` for missing paths, so nav links and the 404 behave as in production. It is not part of the deployed site.
+
+The plain `python3 -m http.server 8000` also works, but extensionless URLs and the custom 404 won't (both are GitHub Pages features).
 
 ## Deployment
 

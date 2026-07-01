@@ -15,8 +15,8 @@ All stylesheets are under [`assets/css/`](../assets/css/):
 | File | Scope |
 |---|---|
 | `tokens.css` | **The single source of truth** — all design tokens in `:root` (colors, type scale, spacing, radius, shadow, motion, z-index). Everything else consumes these. See [design-system.md](design-system.md). |
-| `base.css` | Foundation shared by every main page: reset, base typography, `html/body`, focus styles, the `.content` layout, the `fadeInUp` keyframe, and shared text utilities (`.gradient-text`, `.sun-text`, `.sr-only`, `.copied-toast`). |
-| `components.css` | Visual styles for the shared Web Components (`<site-nav>`, `<calm-sea>`). |
+| `base.css` | Foundation shared by every main page: reset, base typography, the sticky-footer `html/body` layout, focus styles, the `.content` layout, the `fadeInUp` keyframe, and shared text utilities (`.gradient-text`, `.sun-text`, `.sr-only`, `.copied-toast`). |
+| `components.css` | Visual styles for the shared Web Components (`<top-nav>`, `<calm-sea>`, `<site-footer>`). |
 | `ui.css` | Reusable UI primitives as utility classes: `.btn` (+ variants/sizes), `.card`, `.field` (forms), `.badge`, toast appearance. |
 | `<page>.css` | Styles unique to one page (`index.css`, `contact.css`, `404.css`, `styleguide.css`). |
 
@@ -37,6 +37,19 @@ Each page links its stylesheets in this order in `<head>`:
 Tokens first (defines the variables every other file reads), then base, then the
 shared components, then UI primitives, and the page's own styles last so it can
 override anything above it.
+
+## Page layout — sticky footer
+
+Every main-site `body` is a **flex column** at least one viewport tall
+(`min-height: 100dvh`), with `padding-top` reserving room for the fixed
+`<top-nav>`. Inside it, `.content` is `flex: 1` so it grows to fill the space and
+keeps its hero centered, and `<site-footer>` sits last at the bottom. The result:
+when content fits in one screen the footer rests at the bottom with no gap; when
+it doesn't, the page scrolls normally and the footer follows the content. The
+`<calm-sea>` background stays `position: fixed` behind everything.
+
+(There used to be a `body.is-fixed` no-scroll lock for the single-screen pages;
+it was removed when the footer was added — all pages now use this one layout.)
 
 ## Design tokens — the single source of truth
 
@@ -67,7 +80,7 @@ Reuse these rather than re-declaring rules per page:
 
 | Class | Where | Purpose |
 |---|---|---|
-| `.content` | base.css | Centered, full-viewport content layer. |
+| `.content` | base.css | In-flow centered content layer; grows (`flex: 1`) to fill the space between the fixed nav and the footer. |
 | `.gradient-text` | base.css | Teal→turquoise text treatment for the wordmark/headings (readable on the light background). |
 | `.sun-text` | base.css | Warm orange→turquoise accent text (use sparingly). |
 | `.btn` (+ `--primary`/`--accent`/`--secondary`/`--ghost`/`--link`, `--sm`/`--lg`) | ui.css | Buttons. |

@@ -25,8 +25,15 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* Full-viewport, no-scroll pages (landing, 404) opt in with this class on body. */
-body.is-fixed { height: 100%; overflow: hidden; }
+/* Main-site pages are a sticky-footer flex column: content fills the space
+   between the fixed <top-nav> and the footer, and the page scrolls when the
+   content is taller than the viewport. padding-top clears the fixed nav;
+   box-sizing:border-box keeps it inside min-height so there's no overflow. */
+body {
+  display: flex; flex-direction: column;
+  min-height: 100vh; min-height: 100dvh;
+  padding-top: calc(var(--topnav-h) + var(--space-6));
+}
 
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
@@ -52,11 +59,11 @@ a:hover { color: var(--color-link-hover); }
   border-radius: var(--radius-sm);
 }
 
-/* CONTENT — centered content layer.
-   Each page controls its own reveal: the landing page reveals via JS
-   (data-font-reveal), other pages use the fadeInUp animation below. */
+/* CONTENT — in-flow centered content layer; grows to fill the space above
+   the footer. Each page controls its own reveal: the landing page reveals
+   via JS (data-font-reveal), other pages use the fadeInUp animation below. */
 .content {
-  position: fixed; inset: 0; z-index: var(--z-content);
+  flex: 1 0 auto; z-index: var(--z-content);
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center; padding: var(--space-6);

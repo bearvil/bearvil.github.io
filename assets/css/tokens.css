@@ -68,6 +68,7 @@
   --color-bg:           var(--sand-100);
   --color-surface:      var(--white);
   --color-surface-2:    var(--sand-200);
+  --color-border-subtle:var(--sand-200);   /* lighter divider — barely-there */
   --color-border:       var(--sand-300);
   --color-border-strong:var(--sand-400);
 
@@ -189,4 +190,10 @@
   --btn-accent-bg:         var(--color-accent);
   --btn-accent-bg-hover:   var(--color-accent-hover);
   --btn-accent-text:       var(--color-accent-text);
+
+  /* ---------------------------------------------------------------------
+     10. LAYOUT — shared layout constants.
+     --------------------------------------------------------------------- */
+  --topnav-h: 72px;   /* height of the fixed <top-nav> bar; scrollable pages
+                         reserve this much space at the top (see base.css) */
 }

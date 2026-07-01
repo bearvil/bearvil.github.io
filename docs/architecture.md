@@ -54,17 +54,22 @@ docs/                 # This documentation
   tokens.css → base.css → components.css → ui.css → <page>.css   (cascade order matters)
   components.js (deferred)
 </head>
-<body>
-  <site-nav></site-nav>          ← injected nav (menu, side panel, overlay)
+<body>                           ← flex column, min-height 100dvh (sticky footer)
+  <top-nav></top-nav>            ← injected fixed top bar (logo, links, dropdown)
   <calm-sea …></calm-sea>        ← injected animated background
-  <main class="content">…</main> ← page content
+  <main class="content">…</main> ← page content (flex: 1, fills the middle)
+  <site-footer></site-footer>    ← injected slim footer, sits at the bottom
 </body>
 ```
 
+The `body` is a sticky-footer flex column: `.content` grows to fill the space
+between the fixed nav and the footer, so short pages show the footer at the
+bottom with no gap and tall pages scroll. See [styling.md](styling.md#page-layout--sticky-footer).
+
 `components.js` defines the custom elements; when the browser parses
-`<site-nav>` / `<calm-sea>` it builds their DOM. Visual styles for those elements
-live in `assets/css/components.css` (not injected by JS). Design tokens come first in
-the cascade from `tokens.css`. See [design-system.md](design-system.md),
+`<top-nav>` / `<calm-sea>` / `<site-footer>` it builds their DOM. Visual styles for
+those elements live in `assets/css/components.css` (not injected by JS). Design
+tokens come first in the cascade from `tokens.css`. See [design-system.md](design-system.md),
 [components.md](components.md) and [styling.md](styling.md) for detail.
 
 ## Routing (GitHub Pages)
