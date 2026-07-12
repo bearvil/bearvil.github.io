@@ -1,25 +1,11 @@
 /* =========================================================================
-   contact.css — contact page (heading, email card, back-home).
+   contact.css — contact page (email card, reassurance note, back-home).
+   The heading uses the shared .section-head component (patterns.css); this
+   file only holds what's unique to this page.
    Consumes tokens from tokens.css.
    ========================================================================= */
 
 .content { animation: fadeInUp 1.4s cubic-bezier(0.16,1,0.3,1) both; }
-
-.heading {
-  font-family: var(--font-heading);
-  font-weight: var(--font-weight-extra);
-  font-size: clamp(2rem, 8vw, 5rem);
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.05;
-}
-
-.tagline {
-  margin-top: var(--space-4);
-  font-size: clamp(0.85rem, 1.8vw, 1rem);
-  font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
 
 /* EMAIL CARD — the single point of contact, styled as the accent CTA
    (pastel-orange fill, ink text) so it reads as the page's hero action. */
@@ -64,4 +50,14 @@
 /* Swapped in by data-copy-hint after a successful copy, then reverted. */
 .hint.is-copied { color: var(--color-primary-fill); }
 
-.home-link { margin-top: var(--space-7); }
+/* REASSURANCE NOTE — sets expectations and cross-links the About-page FAQ so
+   quick questions don't need a full email round-trip. */
+.contact-note {
+  margin-top: var(--space-5);
+  max-width: 46ch;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+.contact-note a { font-weight: var(--font-weight-bold); }
+
+.contact-actions { margin-top: var(--space-7); }

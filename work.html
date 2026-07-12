@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- SEO / social -->
+  <title>Bearvil — Work</title>
+  <meta name="description" content="The apps Bearvil has shipped — a small studio building calm, focused mobile apps." />
+  <link rel="canonical" href="https://bearvil.github.io/work" />
+  <meta property="og:title" content="Bearvil — Work" />
+  <meta property="og:description" content="The apps Bearvil has shipped." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bearvil.github.io/work" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Fonts: preconnect + non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" />
+
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
+
+  <!-- Shared components: <top-nav>, <calm-sea>, email copy, font reveal -->
+  <script src="/assets/components.js" defer></script>
+
+  <!-- If JS is disabled, show content immediately -->
+  <noscript><style>.page-sections { opacity: 1; }</style></noscript>
+</head>
+<body>
+
+  <top-nav></top-nav>
+  <calm-sea></calm-sea>
+
+  <!-- NOTE: copy and figures below are placeholder demo content — swap in the
+       real app details when ready. The layout and components stay the same. -->
+  <main class="page-sections" id="content" data-font-reveal>
+
+    <!-- Intro -->
+    <header class="section-head section-head--center">
+      <p class="section-head__eyebrow">Our Work</p>
+      <h1 class="section-head__title">Apps we've <em>shipped</em></h1>
+      <p class="section-head__sub">A small studio building calm, focused mobile apps. Here's what we've put into the world.</p>
+    </header>
+
+    <!-- App 1 — Touchy Fingies -->
+    <section class="feature-row" aria-labelledby="app-touchy">
+      <div class="feature-row__content">
+        <p class="feature-row__eyebrow">01 — Touchy Fingies</p>
+        <h2 class="feature-row__title" id="app-touchy">Playful touch, <em>zero clutter</em></h2>
+        <p class="feature-row__desc">A tactile playground for little hands — bright, responsive, and free of ads, timers, and dark patterns. Just tap, drag, and giggle.</p>
+        <ul class="checklist">
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Offline-first, no account required</span></li>
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Zero ads and no data collection</span></li>
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Designed with (and for) toddlers</span></li>
+        </ul>
+      </div>
+      <div class="feature-row__visual feature-visual">
+        <div class="metric-grid">
+          <div class="metric">
+            <div class="metric__label">Downloads</div>
+            <div class="metric__value">84<span class="metric__unit">k</span></div>
+            <div class="metric__bar"><div class="metric__bar-fill" style="width:72%"></div></div>
+          </div>
+          <div class="metric">
+            <div class="metric__label">Avg. rating</div>
+            <div class="metric__value">4.8<span class="metric__unit">★</span></div>
+            <div class="metric__bar"><div class="metric__bar-fill" style="width:96%"></div></div>
+          </div>
+        </div>
+        <div class="data-list">
+          <div class="data-list__item"><span class="data-list__name">iOS · App Store</span><span class="badge badge--success">Live</span></div>
+          <div class="data-list__item"><span class="data-list__name">Android · Play Store</span><span class="badge badge--success">Live</span></div>
+          <div class="data-list__item"><span class="data-list__name">iPad layout</span><span class="badge badge--primary">Rolling out</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App 2 — Frend AI -->
+    <section class="feature-row feature-row--reverse" aria-labelledby="app-frend">
+      <div class="feature-row__content">
+        <p class="feature-row__eyebrow">02 — Frend AI</p>
+        <h2 class="feature-row__title" id="app-frend">A friend that <em>listens</em></h2>
+        <p class="feature-row__desc">A gentle AI companion for daily check-ins and journaling. Frend keeps conversations private on-device and never turns your thoughts into a product.</p>
+        <ul class="checklist">
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>On-device, privacy-first conversations</span></li>
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Daily mood check-ins and prompts</span></li>
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Export or delete everything, anytime</span></li>
+        </ul>
+      </div>
+      <div class="feature-row__visual feature-visual">
+        <div class="metric-grid">
+          <div class="metric">
+            <div class="metric__label">Active users</div>
+            <div class="metric__value">12<span class="metric__unit">k</span></div>
+            <div class="metric__bar"><div class="metric__bar-fill" style="width:64%"></div></div>
+          </div>
+          <div class="metric">
+            <div class="metric__label">Check-ins / wk</div>
+            <div class="metric__value">31<span class="metric__unit">k</span></div>
+            <div class="metric__bar"><div class="metric__bar-fill" style="width:81%"></div></div>
+          </div>
+        </div>
+        <div class="data-list">
+          <div class="data-list__item"><span class="data-list__name">iOS · App Store</span><span class="badge badge--success">Live</span></div>
+          <div class="data-list__item"><span class="data-list__name">Android · Play Store</span><span class="badge badge--primary">In review</span></div>
+          <div class="data-list__item"><span class="data-list__name">Web app</span><span class="badge">Planned</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App 3 — placeholder / roadmap -->
+    <section class="feature-row" aria-labelledby="app-next">
+      <div class="feature-row__content">
+        <p class="feature-row__eyebrow">03 — In the works</p>
+        <h2 class="feature-row__title" id="app-next">Something new is <em>brewing</em></h2>
+        <p class="feature-row__desc">Our next app is still finding its shape. Same principles: calm, private, and delightful to hold. Want a peek behind the curtain?</p>
+        <ul class="checklist">
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Concept and design in progress</span></li>
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Private beta later this year</span></li>
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Built on the same calm foundations</span></li>
+        </ul>
+        <div>
+          <a class="btn btn--accent" href="/contact">Get in touch <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="feature-row__visual feature-visual">
+        <div class="metric-grid">
+          <div class="metric">
+            <div class="metric__label">Design</div>
+            <div class="metric__value">70<span class="metric__unit">%</span></div>
+            <div class="metric__bar"><div class="metric__bar-fill" style="width:70%"></div></div>
+          </div>
+          <div class="metric">
+            <div class="metric__label">Build</div>
+            <div class="metric__value">25<span class="metric__unit">%</span></div>
+            <div class="metric__bar"><div class="metric__bar-fill" style="width:25%"></div></div>
+          </div>
+        </div>
+        <div class="data-list">
+          <div class="data-list__item"><span class="data-list__name">Concept</span><span class="badge badge--success">Done</span></div>
+          <div class="data-list__item"><span class="data-list__name">Prototype</span><span class="badge badge--primary">Active</span></div>
+          <div class="data-list__item"><span class="data-list__name">Private beta</span><span class="badge">Planned</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

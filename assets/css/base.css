@@ -75,6 +75,33 @@ a:hover { color: var(--color-link-hover); }
   100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
 }
 
+/* PAGE SECTIONS — left-aligned, full-width column of sections; the
+   counterpart to .content for pages that scroll through several sections
+   instead of one centered hero (e.g. Work, About). Fills the space between
+   the fixed nav and the footer. Starts hidden for the font-gated reveal:
+   pair with data-font-reveal (fades in once Nunito loads) and a page
+   <noscript> fallback that restores opacity for no-JS visitors. */
+.page-sections {
+  flex: 1 0 auto; z-index: var(--z-content);
+  width: 100%; max-width: 1080px; margin-inline: auto;
+  padding: var(--space-6) var(--space-5) var(--space-8);
+  display: flex; flex-direction: column; gap: var(--space-8);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-sections { opacity: 1 !important; animation: none !important; }
+}
+
+/* STACK — a vertical flex column with a consistent gap. Used inside a
+   .page-sections section to space a header from its body (checklist, grid,
+   list, …) without one-off margins. */
+.stack { display: flex; flex-direction: column; gap: var(--space-5); }
+
+/* BTN-ROW — a horizontal group of buttons (e.g. a primary + secondary CTA),
+   wraps on narrow screens instead of overflowing. */
+.btn-row { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+
 /* GRADIENT TEXT — shared wordmark / heading treatment.
    Deep teal → turquoise keeps it readable on the light sand background. */
 .gradient-text {

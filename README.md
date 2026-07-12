@@ -6,17 +6,20 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 
 ```
 .
-├── index.html                          # Landing page (calm-sea background, top nav, footer)
-├── contact.html                        # Contact page (email with click-to-copy)
+├── index.html                          # Landing page (brand hero, CTAs, quick links to Work/About/Contact)
+├── contact.html                        # Contact page (email with click-to-copy, FAQ cross-link)
+├── work.html                           # Work page — Bearvil apps showcase (feature rows)
+├── about.html                          # About page — studio story, values, FAQ
 ├── 404.html                            # Custom 404 page, served for all missing paths
 ├── styleguide.html                     # Living style guide / component playground
 ├── assets/
 │   ├── components.js                   # Shared Web Components (nav, background, footer, behaviors)
 │   └── css/
 │       ├── tokens.css                  # Design tokens — the single source of truth
-│       ├── base.css                    # Reset, base typography, shared layout & text utilities
+│       ├── base.css                    # Reset, base typography, shared layout & text utilities (incl. .page-sections)
 │       ├── components.css              # Styles for the shared Web Components
-│       ├── ui.css                      # UI primitives (buttons, cards, forms, badges, toast)
+│       ├── ui.css                      # UI primitives (buttons, cards, forms, badges, checklist, metric, data-list, FAQ accordion, toast)
+│       ├── patterns.css                # Composed section blocks (section-head, feature-row, split-section, card-grid)
 │       ├── index.css                   # Landing-page styles
 │       ├── contact.css                 # Contact-page styles
 │       ├── 404.css                     # 404-page styles
@@ -67,14 +70,16 @@ Available components and behaviors:
 | `<a data-copy-email href="mailto:...">` | Click copies the address and shows the nearest `.copied-toast`; falls back to `mailto:`. |
 | `data-font-reveal` attribute | Element starts hidden (`opacity: 0` in page CSS) and fades in once the display font loads. Pair with a `<noscript>` fallback. |
 
-Styles are kept in external CSS files under `assets/css/`, with **all design tokens in one file** (`tokens.css`) that everything else inherits from — change a token and the whole site re-themes. See the [design system](docs/design-system.md) and [styling](docs/styling.md) docs. Each main page links `tokens.css → base.css → components.css → ui.css → <page>.css` in its `<head>`.
+Styles are kept in external CSS files under `assets/css/`, with **all design tokens in one file** (`tokens.css`) that everything else inherits from — change a token and the whole site re-themes. See the [design system](docs/design-system.md) and [styling](docs/styling.md) docs. Each main page links `tokens.css → base.css → components.css → ui.css → [patterns.css] → [<page>.css]` in its `<head>` (the last two are optional — see [styling.md](docs/styling.md)).
+
+Two page layouts live in `base.css`: `.content` (centered single hero — contact, 404) and `.page-sections` (a left-aligned column of stacked sections — Home, Work, About). Multi-section pages compose entirely from `.page-sections` + the shared `ui.css`/`patterns.css` primitives, so they often need **no page-specific stylesheet** at all.
 
 ### Adding a new page
 
 1. Copy the `<head>` of an existing page (CSP, fonts, favicon, CSS links, `components.js` include); adjust title/description/canonical/og tags.
-2. Point the page-specific stylesheet link at a new `assets/css/<page>.css`.
+2. Pick a layout: `<main class="content">` for a single centered hero, or `<main class="page-sections">` for a column of `<section>`s (add `<link rel="stylesheet" href="/assets/css/patterns.css" />` too, for `.section-head` / `.feature-row` / `.split-section`).
 3. Add `<top-nav></top-nav>` and `<calm-sea></calm-sea>` at the top of `<body>`.
-4. Write page content in `<main class="content">`; put its styles in `assets/css/<page>.css`, using the design tokens.
+4. Write page content using the shared primitives/patterns first; only add `assets/css/<page>.css` if the page needs a genuine one-off style.
 5. Add `<site-footer></site-footer>` just before `</body>`.
 6. If the page should appear in the menu, add it to `NAV_LINKS` in `assets/components.js` — every page picks it up automatically.
 
@@ -86,8 +91,9 @@ Styles are kept in external CSS files under `assets/css/`, with **all design tok
 | `/privacy-policies/touchy-fingies-pp` | `privacy-policies/touchy-fingies-pp.html` | Live |
 | `/privacy-policies/frend-ai-pp` | `privacy-policies/frend-ai-pp.html` | Live |
 | `/contact` | `contact.html` | Live |
+| `/work` | `work.html` | Live |
+| `/about` | `about.html` | Live |
 | `/styleguide` | `styleguide.html` | Live (internal, `noindex`) |
-| `/work`, `/about` | — | Planned (404 for now) |
 
 GitHub Pages serves extensionless URLs (`/privacy-policies/touchy-fingies-pp` → `touchy-fingies-pp.html`) and automatically uses the root `404.html` for any missing path.
 

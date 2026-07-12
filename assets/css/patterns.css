@@ -1,0 +1,157 @@
+/* =========================================================================
+   patterns.css — composed, section-level layout blocks (token-driven).
+
+   Where ui.css holds atomic primitives (buttons, cards, fields, badges,
+   metrics, checklists), this file holds the larger "organisms" that arrange
+   them into sections: the reusable section header and the alternating
+   feature-showcase row.
+
+   Consumes tokens from tokens.css. Link AFTER ui.css:
+     tokens.css → base.css → components.css → ui.css → patterns.css → <page>.css
+   Privacy-policy pages are standalone and do NOT use this file.
+   ========================================================================= */
+
+/* =========================================================================
+   SECTION HEAD — eyebrow label + title (with optional <em> accent) + sub.
+   The repeated header at the top of any section.
+
+   <header class="section-head section-head--center">
+     <p class="section-head__eyebrow">Our Work</p>
+     <h2 class="section-head__title">Apps we've <em>shipped</em></h2>
+     <p class="section-head__sub">One calm studio, a handful of focused apps.</p>
+   </header>
+   ========================================================================= */
+.section-head { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.section-head__eyebrow {
+  font-size: var(--text-xs); font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-wider); text-transform: uppercase;
+  color: var(--color-primary-hover);
+}
+
+.section-head__title {
+  font-size: var(--text-4xl); font-weight: var(--font-weight-extra);
+  line-height: var(--leading-tight); letter-spacing: var(--tracking-tight);
+}
+/* Accent phrase inside the title — soft sun-warm italic, used sparingly. */
+.section-head__title em {
+  font-style: italic; font-weight: var(--font-weight-extra);
+  color: var(--color-accent-hover);
+}
+
+.section-head__sub {
+  font-size: var(--text-lg); color: var(--color-text-muted);
+  max-width: 52ch;
+}
+
+/* Centered variant — centers text and the sub column. */
+.section-head--center { align-items: center; text-align: center; }
+.section-head--center .section-head__sub { margin-inline: auto; }
+
+/* =========================================================================
+   FEATURE ROW — alternating two-column showcase: text content + a visual
+   panel. Add --reverse on every other row to flip the sides on desktop.
+
+   <div class="feature-row">
+     <div class="feature-row__content"> … </div>
+     <div class="feature-row__visual feature-visual"> … </div>
+   </div>
+   <div class="feature-row feature-row--reverse"> … </div>
+   ========================================================================= */
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.feature-row__content { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.feature-row__eyebrow {
+  font-size: var(--text-sm); font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-wide); text-transform: uppercase;
+  color: var(--color-primary-hover);
+}
+
+.feature-row__title {
+  font-size: var(--text-3xl); font-weight: var(--font-weight-extra);
+  line-height: var(--leading-snug);
+}
+.feature-row__title em { font-style: italic; color: var(--color-accent-hover); }
+
+.feature-row__desc { color: var(--color-text-muted); max-width: 46ch; }
+
+/* Flip the visual to the left on desktop; the source order stays
+   content-first for a sensible reading/tab order and mobile stack. */
+@media (min-width: 721px) {
+  .feature-row--reverse .feature-row__content { order: 2; }
+  .feature-row--reverse .feature-row__visual  { order: 1; }
+}
+
+/* =========================================================================
+   FEATURE VISUAL — the framed "mockup" panel that holds metric cards,
+   data lists, or any small composed preview. A soft sand surface so the
+   white metric cards inside it read as layered on top.
+   ========================================================================= */
+.feature-visual {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-md);
+  display: flex; flex-direction: column; gap: var(--space-3);
+}
+
+/* METRIC GRID — a row of side-by-side metric cards inside a visual panel.
+   Reusable anywhere you want two-up KPI tiles. */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+/* =========================================================================
+   CARD GRID — a responsive grid of standalone .card elements (values,
+   principles, highlights, …). Two-up by default, stacks on mobile.
+
+   <div class="card-grid">
+     <article class="card card--soft"> … </article>
+   </div>
+   ========================================================================= */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+/* Three-up variant — e.g. equal-weight quick links. */
+.card-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+/* =========================================================================
+   SPLIT SECTION — a static two-column layout: a narrower aside (eyebrow /
+   title / intro copy) beside a main content column. Unlike .feature-row
+   (which alternates sides per instance), this layout never flips — use it
+   for FAQs, long-form intros, or any single "aside + content" section.
+
+   <div class="split-section">
+     <div class="split-section__aside"> … </div>
+     <div class="split-section__main"> … </div>
+   </div>
+   ========================================================================= */
+.split-section {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.split-section__aside { display: flex; flex-direction: column; gap: var(--space-3); }
+
+/* =========================================================================
+   RESPONSIVE — stack feature rows and split sections below the nav's mobile
+   breakpoint (720px) so the layout matches the rest of the site.
+   ========================================================================= */
+@media (max-width: 720px) {
+  .feature-row, .split-section { grid-template-columns: 1fr; gap: var(--space-5); }
+  .card-grid { grid-template-columns: 1fr; }
+  .section-head__title { font-size: var(--text-3xl); }
+}

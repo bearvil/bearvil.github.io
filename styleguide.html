@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
   <link rel="stylesheet" href="/assets/css/styleguide.css" />
 
   <!-- Shared components: <top-nav>, <calm-sea>, email copy, font reveal -->
@@ -255,6 +256,151 @@
       <h2>Toast</h2>
       <div class="sg-panel">
         <span class="copied-toast sg-static" role="status">Copied</span>
+      </div>
+    </section>
+
+    <!-- CHECKLIST ------------------------------------------------------- -->
+    <section class="sg-section">
+      <p class="sg-eyebrow">Components</p>
+      <h2>Checklist</h2>
+      <div class="sg-panel">
+        <ul class="checklist">
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Offline-first, no account required</span></li>
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Zero ads and no data collection</span></li>
+          <li class="checklist__item"><span class="checklist__icon">✓</span><span>Built on the same calm foundations</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- METRIC & DATA LIST ---------------------------------------------- -->
+    <section class="sg-section">
+      <p class="sg-eyebrow">Components</p>
+      <h2>Metric &amp; data list</h2>
+      <div class="sg-panel">
+        <div class="metric-grid" style="max-width:480px">
+          <div class="metric">
+            <div class="metric__label">Downloads</div>
+            <div class="metric__value">84<span class="metric__unit">k</span></div>
+            <div class="metric__bar"><div class="metric__bar-fill" style="width:72%"></div></div>
+          </div>
+          <div class="metric">
+            <div class="metric__label">Avg. rating</div>
+            <div class="metric__value">4.8<span class="metric__unit">★</span></div>
+            <div class="metric__bar"><div class="metric__bar-fill" style="width:96%"></div></div>
+          </div>
+        </div>
+        <div class="data-list" style="max-width:480px;margin-top:var(--space-4)">
+          <div class="data-list__item"><span class="data-list__name">iOS · App Store</span><span class="badge badge--success">Live</span></div>
+          <div class="data-list__item"><span class="data-list__name">Android · Play Store</span><span class="badge badge--primary">In review</span></div>
+          <div class="data-list__item"><span class="data-list__name">Web app</span><span class="badge">Planned</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION HEAD ---------------------------------------------------- -->
+    <section class="sg-section">
+      <p class="sg-eyebrow">Patterns</p>
+      <h2>Section header</h2>
+      <div class="sg-panel">
+        <header class="section-head section-head--center">
+          <p class="section-head__eyebrow">Our Work</p>
+          <h2 class="section-head__title">Apps we've <em>shipped</em></h2>
+          <p class="section-head__sub">A small studio building calm, focused mobile apps.</p>
+        </header>
+      </div>
+    </section>
+
+    <!-- FEATURE ROW ----------------------------------------------------- -->
+    <section class="sg-section">
+      <p class="sg-eyebrow">Patterns</p>
+      <h2>Feature row</h2>
+      <p class="sg-note">Composed block: <code>.feature-row</code> (add <code>--reverse</code> to flip sides) pairs a text column with a <code>.feature-visual</code> panel. It reuses the checklist, metric, data-list, and badge primitives above. Live on the <a href="/work">Work page</a>.</p>
+      <div class="sg-panel">
+        <div class="feature-row">
+          <div class="feature-row__content">
+            <p class="feature-row__eyebrow">01 — Touchy Fingies</p>
+            <h3 class="feature-row__title">Playful touch, <em>zero clutter</em></h3>
+            <p class="feature-row__desc">A tactile playground for little hands — bright, responsive, and free of ads and dark patterns.</p>
+            <ul class="checklist">
+              <li class="checklist__item"><span class="checklist__icon">✓</span><span>Offline-first, no account required</span></li>
+              <li class="checklist__item"><span class="checklist__icon">✓</span><span>Zero ads and no data collection</span></li>
+            </ul>
+          </div>
+          <div class="feature-row__visual feature-visual">
+            <div class="metric-grid">
+              <div class="metric">
+                <div class="metric__label">Downloads</div>
+                <div class="metric__value">84<span class="metric__unit">k</span></div>
+                <div class="metric__bar"><div class="metric__bar-fill" style="width:72%"></div></div>
+              </div>
+              <div class="metric">
+                <div class="metric__label">Avg. rating</div>
+                <div class="metric__value">4.8<span class="metric__unit">★</span></div>
+                <div class="metric__bar"><div class="metric__bar-fill" style="width:96%"></div></div>
+              </div>
+            </div>
+            <div class="data-list">
+              <div class="data-list__item"><span class="data-list__name">iOS · App Store</span><span class="badge badge--success">Live</span></div>
+              <div class="data-list__item"><span class="data-list__name">iPad layout</span><span class="badge badge--primary">Rolling out</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD GRID --------------------------------------------------------- -->
+    <section class="sg-section">
+      <p class="sg-eyebrow">Patterns</p>
+      <h2>Card grid</h2>
+      <p class="sg-note">A responsive grid of standalone <code>.card</code> elements — values, principles, highlights. Live on the <a href="/about">About page</a>.</p>
+      <div class="sg-panel">
+        <div class="card-grid">
+          <article class="card card--soft">
+            <h3 class="card__title">Calm by default</h3>
+            <p class="card__body">Apps should fit into your day, not hijack it.</p>
+          </article>
+          <article class="card card--soft">
+            <h3 class="card__title">Privacy first</h3>
+            <p class="card__body">No trackers, no ad networks, no quiet analytics SDKs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPLIT SECTION ----------------------------------------------------- -->
+    <section class="sg-section">
+      <p class="sg-eyebrow">Patterns</p>
+      <h2>Split section</h2>
+      <p class="sg-note">A static aside + content layout (doesn't alternate like <code>.feature-row</code>) — used for FAQs and long-form intros. Live on the <a href="/about">About page</a>.</p>
+      <div class="sg-panel">
+        <div class="split-section">
+          <div class="split-section__aside">
+            <p class="section-head__eyebrow">Our story</p>
+            <h3 class="feature-row__title">Built by <em>one person</em>, on purpose</h3>
+          </div>
+          <div class="split-section__main stack">
+            <p class="feature-row__desc">Bearvil started as a way to build the apps big studios wouldn't: calm, private, and finished.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ ACCORDION ------------------------------------------------------ -->
+    <section class="sg-section">
+      <p class="sg-eyebrow">Components</p>
+      <h2>FAQ accordion</h2>
+      <p class="sg-note">Built on native <code>&lt;details&gt;/&lt;summary&gt;</code> — keyboard-operable and screen-reader friendly with zero JS. Live on the <a href="/about">About page</a>.</p>
+      <div class="sg-panel">
+        <div class="faq-list" style="max-width:560px">
+          <details class="faq-item" open>
+            <summary class="faq-item__q">Who's behind Bearvil?<span class="faq-item__icon" aria-hidden="true"></span></summary>
+            <div class="faq-item__a">An independent one-person app studio.</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__q">Do your apps use AI?<span class="faq-item__icon" aria-hidden="true"></span></summary>
+            <div class="faq-item__a">Some do — always on-device or clearly disclosed.</div>
+          </details>
+        </div>
       </div>
     </section>
 

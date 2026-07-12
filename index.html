@@ -31,30 +31,59 @@
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
   <link rel="stylesheet" href="/assets/css/index.css" />
 
   <!-- Shared components: <top-nav>, <calm-sea>, email copy, font reveal -->
   <script src="/assets/components.js" defer></script>
 
   <!-- If JS is disabled, show content immediately -->
-  <noscript><style>.content { opacity: 1; }</style></noscript>
+  <noscript><style>.page-sections { opacity: 1; }</style></noscript>
 </head>
 <body>
 
   <top-nav></top-nav>
   <calm-sea></calm-sea>
 
-  <main class="content" id="content" data-font-reveal>
-    <div class="wordmark-block">
-      <h1 class="wordmark">
-        <img src="assets/Bearvil-logo-transparent.png" alt="Bearvil logo" class="site-logo" />
-        <span class="gradient-text">Bearvil</span>
-      </h1>
-      <div class="contact">
-        <span class="copied-toast" id="toast" role="status">Copied</span>
-        <a id="email-link" data-copy-email href="mailto:bearvil.co@gmail.com">bearvil.co@gmail.com</a>
+  <main class="page-sections" id="content" data-font-reveal>
+
+    <!-- Hero -->
+    <header class="section-head section-head--center">
+      <div class="wordmark-block">
+        <h1 class="wordmark">
+          <img src="assets/Bearvil-logo-transparent.png" alt="Bearvil logo" class="site-logo" />
+          <span class="gradient-text">Bearvil</span>
+        </h1>
       </div>
-    </div>
+      <p class="section-head__sub">A small, independent studio building calm, focused apps — no dark patterns, no clutter.</p>
+      <div class="btn-row">
+        <a class="btn btn--accent btn--lg" href="/work">See our work <span aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost btn--lg" href="/contact">Say hello</a>
+      </div>
+    </header>
+
+    <!-- Quick links -->
+    <section class="stack">
+      <header class="section-head">
+        <p class="section-head__eyebrow">Explore</p>
+        <h2 class="feature-row__title">Where to <em>next</em>?</h2>
+      </header>
+      <div class="card-grid card-grid--3">
+        <a class="card card--interactive card--link" href="/work">
+          <h3 class="card__title">Our Work <span aria-hidden="true">→</span></h3>
+          <p class="card__body">The apps we've shipped — and the one still brewing.</p>
+        </a>
+        <a class="card card--interactive card--link" href="/about">
+          <h3 class="card__title">About <span aria-hidden="true">→</span></h3>
+          <p class="card__body">Who we are and the principles we don't bend on.</p>
+        </a>
+        <a class="card card--interactive card--link" href="/contact">
+          <h3 class="card__title">Contact <span aria-hidden="true">→</span></h3>
+          <p class="card__body">Questions, feedback, bug reports — we read everything.</p>
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <site-footer></site-footer>

@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
   <link rel="stylesheet" href="/assets/css/contact.css" />
 
   <!-- Shared components: <top-nav>, <calm-sea>, email copy -->
@@ -41,8 +42,11 @@
   <calm-sea></calm-sea>
 
   <main class="content">
-    <h1 class="heading gradient-text">Contact us</h1>
-    <p class="tagline">We'd love to hear from you</p>
+    <header class="section-head section-head--center">
+      <p class="section-head__eyebrow">Contact</p>
+      <h1 class="section-head__title">Let's <em>talk</em></h1>
+      <p class="section-head__sub">We'd love to hear from you — questions, feedback, bug reports, anything.</p>
+    </header>
 
     <a class="email-card" id="email-link" data-copy-email href="mailto:bearvil.co@gmail.com">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -53,7 +57,11 @@
     </a>
     <p class="hint" data-copy-hint data-copied-label="Copied to clipboard" role="status">Click to copy</p>
 
-    <a class="home-link" href="/">Back home</a>
+    <p class="contact-note">We read every message and usually reply within a couple of days. Have a quick question? Check the <a href="/about#about-faq">FAQ</a>.</p>
+
+    <div class="contact-actions">
+      <a class="btn btn--secondary" href="/">Back home</a>
+    </div>
   </main>
 
   <site-footer></site-footer>

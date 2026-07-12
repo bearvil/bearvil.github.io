@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- SEO / social -->
+  <title>Bearvil — About</title>
+  <meta name="description" content="The studio behind Bearvil — who we are, what we believe, and answers to common questions." />
+  <link rel="canonical" href="https://bearvil.github.io/about" />
+  <meta property="og:title" content="Bearvil — About" />
+  <meta property="og:description" content="The studio behind Bearvil." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bearvil.github.io/about" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Fonts: preconnect + non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" />
+
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
+
+  <!-- Shared components: <top-nav>, <calm-sea>, email copy, font reveal -->
+  <script src="/assets/components.js" defer></script>
+
+  <!-- If JS is disabled, show content immediately -->
+  <noscript><style>.page-sections { opacity: 1; }</style></noscript>
+</head>
+<body>
+
+  <top-nav></top-nav>
+  <calm-sea></calm-sea>
+
+  <!-- NOTE: copy below is placeholder demo content — swap in the real studio
+       story, values, and FAQ answers when ready. The layout and components
+       (section-head, split-section, card-grid, faq-list) stay the same. -->
+  <main class="page-sections" id="content" data-font-reveal>
+
+    <!-- Intro -->
+    <header class="section-head section-head--center">
+      <p class="section-head__eyebrow">About</p>
+      <h1 class="section-head__title">The studio behind <em>Bearvil</em></h1>
+      <p class="section-head__sub">A small, independent app studio. No investors, no growth hacks — just apps we'd want to use ourselves.</p>
+    </header>
+
+    <!-- Story -->
+    <section class="split-section" aria-labelledby="about-story">
+      <div class="split-section__aside">
+        <p class="section-head__eyebrow">Our story</p>
+        <h2 class="feature-row__title" id="about-story">Built by <em>one person</em>, on purpose</h2>
+      </div>
+      <div class="split-section__main stack">
+        <p class="feature-row__desc">Bearvil started as a way to build the apps big studios wouldn't: calm, private, and finished. No growth team, no A/B-tested dark patterns — just software that respects the person using it.</p>
+        <p class="feature-row__desc">Every app ships small and gets better slowly. If a feature doesn't earn its place, it doesn't ship.</p>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="stack" aria-labelledby="about-values">
+      <header class="section-head">
+        <p class="section-head__eyebrow">What we believe</p>
+        <h2 class="feature-row__title" id="about-values">Principles we don't <em>compromise</em> on</h2>
+      </header>
+      <div class="card-grid">
+        <article class="card card--soft">
+          <h3 class="card__title">Calm by default</h3>
+          <p class="card__body">No push notifications begging for attention. Apps should fit into your day, not hijack it.</p>
+        </article>
+        <article class="card card--soft">
+          <h3 class="card__title">Privacy first</h3>
+          <p class="card__body">Your data stays yours. No trackers, no ad networks, no quietly-added analytics SDKs.</p>
+        </article>
+        <article class="card card--soft">
+          <h3 class="card__title">No dark patterns</h3>
+          <p class="card__body">No fake urgency, no confusing cancel flows, no guilt-tripping copy. Ever.</p>
+        </article>
+        <article class="card card--soft">
+          <h3 class="card__title">Small and sustainable</h3>
+          <p class="card__body">A handful of focused apps, maintained for years — not a pile of abandoned experiments.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="split-section" aria-labelledby="about-faq">
+      <div class="split-section__aside">
+        <p class="section-head__eyebrow">FAQ</p>
+        <h2 class="feature-row__title" id="about-faq">Questions, <em>answered</em></h2>
+        <p class="feature-row__desc">Can't find what you're looking for? Reach us at <a href="mailto:bearvil.co@gmail.com">bearvil.co@gmail.com</a>.</p>
+      </div>
+      <div class="split-section__main faq-list">
+        <details class="faq-item">
+          <summary class="faq-item__q">Who's behind Bearvil?<span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a">Bearvil is an independent one-person app studio. No agency, no outsourced design — every app is built end-to-end in-house.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Do your apps use AI?<span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a">Some do, like Frend AI — and where they do, it's on-device or clearly disclosed. AI is never used to track you or sell your data.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">How do you make money without ads?<span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a">Through optional one-time purchases and upgrades — never subscriptions you forget about or ads that sell your attention.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Can I request a feature or report a bug?<span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a">Always. Email us at bearvil.co@gmail.com — every message is read, and small studios move fast on good ideas.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Where can I find your privacy policies?<span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a">Every app's privacy policy is linked from the Privacy Policies menu in the top navigation.</div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

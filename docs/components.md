@@ -123,7 +123,9 @@ API is unavailable.
 
 - **Pill toast** — place a `.copied-toast` near the link (a pill styled in
   `ui.css`; the shared `.show` state lives in `base.css`). It fades in, then out.
-  The page positions its own `.copied-toast`. Used on the **home** page.
+  The page positions its own `.copied-toast`. Not currently used on a live page
+  (the contact page uses the hint-swap style below) — see the static demo in
+  [`/styleguide.html`](../styleguide.html).
 
   ```html
   <a data-copy-email href="mailto:bearvil.co@gmail.com">…</a>
