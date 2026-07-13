@@ -8,8 +8,10 @@
 
      <top-nav></top-nav>                        → fixed top bar: logo, links,
                                                    privacy dropdown, mobile menu
-     <calm-sea glints="22"></calm-sea>           → light Caribbean background:
-                                                   sand→sea gradient, sun, shimmer, waves
+     <main-background></main-background>        → flat, subtle background color
+                                                   (used on every page but Home)
+     <home-background></home-background>        → animated wave gradient
+                                                   (Home page only, placeholder)
 
    Extra behaviors (opt-in via data attributes):
      <a data-copy-email href="mailto:...">      → click copies address; feedback via a
@@ -191,43 +193,54 @@ class SiteFooter extends HTMLElement {
 customElements.define('site-footer', SiteFooter);
 
 /* ------------------------------------------------------------------ *
- *  <calm-sea> — light "Caribbean" animated background.
- *  Layers: sand→sea gradient (CSS), soft sun, water shimmer, wave bands.
- *  Continuous motion respects prefers-reduced-motion (handled in CSS).
+ *  <main-background> — a single flat, subtle color, used on every page
+ *  except Home.
  * ------------------------------------------------------------------ */
-class CalmSea extends HTMLElement {
+class MainBackground extends HTMLElement {
   connectedCallback() {
     if (this.dataset.rendered) return;
     this.dataset.rendered = 'true';
     this.setAttribute('aria-hidden', 'true');
 
-    const sea = document.createElement('div');
-    sea.className = 'sea';
-
-    // Soft sun + water shimmer
-    const sun = document.createElement('div');
-    sun.className = 'sea__sun';
-    const shimmer = document.createElement('div');
-    shimmer.className = 'sea__shimmer';
-    sea.appendChild(sun);
-    sea.appendChild(shimmer);
-
-    // Wave bands near the waterline
-    [
-      { top: 56, h: 220, spd: '20s', dl: '0s' },
-      { top: 68, h: 180, spd: '15s', dl: '-4s' },
-      { top: 80, h: 160, spd: '24s', dl: '-9s' },
-    ].forEach(w => {
-      const el = document.createElement('div');
-      el.className = 'sea__wave';
-      el.style.cssText = `top:${w.top}%;height:${w.h}px;--spd:${w.spd};--dl:${w.dl};`;
-      sea.appendChild(el);
-    });
-
-    this.appendChild(sea);
+    const bg = document.createElement('div');
+    bg.className = 'main-bg';
+    this.appendChild(bg);
   }
 }
-customElements.define('calm-sea', CalmSea);
+customElements.define('main-background', MainBackground);
+
+/* ------------------------------------------------------------------ *
+ *  <home-background> — animated wave gradient, Home page only (placeholder
+ *  until a final Home design is provided). Three SVG wave layers drift
+ *  horizontally at different speeds/opacities over a turquoise gradient —
+ *  plain CSS animation, no canvas/WebGL.
+ * ------------------------------------------------------------------ */
+const HOME_BG_WAVE_LAYERS = [
+  { cls: 'home-bg__wave--back',  spd: '26s' },
+  { cls: 'home-bg__wave--mid',   spd: '18s' },
+  { cls: 'home-bg__wave--front', spd: '12s' },
+];
+
+class HomeBackground extends HTMLElement {
+  connectedCallback() {
+    if (this.dataset.rendered) return;
+    this.dataset.rendered = 'true';
+    this.setAttribute('aria-hidden', 'true');
+
+    const bg = document.createElement('div');
+    bg.className = 'home-bg';
+
+    HOME_BG_WAVE_LAYERS.forEach(w => {
+      const el = document.createElement('div');
+      el.className = `home-bg__wave ${w.cls}`;
+      el.style.setProperty('--spd', w.spd);
+      bg.appendChild(el);
+    });
+
+    this.appendChild(bg);
+  }
+}
+customElements.define('home-background', HomeBackground);
 
 /* ------------------------------------------------------------------ *
  *  Email copy-to-clipboard — any <a data-copy-email href="mailto:...">
@@ -296,7 +309,7 @@ function initFontReveal() {
     el.style.animation = 'fadeInUp 2.8s cubic-bezier(0.16,1,0.3,1) forwards';
   };
   if (document.fonts && document.fonts.load) {
-    document.fonts.load('800 1em "Nunito"').then(() => {
+    document.fonts.load('800 1em "Inter"').then(() => {
       requestAnimationFrame(() => requestAnimationFrame(reveal));
     }).catch(() => setTimeout(reveal, 800));
   } else {

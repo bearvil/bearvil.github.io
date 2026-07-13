@@ -64,20 +64,35 @@ const NAV_LINKS = [
 ];
 ```
 
-## `<calm-sea>`
+## `<main-background>`
 
-Light "Caribbean" animated background: a sand→sea gradient with a soft sun glow,
-water shimmer, and drifting wave bands. Sits behind all content. Takes no
-attributes.
+A single flat, subtle turquoise background color. Sits behind all content.
+Used on every page **except** Home. Takes no attributes.
 
 ```html
-<calm-sea></calm-sea>
+<main-background></main-background>
 ```
 
-- The gradient, sun, shimmer, and waves are pure CSS (in `components.css`); the
-  component only injects the layers.
-- Respects `prefers-reduced-motion`: continuous motion stops, leaving the calm
-  gradient.
+- The color is pure CSS (in `components.css`); the component only injects the
+  layer div.
+
+## `<home-background>`
+
+Animated background used only on `index.html` — **a placeholder** until a
+final Home design is provided. A turquoise gradient with three SVG wave
+layers drifting horizontally at different speeds/opacities, using plain CSS
+`background-position` animation (no canvas/WebGL).
+
+```html
+<home-background></home-background>
+```
+
+- The gradient and wave layers are pure CSS (in `components.css`); the
+  component only injects the three wave `<div>`s.
+- Respects `prefers-reduced-motion`: the drift animation stops, leaving the
+  static gradient + waves.
+- Fully independent from `<main-background>` — no shared code — since the two
+  are expected to diverge further once the real Home design arrives.
 
 ## `<site-footer>`
 
@@ -149,7 +164,7 @@ API is unavailable.
 ```
 
 The element starts hidden (`opacity: 0`, set in the page CSS) and fades in once the
-display font (Nunito) has loaded — avoiding a flash of unstyled text. Pair it with a
+display font (Inter) has loaded — avoiding a flash of unstyled text. Pair it with a
 `<noscript>` fallback that forces `opacity: 1` so no-JS visitors still see content:
 
 ```html

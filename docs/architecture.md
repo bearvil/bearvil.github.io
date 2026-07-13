@@ -55,8 +55,8 @@ docs/                 # This documentation
   components.js (deferred)
 </head>
 <body>                           ← flex column, min-height 100dvh (sticky footer)
-  <top-nav></top-nav>            ← injected fixed top bar (logo, links, dropdown)
-  <calm-sea …></calm-sea>        ← injected animated background
+  <top-nav></top-nav>                    ← injected fixed top bar (logo, links, dropdown)
+  <main-background></main-background>    ← injected animated background (Home uses <home-background>)
   <main class="content">…</main> ← page content (flex: 1, fills the middle)
   <site-footer></site-footer>    ← injected slim footer, sits at the bottom
 </body>
@@ -67,8 +67,9 @@ between the fixed nav and the footer, so short pages show the footer at the
 bottom with no gap and tall pages scroll. See [styling.md](styling.md#page-layout--sticky-footer).
 
 `components.js` defines the custom elements; when the browser parses
-`<top-nav>` / `<calm-sea>` / `<site-footer>` it builds their DOM. Visual styles for
-those elements live in `assets/css/components.css` (not injected by JS). Design
+`<top-nav>` / `<main-background>` / `<home-background>` / `<site-footer>` it
+builds their DOM. Visual styles for those elements live in
+`assets/css/components.css` (not injected by JS). Design
 tokens come first in the cascade from `tokens.css`. See [design-system.md](design-system.md),
 [components.md](components.md) and [styling.md](styling.md) for detail.
 

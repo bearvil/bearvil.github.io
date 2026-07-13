@@ -28,6 +28,10 @@ body.sg { overflow-y: auto; }
   font-size: var(--text-sm);
 }
 .sg-note code { font-weight: var(--font-weight-extra); }
+/* Inside a section, the note sits between the heading and the demo panel —
+   give it the same bottom gap as a heading with no note (h2's margin-bottom)
+   so the panel doesn't butt up against the note's border. */
+.sg-section .sg-note { margin-bottom: var(--space-5); }
 
 /* SECTIONS */
 .sg-section { margin-bottom: var(--space-8); }

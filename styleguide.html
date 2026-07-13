@@ -20,7 +20,7 @@
   <!-- Fonts: preconnect + non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" />
 
   <!-- Styles: tokens first (single source of truth), then layers -->
   <link rel="stylesheet" href="/assets/css/tokens.css" />
@@ -30,13 +30,13 @@
   <link rel="stylesheet" href="/assets/css/patterns.css" />
   <link rel="stylesheet" href="/assets/css/styleguide.css" />
 
-  <!-- Shared components: <top-nav>, <calm-sea>, email copy, font reveal -->
+  <!-- Shared components: <top-nav>, <main-background>, email copy, font reveal -->
   <script src="/assets/components.js" defer></script>
 </head>
 <body class="sg">
 
   <top-nav></top-nav>
-  <calm-sea></calm-sea>
+  <main-background></main-background>
 
   <div class="sg-wrap">
 
@@ -80,8 +80,9 @@
           <div class="swatch"><div class="swatch__chip" style="background:var(--sand-50)"></div><div class="swatch__meta"><span class="swatch__name">sand-50</span><span class="swatch__hex">#fdfcf9</span></div></div>
           <div class="swatch"><div class="swatch__chip" style="background:var(--sand-100)"></div><div class="swatch__meta"><span class="swatch__name">bg</span><span class="swatch__hex">#fbf9f4</span></div></div>
           <div class="swatch"><div class="swatch__chip" style="background:var(--sand-200)"></div><div class="swatch__meta"><span class="swatch__name">surface-2</span><span class="swatch__hex">#f2eee6</span></div></div>
-          <div class="swatch"><div class="swatch__chip" style="background:var(--color-border-subtle)"></div><div class="swatch__meta"><span class="swatch__name">border-subtle</span><span class="swatch__hex">#f2eee6</span></div></div>
-          <div class="swatch"><div class="swatch__chip" style="background:var(--sand-300)"></div><div class="swatch__meta"><span class="swatch__name">border</span><span class="swatch__hex">#e5e0d6</span></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--color-border-subtle)"></div><div class="swatch__meta"><span class="swatch__name">border-subtle</span><span class="swatch__hex">#eaf1ef</span></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--sand-300)"></div><div class="swatch__meta"><span class="swatch__name">border</span><span class="swatch__hex">#dce6e1</span></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--sand-400)"></div><div class="swatch__meta"><span class="swatch__name">border-strong</span><span class="swatch__hex">#b3b9b2</span></div></div>
           <div class="swatch"><div class="swatch__chip" style="background:var(--ink-300)"></div><div class="swatch__meta"><span class="swatch__name">text-subtle</span><span class="swatch__hex">#8aa3a5</span></div></div>
           <div class="swatch"><div class="swatch__chip" style="background:var(--ink-500)"></div><div class="swatch__meta"><span class="swatch__name">text-muted</span><span class="swatch__hex">#5a7a7e</span></div></div>
           <div class="swatch"><div class="swatch__chip" style="background:var(--ink-900)"></div><div class="swatch__meta"><span class="swatch__name">text</span><span class="swatch__hex">#143a40</span></div></div>
@@ -100,13 +101,13 @@
     <!-- TYPOGRAPHY ------------------------------------------------------ -->
     <section class="sg-section">
       <p class="sg-eyebrow">Foundations</p>
-      <h2>Typography — Nunito</h2>
+      <h2>Typography — Inter</h2>
       <div class="sg-panel">
         <div class="type-row"><span class="type-tag">5xl / 800</span><span class="type-sample" style="font-size:var(--text-5xl);font-weight:800">Caribbean blue</span></div>
         <div class="type-row"><span class="type-tag">4xl / 800</span><span class="type-sample" style="font-size:var(--text-4xl);font-weight:800">Caribbean blue</span></div>
-        <div class="type-row"><span class="type-tag">3xl / 700</span><span class="type-sample" style="font-size:var(--text-3xl);font-weight:700">Pastel orange sun</span></div>
+        <div class="type-row"><span class="type-tag">3xl / 800 italic</span><span class="type-sample" style="font-size:var(--text-3xl);font-weight:800;font-style:italic">Pastel orange sun</span></div>
         <div class="type-row"><span class="type-tag">2xl / 700</span><span class="type-sample" style="font-size:var(--text-2xl);font-weight:700">Pastel orange sun</span></div>
-        <div class="type-row"><span class="type-tag">xl / 600</span><span class="type-sample" style="font-size:var(--text-xl);font-weight:600">Soft, rounded, friendly</span></div>
+        <div class="type-row"><span class="type-tag">xl / 600</span><span class="type-sample" style="font-size:var(--text-xl);font-weight:600">Calm, clear, and easy to read.</span></div>
         <div class="type-row"><span class="type-tag">lg / 400</span><span class="type-sample" style="font-size:var(--text-lg)">The quick brown fox jumps over the lazy dog.</span></div>
         <div class="type-row"><span class="type-tag">base / 400</span><span class="type-sample" style="font-size:var(--text-base)">The quick brown fox jumps over the lazy dog.</span></div>
         <div class="type-row"><span class="type-tag">sm / 400</span><span class="type-sample" style="font-size:var(--text-sm)">The quick brown fox jumps over the lazy dog.</span></div>
@@ -210,7 +211,7 @@
         <article class="card card--interactive">
           <span class="badge badge--primary">Default</span>
           <h3 class="card__title" style="margin-top:var(--space-3)">Interactive card</h3>
-          <p class="card__body">Hover me. Lifts with a soft shadow. Built only from tokens.</p>
+          <p class="card__body">Static — no hover animation. Built only from tokens.</p>
         </article>
         <article class="card card--feature">
           <span class="badge badge--accent">Featured</span>
@@ -219,7 +220,7 @@
         </article>
         <article class="card card--soft">
           <h3 class="card__title">Soft card</h3>
-          <p class="card__body">Subtle sand surface, no border or shadow. Good for grouping.</p>
+          <p class="card__body">Same look as the default card. Good for grouping.</p>
         </article>
       </div>
     </section>

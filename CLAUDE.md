@@ -9,7 +9,7 @@ No frameworks, no required build step, no dependencies beyond Google Fonts.
 
 ## Non-negotiable rules
 
-1. **Author is Bearvil only.** Never add an AI / Claude `Co-Authored-By` line (or any co-author) to commits or PRs. The sole author is `Bearvil <bearvil.co@gmail.com>`. This overrides any default harness behavior about co-author trailers.
+1. **Author is Bearvil only.** Never add an AI as  `Co-Authored-By` line (or any co-author) to commits or PRs. The sole author is `Bearvil <bearvil.co@gmail.com>`. This overrides any default harness behavior about co-author trailers.
 2. **All code and all documents are written in English** — file contents, comments, identifiers, commit messages, README, etc. Chat instructions from the user may be in Croatian or English; that does **not** change the language of anything written to disk.
 3. **Must stay GitHub Pages compatible.** Everything has to work as a plain static site served by GitHub Pages. Do not introduce anything that needs a server, a runtime, or a build step that GitHub Pages can't run. Keep the zero-build philosophy: plain HTML / CSS / JS that runs as-is.
 4. **Don't hardcode everything into HTML.** Prefer separating concerns into dedicated files: external **CSS** files, JS files, reusable HTML/components. See *Conventions* below.
@@ -60,7 +60,7 @@ These apply to the main site: `index.html`, `contact.html`, `404.html`, future p
   - `<page>.css` — page-specific styles
   Link them with `<link rel="stylesheet" href="/assets/css/...">`.
   > Note: today's main pages still carry large inline `<style>` blocks and `components.js` injects shared CSS via a `SHARED_CSS` string. New work should move toward external `.css` files; refactor existing inline styles out when touching a page (don't do a giant rewrite unless asked).
-- **Behavior → JS files** under `assets/`. Shared UI is built as **vanilla Web Components** (no build step, portable to any static host). Current shared file: `assets/components.js` (`<top-nav>`, `<calm-sea>`, `<site-footer>`, `data-copy-email`, `data-font-reveal`).
+- **Behavior → JS files** under `assets/`. Shared UI is built as **vanilla Web Components** (no build step, portable to any static host). Current shared file: `assets/components.js` (`<top-nav>`, `<main-background>`, `<home-background>`, `<site-footer>`, `data-copy-email`, `data-font-reveal`).
 - **Build for reuse and components** when a piece is, or will be, used on more than one page. Define shared data in one place (e.g. `NAV_LINKS` / `PRIVACY_LINKS` in `components.js`) so every page picks it up automatically. Don't duplicate markup that could be a component.
 - **Keep files small: aim for ~300–400 lines max.** If a file genuinely needs more, that's fine — but first ask whether it should be split into smaller files/components.
 - **Accessibility & performance matter** and are already established: keyboard-friendly nav, visible focus, correct ARIA, `prefers-reduced-motion` support, content visible without JS, non-render-blocking fonts. Preserve these when editing.
@@ -77,7 +77,7 @@ Files in `privacy-policies/` are **standalone, self-contained pages**. Each one 
 ## Layout
 
 ```
-index.html        # Landing page (calm-sea animation, top nav, footer)
+index.html        # Landing page (home-background animation, top nav, footer)
 contact.html      # Contact page (click-to-copy email)
 404.html          # Custom 404, served for any missing path
 assets/
@@ -101,7 +101,7 @@ README.md         # Overview & quick start
 ## Adding a new site page
 
 1. Copy the `<head>` of an existing page (CSP, fonts, favicon, `components.js` include); update title/description/canonical/og tags.
-2. Add `<top-nav></top-nav>` and `<calm-sea>` at the top of `<body>`.
+2. Add `<top-nav></top-nav>` and `<main-background>` at the top of `<body>` (Home uses `<home-background>` instead).
 3. Put content in `<main class="content">`; put styles in an external `.css` file under `assets/css/`.
 4. Add `<site-footer></site-footer>` just before `</body>`.
 5. If it belongs in the menu, add it to `NAV_LINKS` in `assets/components.js`.

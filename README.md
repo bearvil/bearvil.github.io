@@ -42,7 +42,7 @@ lives in [`docs/`](docs/README.md):
 
 - [Architecture](docs/architecture.md) — structure, GitHub Pages, CSS layering, routing.
 - [Design system](docs/design-system.md) — token-driven theme: palette, type scale, how to retheme. Live: [`/styleguide.html`](styleguide.html).
-- [Shared components](docs/components.md) — `<top-nav>`, `<calm-sea>`, `<site-footer>`, and the behaviors.
+- [Shared components](docs/components.md) — `<top-nav>`, `<main-background>`, `<home-background>`, `<site-footer>`, and the behaviors.
 - [Styling](docs/styling.md) — where styles live, the cascade, utility & primitive classes.
 - Guides: [adding a page](docs/guides/adding-a-page.md) · [adding a privacy policy](docs/guides/adding-a-privacy-policy.md)
 
@@ -65,7 +65,8 @@ Available components and behaviors:
 | Usage | What it does |
 |---|---|
 | `<top-nav></top-nav>` | Fixed top bar: logo, inline links, a Privacy Policies dropdown, and a hamburger → fullscreen menu on small screens. Links are defined once in `NAV_LINKS` / `PRIVACY_LINKS` in `components.js`; the current page gets `aria-current="page"`. |
-| `<calm-sea></calm-sea>` | Light "Caribbean" animated background: sand→sea gradient, soft sun glow, water shimmer, and wave bands. Respects `prefers-reduced-motion`. |
+| `<main-background></main-background>` | A single flat, subtle turquoise background color. Used on every page except Home. |
+| `<home-background></home-background>` | Animated wave gradient, Home page only — a placeholder until a final Home design arrives. Pure CSS, no canvas/WebGL. Freezes on `prefers-reduced-motion`. |
 | `<site-footer></site-footer>` | Slim frosted footer bar: brand lockup, the same nav + privacy links as the top bar (reused from `NAV_LINKS` / `PRIVACY_LINKS`), a **Style guide** link to `/styleguide`, a `mailto:` email, and a dynamic `© <year> Bearvil` strip. Placed once before `</body>`. |
 | `<a data-copy-email href="mailto:...">` | Click copies the address and shows the nearest `.copied-toast`; falls back to `mailto:`. |
 | `data-font-reveal` attribute | Element starts hidden (`opacity: 0` in page CSS) and fades in once the display font loads. Pair with a `<noscript>` fallback. |
@@ -78,7 +79,7 @@ Two page layouts live in `base.css`: `.content` (centered single hero — contac
 
 1. Copy the `<head>` of an existing page (CSP, fonts, favicon, CSS links, `components.js` include); adjust title/description/canonical/og tags.
 2. Pick a layout: `<main class="content">` for a single centered hero, or `<main class="page-sections">` for a column of `<section>`s (add `<link rel="stylesheet" href="/assets/css/patterns.css" />` too, for `.section-head` / `.feature-row` / `.split-section`).
-3. Add `<top-nav></top-nav>` and `<calm-sea></calm-sea>` at the top of `<body>`.
+3. Add `<top-nav></top-nav>` and `<main-background></main-background>` at the top of `<body>` (Home uses `<home-background>` instead).
 4. Write page content using the shared primitives/patterns first; only add `assets/css/<page>.css` if the page needs a genuine one-off style.
 5. Add `<site-footer></site-footer>` just before `</body>`.
 6. If the page should appear in the menu, add it to `NAV_LINKS` in `assets/components.js` — every page picks it up automatically.
@@ -99,8 +100,8 @@ GitHub Pages serves extensionless URLs (`/privacy-policies/touchy-fingies-pp` �
 
 ## Features
 
-- **Token-driven design system** — light "Caribbean / beach" theme (turquoise + pastel orange on warm sand, Nunito type). Every color and scale is a CSS custom property in one file (`tokens.css`); change a token and the whole site re-themes. A living [`styleguide.html`](styleguide.html) renders every token and component.
-- **Animated landing page** — `<calm-sea>` background (sand→sea gradient, soft sun, water shimmer, gentle waves); content fades in only after the display font has loaded (no flash of unstyled text).
+- **Token-driven design system** — light "Caribbean / beach" theme (turquoise + pastel orange on warm sand, Inter type). Every color and scale is a CSS custom property in one file (`tokens.css`); change a token and the whole site re-themes. A living [`styleguide.html`](styleguide.html) renders every token and component.
+- **Animated landing page** — `<home-background>` animated wave gradient on Home (placeholder); `<main-background>` (flat subtle color) elsewhere; content fades in only after the display font has loaded (no flash of unstyled text).
 - **Top navigation** — fixed top bar with inline links, a *Privacy Policies* dropdown, and a fullscreen hamburger menu on small screens.
 - **Click-to-copy email** — falls back to a regular `mailto:` link when the Clipboard API is unavailable.
 - **Accessibility** — keyboard-friendly nav with visible focus styles and correct ARIA attributes; `prefers-reduced-motion` stops the continuous background motion; content is visible without JavaScript.

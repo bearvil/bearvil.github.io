@@ -24,7 +24,7 @@
   <!-- Fonts: preconnect + non-blocking stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" />
 
   <!-- Styles: tokens first (single source of truth), then layers -->
   <link rel="stylesheet" href="/assets/css/tokens.css" />
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="/assets/css/ui.css" />
   <link rel="stylesheet" href="/assets/css/patterns.css" />
 
-  <!-- Shared components: <top-nav>, <calm-sea>, email copy, font reveal -->
+  <!-- Shared components: <top-nav>, <main-background>, email copy, font reveal -->
   <script src="/assets/components.js" defer></script>
 
   <!-- If JS is disabled, show content immediately -->
@@ -42,7 +42,7 @@
 <body>
 
   <top-nav></top-nav>
-  <calm-sea></calm-sea>
+  <main-background></main-background>
 
   <!-- NOTE: copy and figures below are placeholder demo content — swap in the
        real app details when ready. The layout and components stay the same. -->
@@ -55,7 +55,10 @@
       <p class="section-head__sub">A small studio building calm, focused mobile apps. Here's what we've put into the world.</p>
     </header>
 
-    <!-- App 1 — Touchy Fingies -->
+    <!-- Work items temporarily hidden — no shipped work to show yet, unhide when ready.
+         Kept intact below; just remove this wrapping comment to bring it back.
+
+    App 1 — Touchy Fingies
     <section class="feature-row" aria-labelledby="app-touchy">
       <div class="feature-row__content">
         <p class="feature-row__eyebrow">01 — Touchy Fingies</p>
@@ -88,7 +91,7 @@
       </div>
     </section>
 
-    <!-- App 2 — Frend AI -->
+    App 2 — Frend AI
     <section class="feature-row feature-row--reverse" aria-labelledby="app-frend">
       <div class="feature-row__content">
         <p class="feature-row__eyebrow">02 — Frend AI</p>
@@ -121,7 +124,7 @@
       </div>
     </section>
 
-    <!-- App 3 — placeholder / roadmap -->
+    App 3 — placeholder / roadmap
     <section class="feature-row" aria-labelledby="app-next">
       <div class="feature-row__content">
         <p class="feature-row__eyebrow">03 — In the works</p>
@@ -156,6 +159,7 @@
         </div>
       </div>
     </section>
+    -->
 
   </main>
 

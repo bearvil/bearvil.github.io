@@ -33,6 +33,12 @@ class PagesHandler(http.server.SimpleHTTPRequestHandler):
                 return html
         return local
 
+    def end_headers(self):
+        # Always serve the current file from disk — a dev preview should never
+        # show a stale cached copy after an edit.
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
     def send_error(self, code, message=None, explain=None):
         # Serve the styled 404 page for missing paths, like GitHub Pages does.
         if code == 404:

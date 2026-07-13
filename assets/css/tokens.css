@@ -43,8 +43,8 @@
   --sand-50:  #fdfcf9;
   --sand-100: #fbf9f4;   /* page background */
   --sand-200: #f2eee6;   /* subtle panel */
-  --sand-300: #e5e0d6;   /* borders / dividers */
-  --sand-400: #cfc8ba;
+  --sand-300: #dce6e1;   /* borders / dividers — cooled toward ink/turquoise, not pure beige */
+  --sand-400: #b3b9b2;   /* strong border/divider — cooled, more presence */
 
   /* Ink — deep teal-tinted text scale (warmer than pure gray/black) */
   --ink-900: #143a40;   /* primary text */
@@ -68,9 +68,17 @@
   --color-bg:           var(--sand-100);
   --color-surface:      var(--white);
   --color-surface-2:    var(--sand-200);
-  --color-border-subtle:var(--sand-200);   /* lighter divider — barely-there */
+  /* Decoupled from --sand-200 (kept warm for panel surfaces) and cooled toward
+     ink/turquoise so it reads as part of the palette instead of plain beige. */
+  --color-border-subtle:#eaf1ef;   /* lighter divider — barely-there */
   --color-border:       var(--sand-300);
   --color-border-strong:var(--sand-400);
+  /* Dark, low-alpha hairline for translucent/frosted surfaces (topnav, footer)
+     sitting over the background gradient (<main-background>/<home-background>).
+     A fixed light border nearly vanishes where the gradient turns teal; a dark
+     low-alpha line darkens whatever's behind it, so it stays visible against
+     both the light and teal ends. */
+  --color-border-frosted:rgba(20, 58, 64, 0.16);
 
   --color-text:         var(--ink-900);
   --color-text-muted:   var(--ink-500);
@@ -105,9 +113,9 @@
   --color-info:    var(--turquoise-500);
 
   /* ---------------------------------------------------------------------
-     3. TYPOGRAPHY — Nunito everywhere, ~1.25 modular scale.
+     3. TYPOGRAPHY — Inter everywhere, ~1.25 modular scale.
      --------------------------------------------------------------------- */
-  --font-sans: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-body: var(--font-sans);
   --font-heading: var(--font-sans);
 
@@ -156,11 +164,13 @@
   --radius-pill: 999px;
 
   /* ---------------------------------------------------------------------
-     6. SHADOWS — soft, low-contrast (light theme).
+     6. SHADOWS — each is a tight "contact" layer (grounds the surface)
+     paired with a soft, wide "ambient" layer (the actual sense of lift).
+     Low-contrast throughout to keep the calm, light-theme feel.
      --------------------------------------------------------------------- */
-  --shadow-sm: 0 1px 2px rgba(20, 58, 64, 0.06), 0 1px 3px rgba(20, 58, 64, 0.08);
-  --shadow-md: 0 4px 12px rgba(20, 58, 64, 0.08), 0 2px 4px rgba(20, 58, 64, 0.06);
-  --shadow-lg: 0 12px 32px rgba(20, 58, 64, 0.12), 0 4px 8px rgba(20, 58, 64, 0.06);
+  --shadow-sm: 0 1px 1px rgba(20, 58, 64, 0.04), 0 3px 8px rgba(20, 58, 64, 0.06);
+  --shadow-md: 0 2px 3px rgba(20, 58, 64, 0.05), 0 10px 24px rgba(20, 58, 64, 0.10);
+  --shadow-lg: 0 4px 6px rgba(20, 58, 64, 0.06), 0 24px 56px rgba(20, 58, 64, 0.16);
   --shadow-focus: 0 0 0 3px rgba(24, 168, 186, 0.35);   /* turquoise-500 @ 35% */
 
   /* ---------------------------------------------------------------------

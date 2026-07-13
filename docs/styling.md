@@ -16,7 +16,7 @@ All stylesheets are under [`assets/css/`](../assets/css/):
 |---|---|
 | `tokens.css` | **The single source of truth** — all design tokens in `:root` (colors, type scale, spacing, radius, shadow, motion, z-index). Everything else consumes these. See [design-system.md](design-system.md). |
 | `base.css` | Foundation shared by every main page: reset, base typography, the sticky-footer `html/body` layout, focus styles, the `.content` and `.page-sections` layouts, the `.stack` utility, the `fadeInUp` keyframe, and shared text utilities (`.gradient-text`, `.sun-text`, `.sr-only`, `.copied-toast`). |
-| `components.css` | Visual styles for the shared Web Components (`<top-nav>`, `<calm-sea>`, `<site-footer>`). |
+| `components.css` | Visual styles for the shared Web Components (`<top-nav>`, `<main-background>`, `<home-background>`, `<site-footer>`). |
 | `ui.css` | Reusable UI primitives as utility classes: `.btn` (+ variants/sizes), `.card`, `.field` (forms), `.badge`, `.checklist`, `.metric`, `.data-list`, `.faq-list`/`.faq-item` (accordion), toast appearance. |
 | `patterns.css` | Composed, section-level blocks built from the primitives: `.section-head`, `.feature-row` (+ `--reverse`), `.feature-visual`, `.metric-grid`, `.card-grid` (+ `--3`), `.split-section`. Used by the Home, Work, and About pages; the "organism" layer above `ui.css`. |
 | `<page>.css` | Styles unique to one page (`index.css`, `contact.css`, `404.css`, `styleguide.css`). Pages built entirely from `.page-sections` + the shared primitives/patterns (Work, About) need no page-specific file at all — only add one once a page has a genuine one-off style. |
@@ -51,7 +51,8 @@ Every main-site `body` is a **flex column** at least one viewport tall
 fill the space, and `<site-footer>` sits last at the bottom. The result: when
 content fits in one screen the footer rests at the bottom with no gap; when it
 doesn't, the page scrolls normally and the footer follows the content. The
-`<calm-sea>` background stays `position: fixed` behind everything.
+background (`<main-background>` or, on Home, `<home-background>`) stays
+`position: fixed` behind everything.
 
 There are two content-layer shapes, both in `base.css`:
 

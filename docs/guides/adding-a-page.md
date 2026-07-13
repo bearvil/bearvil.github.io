@@ -26,7 +26,7 @@ For policy pages, see [adding a privacy policy](adding-a-privacy-policy.md) inst
 
    ```html
    <top-nav></top-nav>
-   <calm-sea></calm-sea>
+   <main-background></main-background>
    ```
 
 4. **Write the content** inside `<main class="content"> … </main>`, and put its

@@ -1,78 +1,64 @@
 /* =========================================================================
    components.css — visual styles for the shared Web Components defined in
-   assets/components.js (<top-nav>, <calm-sea>, <site-footer>).
+   assets/components.js (<top-nav>, <main-background>, <home-background>,
+   <site-footer>).
    Consumes tokens from tokens.css. Link after base.css.
    UI primitives (buttons, cards, forms, badges) live in ui.css.
    ========================================================================= */
 
 /* =========================================================================
-   <calm-sea> — light "Caribbean" animated background.
-   Layers: base sand→sea gradient, soft sun glow, water shimmer, wave bands.
-   Sits behind all content; respects prefers-reduced-motion.
+   <main-background> — a single flat, subtle color, used on every page
+   except Home. Sits behind all content.
    ========================================================================= */
-.sea {
+.main-bg {
+  position: fixed; inset: 0; z-index: var(--z-background);
+  pointer-events: none;
+  background: var(--turquoise-50);
+}
+
+/* =========================================================================
+   <home-background> — animated wave gradient, Home page only. Placeholder
+   until a final Home design arrives: a turquoise gradient with three SVG
+   wave layers drifting horizontally at different speeds/opacities. Plain
+   CSS animation (background-position), no canvas/WebGL.
+   ========================================================================= */
+.home-bg {
   position: fixed; inset: 0; z-index: var(--z-background);
   overflow: hidden; pointer-events: none;
-  background: linear-gradient(180deg,
-    var(--sand-50)      0%,
-    var(--sand-100)     28%,
-    var(--turquoise-50) 56%,
-    var(--turquoise-100) 80%,
-    var(--turquoise-200) 100%);
+  background: linear-gradient(160deg,
+    var(--sand-50)       0%,
+    var(--turquoise-50)  45%,
+    var(--turquoise-200) 75%,
+    var(--turquoise-400) 100%);
 }
 
-/* Warm sunlight wash — a large, soft, NON-circular glow that spreads across the
-   upper sky and bleeds off the top/right edges, so no disc outline is visible. */
-.sea__sun {
-  position: absolute; top: -45%; right: -25%;
-  width: 140%; height: 115%;
-  background:
-    radial-gradient(ellipse 70% 60% at 72% 30%,
-      rgba(255, 178, 122, 0.46) 0%,
-      rgba(255, 198, 150, 0.26) 34%,
-      rgba(255, 236, 222, 0.0) 66%),
-    radial-gradient(ellipse 120% 75% at 60% 0%,
-      rgba(255, 214, 178, 0.30) 0%,
-      rgba(255, 236, 222, 0.0) 60%);
-  filter: blur(24px);
-  transform-origin: 72% 25%;
-  animation: sunBreath 16s ease-in-out infinite alternate;
+.home-bg__wave {
+  position: absolute; left: 0; right: 0;
+  background-repeat: repeat-x;
+  background-size: 1200px 100%;
+  animation: homeWaveDrift var(--spd, 20s) linear infinite;
 }
-@keyframes sunBreath {
-  0%   { transform: scale(1)    translateX(0);    opacity: 0.8; }
-  100% { transform: scale(1.06) translateX(-1.5%); opacity: 1; }
+@keyframes homeWaveDrift {
+  from { background-position-x: 0; }
+  to   { background-position-x: -1200px; }
 }
 
-/* Water shimmer — horizontal light streaks over the lower sea band */
-.sea__shimmer {
-  position: absolute; left: -20%; bottom: 0;
-  width: 140%; height: 42%;
-  background: repeating-linear-gradient(115deg,
-    rgba(255, 255, 255, 0.0) 0px,
-    rgba(255, 255, 255, 0.22) 2px,
-    rgba(255, 255, 255, 0.0) 7px,
-    rgba(255, 255, 255, 0.0) 22px);
-  mask-image: linear-gradient(180deg, transparent 0%, #000 60%, #000 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 60%, #000 100%);
-  opacity: 0.6;
-  animation: shimmerDrift 9s linear infinite;
+/* Layers grow taller toward the back so their crests read higher up the
+   viewport (a layered "wave hero" look) instead of hugging the very bottom. */
+.home-bg__wave--back {
+  bottom: 0; height: 58vh; min-height: 420px;
+  opacity: 0.45;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,58 Q300,30 600,58 Q900,84 1200,58 L1200,120 L0,120 Z' fill='%239ee5eb'/%3E%3C/svg%3E");
 }
-@keyframes shimmerDrift {
-  from { transform: translateX(0); }
-  to   { transform: translateX(22px); }
+.home-bg__wave--mid {
+  bottom: -6px; height: 44vh; min-height: 320px;
+  opacity: 0.65;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,52 Q300,26 600,52 Q900,76 1200,52 L1200,120 L0,120 Z' fill='%2333bfce'/%3E%3C/svg%3E");
 }
-
-/* Wave bands — soft blurred ellipses gliding near the waterline */
-.sea__wave {
-  position: absolute; left: -10%; width: 120%; border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 50%,
-    rgba(24, 168, 186, 0.18), transparent 68%);
-  filter: blur(28px);
-  animation: waveGlide var(--spd, 18s) ease-in-out infinite alternate var(--dl, 0s);
-}
-@keyframes waveGlide {
-  0%   { transform: translateX(-3%) scaleX(1);    opacity: 0.7; }
-  100% { transform: translateX(3%)  scaleX(1.04); opacity: 1; }
+.home-bg__wave--front {
+  bottom: -1px; height: 32vh; min-height: 230px;
+  opacity: 0.9;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,48 Q300,24 600,48 Q900,70 1200,48 L1200,120 L0,120 Z' fill='%230d7583'/%3E%3C/svg%3E");
 }
 
 /* =========================================================================
@@ -82,7 +68,7 @@
    ========================================================================= */
 
 /* BAR — fixed across the top, always a frosted-glass surface (translucent sand
-   + blur) so it reads as a real bar and the calm-sea gradient still shows
+   + blur) so it reads as a real bar and the background layer still shows
    through softly. On scroll it deepens a touch and fades in a subtle hairline
    bottom border. Height stays constant (no padding change) so the logo/links
    never shift on scroll. */
@@ -101,9 +87,10 @@
 }
 .topnav.scrolled {
   background: rgba(251, 249, 244, 0.88);  /* --sand-100 @ 88% */
-  /* Lighter divider token (--sand-200), softer than the default --color-border
-     (--sand-300) which read too heavy on the frosted bar. */
-  box-shadow: 0 1px 0 var(--color-border-subtle);
+  /* Dark low-alpha hairline (--color-border-frosted) so the line stays visible
+     even where the background layer behind the frost turns teal, unlike a
+     fixed light border which would wash out there. */
+  box-shadow: 0 1px 0 var(--color-border-frosted);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -275,8 +262,7 @@
 
 /* ACCESSIBILITY — reduced motion: stop continuous background motion */
 @media (prefers-reduced-motion: reduce) {
-  .sea__sun, .sea__shimmer, .sea__wave { animation: none; }
-  .sea__shimmer { opacity: 0.35; }
+  .home-bg__wave { animation: none; }
 }
 
 /* =========================================================================
@@ -289,9 +275,11 @@ site-footer { display: block; position: relative; z-index: var(--z-content); }
   background: rgba(251, 249, 244, 0.6);   /* --sand-100 @ 60% — frosted, matches the nav */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  /* Lighter divider token (--sand-200) for the top edge — same as the scrolled
-     nav border, softer than the default --color-border on frosted glass. */
-  box-shadow: 0 -1px 0 var(--color-border-subtle);
+  /* Dark low-alpha hairline (--color-border-frosted) for the top edge — same
+     token as the scrolled nav border, chosen so it stays visible over the
+     background layer regardless of how light or teal it is at this point
+     on the page. */
+  box-shadow: 0 -1px 0 var(--color-border-frosted);
 }
 .site-footer-inner {
   display: flex; align-items: center; justify-content: space-between;

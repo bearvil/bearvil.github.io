@@ -13,7 +13,7 @@ Light, airy **Caribbean / beach**: turquoise (the sea) as the primary, pastel or
 (the sun) as the accent, warm sand neutrals, and deep teal-ink text. Balanced roughly
 **60 / 30 / 10** — neutrals dominate, turquoise structures, orange accents.
 
-Typography is **Nunito** (rounded, friendly) for everything.
+Typography is **Inter** (neutral, geometric, highly legible) for everything.
 
 ## Single source of truth
 
@@ -38,8 +38,10 @@ Tokens are layered so you can retheme at the right level:
 | Page background | `--color-bg` (`--sand-100`) | `#fbf9f4` |
 | Surface (cards) | `--color-surface` | `#ffffff` |
 | Subtle panel | `--color-surface-2` (`--sand-200`) | `#f2eee6` |
-| Border (subtle) | `--color-border-subtle` (`--sand-200`) | `#f2eee6` |
-| Border | `--color-border` (`--sand-300`) | `#e5e0d6` |
+| Border (subtle) | `--color-border-subtle` | `#eaf1ef` |
+| Border | `--color-border` (`--sand-300`) | `#dce6e1` |
+| Border (strong) | `--color-border-strong` (`--sand-400`) | `#b3b9b2` |
+| Border (frosted) | `--color-border-frosted` | `rgba(20, 58, 64, 0.16)` |
 | Text | `--color-text` (`--ink-900`) | `#143a40` |
 | Muted text | `--color-text-muted` (`--ink-500`) | `#5a7a7e` |
 | Subtle text | `--color-text-subtle` (`--ink-300`) | `#8aa3a5` |
@@ -51,6 +53,17 @@ Tokens are layered so you can retheme at the right level:
 
 Full 50→800 turquoise and orange scales, plus the sand and ink scales, are in
 `tokens.css` and visualized in the styleguide.
+
+Borders are intentionally cooled toward ink/turquoise rather than pure sand, so
+they read as part of the palette instead of plain beige — `--color-border` and
+`--color-border-strong` still ride the `--sand-300`/`--sand-400` primitives
+(only ever used for borders, so recoloring them is safe), while
+`--color-border-subtle` is a standalone value decoupled from `--sand-200`
+(which stays warm because it doubles as `--color-surface-2`). `--color-border-frosted`
+is a separate dark, low-alpha token for the translucent `<top-nav>`/`<site-footer>`
+hairlines — a fixed light border washes out where the background gradient
+(`<main-background>` or `<home-background>`) behind the frost turns teal, but a
+dark low-alpha line stays visible at both ends of the gradient.
 
 ## Accessibility — why two turquoise roles
 
@@ -72,7 +85,9 @@ prefer dark text on the orange accent.
   `--font-weight-normal/semibold/bold/extra` (400/600/700/800).
 - **Spacing** (`--space-1`…`8`): 4px base — 4, 8, 12, 16, 24, 32, 48, 64.
 - **Radius** (`--radius-sm/md/lg/pill`): 6 / 12 / 20 / 999px.
-- **Shadow** (`--shadow-sm/md/lg`, `--shadow-focus`): soft, low-contrast for light bg.
+- **Shadow** (`--shadow-sm/md/lg`, `--shadow-focus`): each pairs a tight "contact"
+  layer with a soft, wide "ambient" layer for a believable sense of lift; kept
+  low-contrast throughout for the light bg.
 - **Motion** (`--transition-fast/base`, `--ease-out-expo`) and **z-index**
   (`--z-background/content/overlay/nav/nav-toggle/toast`).
 - **Layout** (`--topnav-h`): height of the fixed `<top-nav>` bar; scrollable
@@ -91,5 +106,5 @@ prefer dark text on the orange accent.
 
 UI primitives (buttons, cards, form fields, badges, toast) are CSS-only utility
 classes in [`ui.css`](../assets/css/ui.css). Shared interactive pieces (`<top-nav>`,
-the `<calm-sea>` background) are Web Components — see [components.md](components.md).
-All of them consume the tokens above.
+the `<main-background>`/`<home-background>` backgrounds) are Web Components —
+see [components.md](components.md). All of them consume the tokens above.

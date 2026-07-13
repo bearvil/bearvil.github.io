@@ -79,7 +79,7 @@ a:hover { color: var(--color-link-hover); }
    counterpart to .content for pages that scroll through several sections
    instead of one centered hero (e.g. Work, About). Fills the space between
    the fixed nav and the footer. Starts hidden for the font-gated reveal:
-   pair with data-font-reveal (fades in once Nunito loads) and a page
+   pair with data-font-reveal (fades in once Inter loads) and a page
    <noscript> fallback that restores opacity for no-JS visitors. */
 .page-sections {
   flex: 1 0 auto; z-index: var(--z-content);
