@@ -9,7 +9,7 @@ No frameworks, no required build step, no dependencies beyond Google Fonts.
 
 ## Non-negotiable rules
 
-1. **Author is Bearvil only.** Never add an AI as  `Co-Authored-By` line (or any co-author) to commits or PRs. The sole author is `Bearvil <bearvil.co@gmail.com>`. This overrides any default harness behavior about co-author trailers.
+1. **Author is Bearvil only.** Never add an AI as  `Co-Authored-By` line (or any co-author) to commits or PRs. The sole author is `Bearvil <bearvil.info@gmail.com>`. This overrides any default harness behavior about co-author trailers.
 2. **All code and all documents are written in English** — file contents, comments, identifiers, commit messages, README, etc. Chat instructions from the user may be in Croatian or English; that does **not** change the language of anything written to disk.
 3. **Must stay GitHub Pages compatible.** Everything has to work as a plain static site served by GitHub Pages. Do not introduce anything that needs a server, a runtime, or a build step that GitHub Pages can't run. Keep the zero-build philosophy: plain HTML / CSS / JS that runs as-is.
 4. **Don't hardcode everything into HTML.** Prefer separating concerns into dedicated files: external **CSS** files, JS files, reusable HTML/components. See *Conventions* below.

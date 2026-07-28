@@ -127,7 +127,7 @@ light theme; all colors come from tokens.
 ### `data-copy-email`
 
 ```html
-<a data-copy-email href="mailto:bearvil.co@gmail.com">bearvil.co@gmail.com</a>
+<a data-copy-email href="mailto:bearvil.info@gmail.com">bearvil.info@gmail.com</a>
 ```
 
 Clicking copies the address to the clipboard, then shows success feedback for
@@ -143,7 +143,7 @@ API is unavailable.
   [`/styleguide.html`](../styleguide.html).
 
   ```html
-  <a data-copy-email href="mailto:bearvil.co@gmail.com">…</a>
+  <a data-copy-email href="mailto:bearvil.info@gmail.com">…</a>
   <span class="copied-toast" role="status">Copied</span>
   ```
 
@@ -153,7 +153,7 @@ API is unavailable.
   both revert after the delay. Used on the **contact** page instead of a pill.
 
   ```html
-  <a data-copy-email href="mailto:bearvil.co@gmail.com">…</a>
+  <a data-copy-email href="mailto:bearvil.info@gmail.com">…</a>
   <p class="hint" data-copy-hint data-copied-label="Copied to clipboard" role="status">Click to copy</p>
   ```
 

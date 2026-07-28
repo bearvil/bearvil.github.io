@@ -135,4 +135,4 @@ Push to the default branch — GitHub Pages publishes automatically.
 
 ## Contact
 
-bearvil.co@gmail.com
+bearvil.info@gmail.com

@@ -148,7 +148,7 @@ customElements.define('top-nav', TopNav);
  *  privacy links as <top-nav>, an email link, and a dynamic copyright
  *  year. Reuses NAV_LINKS / PRIVACY_LINKS so links live in one place.
  * ------------------------------------------------------------------ */
-const FOOTER_EMAIL = 'bearvil.co@gmail.com';
+const FOOTER_EMAIL = 'bearvil.info@gmail.com';
 
 class SiteFooter extends HTMLElement {
   connectedCallback() {
