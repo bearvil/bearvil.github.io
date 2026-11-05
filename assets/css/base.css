@@ -1,0 +1,155 @@
+/* =========================================================================
+   base.css — foundation shared by all main site pages
+   (index.html, contact.html, 404.html, styleguide.html).
+   Consumes design tokens from tokens.css.
+   Link order in <head>: tokens.css → base.css → components.css → <page>.css
+   Privacy-policy pages are standalone and do NOT use this file.
+   ========================================================================= */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Main-site pages are a sticky-footer flex column: content fills the space
+   between the fixed <top-nav> and the footer, and the page scrolls when the
+   content is taller than the viewport. padding-top clears the fixed nav;
+   box-sizing:border-box keeps it inside min-height so there's no overflow. */
+body {
+  display: flex; flex-direction: column;
+  min-height: 100vh; min-height: 100dvh;
+  padding-top: calc(var(--topnav-h) + var(--space-6));
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;   /* even line lengths in every language */
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-extra);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+p { line-height: var(--leading-normal); }
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+a:hover { color: var(--color-link-hover); }
+
+/* Visible keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* CONTENT — in-flow centered content layer; grows to fill the space above
+   the footer. Each page controls its own reveal: the landing page reveals
+   via JS (data-font-reveal), other pages use the fadeInUp animation below. */
+.content {
+  flex: 1 0 auto; z-index: var(--z-content);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: var(--space-6);
+}
+
+@keyframes fadeInUp {
+  0%   { opacity: 0; transform: translateY(16px); filter: blur(12px); }
+  60%  { filter: blur(2px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+}
+
+/* PAGE SECTIONS — left-aligned, full-width column of sections; the
+   counterpart to .content for pages that scroll through several sections
+   instead of one centered hero (e.g. Work, About). Fills the space between
+   the fixed nav and the footer. Starts hidden for the font-gated reveal:
+   pair with data-font-reveal (fades in once Inter loads) and a page
+   <noscript> fallback that restores opacity for no-JS visitors. */
+.page-sections {
+  flex: 1 0 auto; z-index: var(--z-content);
+  width: 100%; max-width: var(--content-max); margin-inline: auto;
+  padding: var(--space-6) var(--space-5) var(--space-8);
+  display: flex; flex-direction: column; gap: var(--space-8);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-sections { opacity: 1 !important; animation: none !important; }
+}
+
+/* STACK — a vertical flex column with a consistent gap. Used inside a
+   .page-sections section to space a header from its body (checklist, grid,
+   list, …) without one-off margins. */
+.stack { display: flex; flex-direction: column; gap: var(--space-5); }
+
+/* BTN-ROW — a horizontal group of buttons (e.g. a primary + secondary CTA),
+   wraps on narrow screens instead of overflowing. */
+.btn-row { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+
+/* GRADIENT TEXT — shared wordmark / heading treatment.
+   Uses --gradient-brand, which each theme tunes for contrast. */
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* SUN TEXT — warm accent variant for short emphasis (use sparingly). */
+.sun-text {
+  background: var(--gradient-sun);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* COPIED TOAST — shown by the data-copy-email behavior.
+   Pages position their own .copied-toast; this is the shared show state. */
+.copied-toast {
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+.copied-toast.show { opacity: 1; }
+
+/* I18N — boot.js sets html.i18n-pending while a non-English dictionary loads,
+   so visitors never see the English text flash before the translation. */
+.i18n-pending body { visibility: hidden; }
+
+/* CJK — no true italics in these scripts; accent <em> phrases keep their
+   color but stay upright. (html prefix outranks the component em rules.) */
+html:lang(zh) em, html:lang(ja) em { font-style: normal; }
+/* Japanese has no spaces: break headings and copy at phrase boundaries
+   (Chromium) instead of mid-word. */
+html:lang(ja) { word-break: auto-phrase; }
+
+/* THEME SWITCH — components.js adds this for one frame while swapping
+   data-theme, so every surface changes color at once instead of fading
+   at different speeds. */
+.theme-switching *, .theme-switching *::before, .theme-switching *::after {
+  transition: none !important;
+}
+
+/* SCREEN-READER ONLY */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}

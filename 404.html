@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title data-i18n="notFound.metaTitle">404 — Bearvil</title>
+  <meta name="description" content="This page doesn't exist yet." data-i18n-attr="content:notFound.metaDesc" />
+  <meta name="robots" content="noindex" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Theme + language: set <html data-theme> / <html lang> before first paint (sync, first) -->
+  <script src="/assets/theme.js"></script>
+  <script src="/assets/i18n/boot.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" />
+
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/404.css" />
+
+  <!-- Shared components: <top-nav>, <main-background> -->
+  <script src="/assets/components.js" defer></script>
+  <script src="/assets/i18n/i18n.js" defer></script>
+</head>
+<body>
+
+  <top-nav></top-nav>
+  <main-background></main-background>
+
+  <main class="content">
+    <h1 class="code gradient-text">404</h1>
+    <p class="message" data-i18n="notFound.message">This page doesn't exist&nbsp;yet</p>
+    <div class="btn-row not-found__actions">
+      <a class="btn btn--accent" href="/" data-i18n="notFound.home">Back home</a>
+      <a class="btn btn--secondary" href="/work" data-i18n="common.seeAppsPlain">See our apps</a>
+    </div>
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

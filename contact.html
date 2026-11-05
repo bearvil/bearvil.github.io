@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- SEO / social -->
+  <title data-i18n="contact.metaTitle">Contact — Bearvil</title>
+  <meta name="description" content="Questions, feedback or a bug report? Email Bearvil at bearvil.info@gmail.com — every message is read." data-i18n-attr="content:contact.metaDesc" />
+  <link rel="canonical" href="https://bearvil.github.io/contact" />
+  <meta property="og:site_name" content="Bearvil" />
+  <meta property="og:title" content="Contact — Bearvil" />
+  <meta property="og:description" content="Get in touch with Bearvil." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bearvil.github.io/contact" />
+  <meta property="og:image" content="https://bearvil.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://bearvil.github.io/assets/og-image.png" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Theme + language: set <html data-theme> / <html lang> before first paint (sync, first) -->
+  <script src="/assets/theme.js"></script>
+  <script src="/assets/i18n/boot.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" />
+
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
+  <link rel="stylesheet" href="/assets/css/contact.css" />
+
+  <!-- Shared components: <top-nav>, <main-background>, email copy -->
+  <script src="/assets/components.js" defer></script>
+  <script src="/assets/i18n/i18n.js" defer></script>
+</head>
+<body>
+
+  <top-nav></top-nav>
+  <main-background></main-background>
+
+  <main class="content">
+    <header class="section-head section-head--center">
+      <p class="section-head__eyebrow" data-i18n="contact.eyebrow">Contact</p>
+      <h1 class="section-head__title" data-i18n="contact.title">Let's <em>talk</em></h1>
+      <p class="section-head__sub" data-i18n="contact.sub">We'd love to hear from you — questions, feedback, bug reports, anything.</p>
+    </header>
+
+    <a class="email-card" id="email-link" data-copy-email href="mailto:bearvil.info@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+        <path d="M3.5 6.5 L12 13 L20.5 6.5"/>
+      </svg>
+      <span class="address">bearvil.info@gmail.com</span>
+    </a>
+    <p class="hint" data-copy-hint data-copied-label="Copied to clipboard" data-i18n-attr="data-copied-label:contact.copied" role="status" data-i18n="contact.hint">Click to copy</p>
+
+    <p class="contact-note" data-i18n="contact.note">Every message is read and usually answered within a couple of days. Quick question? The <a href="/about#about-faq">FAQ</a> may already have the answer.</p>
+
+    <nav class="contact-links" aria-label="Privacy policies">
+      <span class="contact-links__label" data-i18n="contact.privacyLabel">Privacy policies</span>
+      <a href="/privacy-policies/frend-ai-pp" target="_blank" rel="noopener">Frend AI</a>
+      <a href="/privacy-policies/touchy-fingies-pp" target="_blank" rel="noopener">Touchy Fingies</a>
+      <a href="/privacy-policies/dicty-pp" target="_blank" rel="noopener">Dicty</a>
+    </nav>
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

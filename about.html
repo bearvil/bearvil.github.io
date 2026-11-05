@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- SEO / social -->
+  <title data-i18n="about.metaTitle">About — Bearvil</title>
+  <meta name="description" content="Bearvil is an independent, one-person app studio. Who we are, the principles we build by, and answers to common questions." data-i18n-attr="content:about.metaDesc" />
+  <link rel="canonical" href="https://bearvil.github.io/about" />
+  <meta property="og:site_name" content="Bearvil" />
+  <meta property="og:title" content="About — Bearvil" />
+  <meta property="og:description" content="An independent, one-person app studio building calm, private apps." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bearvil.github.io/about" />
+  <meta property="og:image" content="https://bearvil.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://bearvil.github.io/assets/og-image.png" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Theme + language: set <html data-theme> / <html lang> before first paint (sync, first) -->
+  <script src="/assets/theme.js"></script>
+  <script src="/assets/i18n/boot.js"></script>
+
+  <!-- Fonts: preconnect + non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" />
+
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
+
+  <!-- Shared components: <top-nav>, <main-background>, email copy, font reveal -->
+  <script src="/assets/components.js" defer></script>
+  <script src="/assets/i18n/i18n.js" defer></script>
+
+  <!-- If JS is disabled, show content immediately -->
+  <noscript><style>.page-sections { opacity: 1; }</style></noscript>
+</head>
+<body>
+
+  <top-nav></top-nav>
+  <main-background></main-background>
+
+  <main class="page-sections" id="content" data-font-reveal>
+
+    <!-- Intro -->
+    <header class="section-head section-head--center">
+      <p class="section-head__eyebrow" data-i18n="about.eyebrow">About</p>
+      <h1 class="section-head__title" data-i18n="about.title">The studio behind <em>Bearvil</em></h1>
+      <p class="section-head__sub" data-i18n="about.sub">An independent app studio of one. No investors, no growth hacks — just apps worth keeping on your phone.</p>
+    </header>
+
+    <!-- Story -->
+    <section class="split-section" aria-labelledby="about-story">
+      <div class="split-section__aside">
+        <p class="section-head__eyebrow" data-i18n="about.storyEyebrow">Our story</p>
+        <h2 class="feature-row__title" id="about-story" data-i18n="about.storyTitle">Built by <em>one person</em>, on purpose</h2>
+      </div>
+      <div class="split-section__main stack">
+        <p class="feature-row__desc" data-i18n="about.story1">Bearvil started as a way to build the apps big studios wouldn't: calm, private, and finished. No growth team, no A/B-tested dark patterns — just software that respects the person using it.</p>
+        <p class="feature-row__desc" data-i18n="about.story2">Every app ships small and gets better slowly. If a feature doesn't earn its place, it doesn't ship.</p>
+        <p class="feature-row__desc" data-i18n="about.story3">When this site says “we”, it means the studio: one developer doing the design, the code, the testing and every reply to your email.</p>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="stack" aria-labelledby="about-values">
+      <header class="section-head">
+        <p class="section-head__eyebrow" data-i18n="about.valuesEyebrow">What we believe</p>
+        <h2 class="feature-row__title" id="about-values" data-i18n="about.valuesTitle">Principles we don't <em>compromise</em> on</h2>
+      </header>
+      <div class="card-grid">
+        <article class="card card--soft">
+          <h3 class="card__title" data-i18n="about.v1.title">Calm by default</h3>
+          <p class="card__body" data-i18n="about.v1.body">No push notifications begging for attention. Apps should fit into your day, not hijack it.</p>
+        </article>
+        <article class="card card--soft">
+          <h3 class="card__title" data-i18n="about.v2.title">Privacy first</h3>
+          <p class="card__body" data-i18n="about.v2.body">Your data stays yours. No accounts, no trackers, no ad networks, no quietly-added analytics SDKs.</p>
+        </article>
+        <article class="card card--soft">
+          <h3 class="card__title" data-i18n="about.v3.title">No dark patterns</h3>
+          <p class="card__body" data-i18n="about.v3.body">No fake urgency, no confusing cancel flows, no guilt-tripping copy. Ever.</p>
+        </article>
+        <article class="card card--soft">
+          <h3 class="card__title" data-i18n="about.v4.title">Small and sustainable</h3>
+          <p class="card__body" data-i18n="about.v4.body">A handful of focused apps, maintained for years — not a pile of abandoned experiments.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="split-section" aria-labelledby="about-faq">
+      <div class="split-section__aside">
+        <p class="section-head__eyebrow" data-i18n="about.faqEyebrow">FAQ</p>
+        <h2 class="feature-row__title" id="about-faq" data-i18n="about.faqTitle">Questions, <em>answered</em></h2>
+        <p class="feature-row__desc" data-i18n="about.faqIntro">Can't find what you're looking for? Reach us at <a href="mailto:bearvil.info@gmail.com">bearvil.info@gmail.com</a>.</p>
+      </div>
+      <div class="split-section__main faq-list">
+        <details class="faq-item">
+          <summary class="faq-item__q"><span data-i18n="about.q1">Who's behind Bearvil?</span><span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a" data-i18n="about.a1">Bearvil is an independent, one-person app studio. No agency and no outsourcing — every app is designed, built and supported by the same person.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q"><span data-i18n="about.q2">Do your apps use AI?</span><span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a" data-i18n="about.a2">Frend AI is an AI chat app: it connects straight from your device to the AI provider you choose, with your own API key. There is no Bearvil server in between, and we never see your messages or keys. Touchy Fingies has no AI and no internet access at all.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q"><span data-i18n="about.q3">Do you collect any of my data?</span><span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a" data-i18n="about.a3">No. Bearvil runs no servers, accounts or analytics, so there is nothing for us to collect. Each app's privacy policy spells out exactly what stays on your device and what (if anything) leaves it.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q"><span data-i18n="about.q4">When can I download the apps?</span><span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a" data-i18n="about.a4">Frend AI and Touchy Fingies are in final testing and coming soon to Google Play. See <a href="/work">our apps</a> for details.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q"><span data-i18n="about.q5">Can I request a feature or report a bug?</span><span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a" data-i18n="about.a5">Always. Email <a href="mailto:bearvil.info@gmail.com">bearvil.info@gmail.com</a> — every message is read, and a small studio can move fast on a good idea.</div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q"><span data-i18n="about.q6">Where can I find your privacy policies?</span><span class="faq-item__icon" aria-hidden="true"></span></summary>
+          <div class="faq-item__a" data-i18n="about.a6">Here: <a href="/privacy-policies/frend-ai-pp" target="_blank" rel="noopener">Frend AI</a>, <a href="/privacy-policies/touchy-fingies-pp" target="_blank" rel="noopener">Touchy Fingies</a> and <a href="/privacy-policies/dicty-pp" target="_blank" rel="noopener">Dicty</a>. They are also in the Privacy Policies menu at the top of every page.</div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

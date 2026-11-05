@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- SEO / social -->
+  <title data-i18n="home.metaTitle">Bearvil — Calm, private apps</title>
+  <meta name="description" content="Bearvil is an independent app studio building calm, private mobile apps — no accounts, no ads, no tracking. Home of Frend AI and Touchy Fingies." data-i18n-attr="content:home.metaDesc" />
+  <link rel="canonical" href="https://bearvil.github.io/" />
+  <meta property="og:site_name" content="Bearvil" />
+  <meta property="og:title" content="Bearvil — Calm, private apps" />
+  <meta property="og:description" content="An independent app studio building calm, private mobile apps — no accounts, no ads, no tracking." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bearvil.github.io/" />
+  <meta property="og:image" content="https://bearvil.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://bearvil.github.io/assets/og-image.png" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Theme + language: set <html data-theme> / <html lang> before first paint (sync, first) -->
+  <script src="/assets/theme.js"></script>
+  <script src="/assets/i18n/boot.js"></script>
+
+  <!-- Fonts: preconnect + non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" />
+
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
+  <link rel="stylesheet" href="/assets/css/index.css" />
+
+  <!-- Shared components: <top-nav>, <home-background>, email copy, font reveal -->
+  <script src="/assets/components.js" defer></script>
+  <script src="/assets/i18n/i18n.js" defer></script>
+
+  <!-- If JS is disabled, show content immediately -->
+  <noscript><style>.page-sections { opacity: 1; }</style></noscript>
+</head>
+<body>
+
+  <top-nav></top-nav>
+  <home-background></home-background>
+
+  <main class="page-sections home" id="content" data-font-reveal>
+
+    <!-- Hero -->
+    <header class="hero">
+      <img src="/assets/Bearvil-logo-transparent.png" alt="" class="hero__logo" width="112" height="112" />
+      <p class="section-head__eyebrow" data-i18n="home.eyebrow">Bearvil · Independent app studio</p>
+      <h1 class="hero__title" data-i18n="home.title">Calm, private apps that <em>respect</em> your&nbsp;time.</h1>
+      <p class="hero__sub" data-i18n="home.sub">No accounts, no ads, no tracking — just focused apps that do one thing well and keep your data on your device.</p>
+      <div class="btn-row hero__actions">
+        <a class="btn btn--accent btn--lg" href="/work" data-i18n="common.seeApps">See our apps <span aria-hidden="true">→</span></a>
+        <a class="btn btn--secondary btn--lg" href="/contact" data-i18n="common.getInTouch">Get in touch</a>
+      </div>
+    </header>
+
+    <!-- Apps -->
+    <section class="stack" aria-labelledby="home-apps">
+      <header class="section-head">
+        <p class="section-head__eyebrow" data-i18n="home.appsEyebrow">Our apps</p>
+        <h2 class="section-head__title" id="home-apps" data-i18n="home.appsTitle">Coming soon to <em>Google Play</em></h2>
+      </header>
+      <div class="card-grid">
+        <a class="card card--interactive card--link app-tile" href="/work#frend-ai">
+          <div class="app-id">
+            <img class="app-icon" src="/assets/apps/frend-ai.png" alt="" width="56" height="56" />
+            <div>
+              <h3 class="app-id__name">Frend AI</h3>
+              <p class="app-id__meta" data-i18n="app.frend.meta">AI chat · Bring your own key</p>
+            </div>
+          </div>
+          <p class="app-tile__body" data-i18n="home.frendBody">The top AI models in one calm app, using your own API keys — no account, no middleman server.</p>
+          <span class="app-tile__more" data-i18n="common.learnMore">Learn more <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="card card--interactive card--link app-tile" href="/work#touchy-fingies">
+          <div class="app-id">
+            <img class="app-icon" src="/assets/apps/touchy-fingies.png" alt="" width="56" height="56" />
+            <div>
+              <h3 class="app-id__name">Touchy Fingies</h3>
+              <p class="app-id__meta" data-i18n="app.touchy.meta">Babies &amp; toddlers · Sensory play</p>
+            </div>
+          </div>
+          <p class="app-tile__body" data-i18n="home.touchyBody">A tap-and-giggle toy for tiny hands. Fully offline — no internet access, no ads, no tracking.</p>
+          <span class="app-tile__more" data-i18n="common.learnMore">Learn more <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="stack" aria-labelledby="home-principles">
+      <header class="section-head">
+        <p class="section-head__eyebrow" data-i18n="home.principlesEyebrow">How we build</p>
+        <h2 class="section-head__title" id="home-principles" data-i18n="home.principlesTitle">Principles we don't <em>bend</em> on</h2>
+      </header>
+      <div class="card-grid card-grid--3">
+        <article class="card">
+          <span class="card__index">01</span>
+          <h3 class="card__title" data-i18n="home.p1.title">Private by design</h3>
+          <p class="card__body" data-i18n="home.p1.body">No accounts, no analytics SDKs, no ad networks. Your data stays on your device.</p>
+        </article>
+        <article class="card">
+          <span class="card__index">02</span>
+          <h3 class="card__title" data-i18n="home.p2.title">Calm by default</h3>
+          <p class="card__body" data-i18n="home.p2.body">No attention-begging notifications or engagement tricks. Open it, use it, put it down.</p>
+        </article>
+        <article class="card">
+          <span class="card__index">03</span>
+          <h3 class="card__title" data-i18n="home.p3.title">No dark patterns</h3>
+          <p class="card__body" data-i18n="home.p3.body">No fake urgency, no confusing flows, no guilt-tripping copy. Ever.</p>
+        </article>
+      </div>
+      <p><a class="btn btn--link" href="/about" data-i18n="home.more">More about the studio <span aria-hidden="true">→</span></a></p>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="cta-band" aria-labelledby="home-cta">
+      <div class="cta-band__text">
+        <h2 class="cta-band__title" id="home-cta" data-i18n="home.ctaTitle">Questions, feedback, a bug?</h2>
+        <p data-i18n="common.readByBuilder">Every message is read by the person who builds the apps.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--accent btn--lg" href="/contact" data-i18n="common.getInTouchArrow">Get in touch <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- SEO / social -->
+  <title data-i18n="work.metaTitle">Apps — Bearvil</title>
+  <meta name="description" content="Frend AI and Touchy Fingies — calm, private mobile apps from Bearvil, an independent app studio. Coming soon to Google Play." data-i18n-attr="content:work.metaDesc" />
+  <link rel="canonical" href="https://bearvil.github.io/work" />
+  <meta property="og:site_name" content="Bearvil" />
+  <meta property="og:title" content="Apps — Bearvil" />
+  <meta property="og:description" content="Frend AI and Touchy Fingies — calm, private mobile apps from an independent studio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bearvil.github.io/work" />
+  <meta property="og:image" content="https://bearvil.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://bearvil.github.io/assets/og-image.png" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fbf9f4" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+  <!-- Theme + language: set <html data-theme> / <html lang> before first paint (sync, first) -->
+  <script src="/assets/theme.js"></script>
+  <script src="/assets/i18n/boot.js"></script>
+
+  <!-- Fonts: preconnect + non-blocking stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" />
+
+  <!-- Styles: tokens first (single source of truth), then layers -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/ui.css" />
+  <link rel="stylesheet" href="/assets/css/patterns.css" />
+
+  <!-- Shared components: <top-nav>, <main-background>, email copy, font reveal -->
+  <script src="/assets/components.js" defer></script>
+  <script src="/assets/i18n/i18n.js" defer></script>
+
+  <!-- If JS is disabled, show content immediately -->
+  <noscript><style>.page-sections { opacity: 1; }</style></noscript>
+</head>
+<body>
+
+  <top-nav></top-nav>
+  <main-background></main-background>
+
+  <main class="page-sections" id="content" data-font-reveal>
+
+    <!-- Intro -->
+    <header class="section-head section-head--center">
+      <p class="section-head__eyebrow" data-i18n="work.eyebrow">Our apps</p>
+      <h1 class="section-head__title" data-i18n="work.title">Small apps, made with <em>care</em></h1>
+      <p class="section-head__sub" data-i18n="work.sub">Each Bearvil app does one thing well, works without an account, and keeps your data on your device. Both are in final testing and coming soon to Google Play.</p>
+    </header>
+
+    <!-- Frend AI -->
+    <section class="feature-row app-showcase" id="frend-ai" aria-labelledby="app-frend">
+      <div class="feature-row__content">
+        <div class="app-id">
+          <img class="app-icon app-icon--md" src="/assets/apps/frend-ai.png" alt="" width="72" height="72" />
+          <div>
+            <h2 class="app-id__name" id="app-frend">Frend AI</h2>
+            <p class="app-id__meta" data-i18n="app.frend.meta">AI chat · Bring your own key</p>
+          </div>
+        </div>
+        <div><span class="badge badge--accent" data-i18n="common.comingSoon">Coming soon to Google Play</span></div>
+        <p class="feature-row__title" data-i18n="work.frend.title">All the top AI models, <em>one calm app</em></p>
+        <p class="feature-row__desc" data-i18n="work.frend.desc">Chat with models from OpenAI, Anthropic, Google, xAI, DeepSeek, Groq and OpenRouter using your own API keys. There is no account and no Bearvil server in between — your keys live in your device's secure storage and your conversations are stored only on your phone.</p>
+        <ul class="checklist">
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.frend.f1">Streaming replies with Markdown, tables and code blocks</span></li>
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.frend.f2">Voice dictation, attachments and chat export</span></li>
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.frend.f3">10 languages, light and dark themes</span></li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn--secondary btn--sm" href="/privacy-policies/frend-ai-pp" target="_blank" rel="noopener" data-i18n="common.privacyPolicy">Privacy policy</a>
+          <a class="btn btn--link btn--sm" href="/contact" data-i18n="common.questions">Questions? Get in touch <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="feature-row__visual feature-visual">
+        <div class="app-spotlight">
+          <img class="app-icon app-icon--lg" src="/assets/apps/frend-ai.png" alt="Frend AI app icon" width="136" height="136" />
+          <span class="app-spotlight__label" data-i18n="work.glance">Privacy at a glance</span>
+        </div>
+        <div class="data-list">
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.frend.r1">Account required</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.frend.r2">Bearvil servers</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.frend.r3">Analytics &amp; ads</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.frend.r4">API keys stored</span><span class="data-list__value" data-i18n="work.frend.r4v">On device (Keychain / Keystore)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Touchy Fingies -->
+    <section class="feature-row feature-row--reverse app-showcase" id="touchy-fingies" aria-labelledby="app-touchy">
+      <div class="feature-row__content">
+        <div class="app-id">
+          <img class="app-icon app-icon--md" src="/assets/apps/touchy-fingies.png" alt="" width="72" height="72" />
+          <div>
+            <h2 class="app-id__name" id="app-touchy">Touchy Fingies</h2>
+            <p class="app-id__meta" data-i18n="app.touchy.meta">Babies &amp; toddlers · Sensory play</p>
+          </div>
+        </div>
+        <div><span class="badge badge--accent" data-i18n="common.comingSoon">Coming soon to Google Play</span></div>
+        <p class="feature-row__title" data-i18n="work.touchy.title">A tap-and-giggle toy for <em>tiny hands</em></p>
+        <p class="feature-row__desc" data-i18n="work.touchy.desc">A fullscreen smash toy for babies and toddlers: every touch bursts into colorful emojis, letters and numbers with playful sounds and gentle haptics. A hidden parent panel keeps little fingers out of the settings.</p>
+        <ul class="checklist">
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.touchy.f1">8 themes and 5 sound sets, all sound made on the device</span></li>
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.touchy.f2">Big letters, numbers and shapes, optionally spoken aloud</span></li>
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.touchy.f3">Parent panel behind a long-press and a math gate</span></li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn--secondary btn--sm" href="/privacy-policies/touchy-fingies-pp" target="_blank" rel="noopener" data-i18n="common.privacyPolicy">Privacy policy</a>
+          <a class="btn btn--link btn--sm" href="/contact" data-i18n="common.questions">Questions? Get in touch <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="feature-row__visual feature-visual">
+        <div class="app-spotlight">
+          <img class="app-icon app-icon--lg" src="/assets/apps/touchy-fingies.png" alt="Touchy Fingies app icon" width="136" height="136" />
+          <span class="app-spotlight__label" data-i18n="work.glance">Privacy at a glance</span>
+        </div>
+        <div class="data-list">
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.touchy.r1">Internet access</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.touchy.r2">Ads</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.touchy.r3">Tracking &amp; analytics</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.touchy.r4">Works offline</span><span class="data-list__value">100%</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="cta-band" aria-labelledby="work-cta">
+      <div class="cta-band__text">
+        <h2 class="cta-band__title" id="work-cta" data-i18n="work.ctaTitle">Have a question or an idea?</h2>
+        <p data-i18n="work.ctaBody">Feedback, feature requests, bug reports — every message is read by the person who builds the apps.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--accent btn--lg" href="/contact" data-i18n="common.getInTouchArrow">Get in touch <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

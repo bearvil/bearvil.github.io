@@ -1,0 +1,418 @@
+/* =========================================================================
+   components.css — visual styles for the shared Web Components defined in
+   assets/components.js (<top-nav>, <main-background>, <home-background>,
+   <site-footer>).
+   Consumes tokens from tokens.css. Link after base.css.
+   UI primitives (buttons, cards, forms, badges) live in ui.css.
+   ========================================================================= */
+
+/* =========================================================================
+   <main-background> — a single flat, subtle color, used on every page
+   except Home. Sits behind all content.
+   ========================================================================= */
+.main-bg {
+  position: fixed; inset: 0; z-index: var(--z-background);
+  pointer-events: none;
+  background: var(--color-bg-tint);
+}
+
+/* =========================================================================
+   <home-background> — animated wave sky behind the Home hero only: a gradient
+   sky one viewport tall, with three wave layers drifting horizontally at
+   different speeds/opacities. The front wave is the page background color,
+   so the hero melts into the sections below it. Each wave is a token color
+   (--wave-*) cut to shape by an SVG mask, so it follows the active theme.
+   Absolutely positioned (scrolls away with the hero). Plain CSS animation.
+   ========================================================================= */
+.home-bg {
+  position: absolute; top: 0; left: 0; right: 0; z-index: var(--z-background);
+  height: 100vh; height: 100svh; min-height: 620px;
+  overflow: hidden; pointer-events: none;
+  background: var(--home-sky);
+}
+
+.home-bg__wave {
+  position: absolute; left: 0; right: 0;
+  -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x;
+  -webkit-mask-size: 1200px 100%; mask-size: 1200px 100%;
+  animation: homeWaveDrift var(--spd, 20s) linear infinite;
+}
+@keyframes homeWaveDrift {
+  from { -webkit-mask-position: 0 0;       mask-position: 0 0; }
+  to   { -webkit-mask-position: -1200px 0; mask-position: -1200px 0; }
+}
+
+/* Layers grow taller toward the back so their crests stack up the bottom of
+   the hero (a layered "wave divider" look). */
+.home-bg__wave--back {
+  bottom: 0; height: 34%;
+  opacity: 0.5;
+  background: var(--wave-back);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,58 Q300,30 600,58 Q900,84 1200,58 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,58 Q300,30 600,58 Q900,84 1200,58 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+}
+.home-bg__wave--mid {
+  bottom: -2px; height: 24%;
+  opacity: 0.7;
+  background: var(--wave-mid);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,52 Q300,26 600,52 Q900,76 1200,52 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,52 Q300,26 600,52 Q900,76 1200,52 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+}
+.home-bg__wave--front {
+  bottom: -2px; height: 14%;
+  background: var(--wave-front);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,48 Q300,24 600,48 Q900,70 1200,48 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,48 Q300,24 600,48 Q900,70 1200,48 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+}
+
+/* =========================================================================
+   <top-nav> — fixed top bar: logo, inline links, privacy dropdown, and a
+   hamburger that opens a fullscreen menu on small screens. Layout ported
+   from the Clearwave template, themed entirely with Bearvil tokens.
+   ========================================================================= */
+
+/* BAR — fixed across the top, always a frosted-glass surface (translucent sand
+   + blur) so it reads as a real bar and the background layer still shows
+   through softly. On scroll it deepens a touch and fades in a subtle hairline
+   bottom border. Height stays constant (no padding change) so the logo/links
+   never shift on scroll. */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-nav-toggle);
+  padding: var(--space-4) 0;
+  background: var(--color-frost);   /* translucent page bg — frosted at rest */
+  box-shadow: 0 1px 0 transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* 0.8s "silk" fade for the deepen-on-scroll (--silk-dur / --silk equivalent). */
+  transition: background 0.8s var(--ease-out-expo),
+              box-shadow 0.8s var(--ease-out-expo),
+              backdrop-filter 0.8s var(--ease-out-expo),
+              -webkit-backdrop-filter 0.8s var(--ease-out-expo);
+}
+.topnav.scrolled {
+  background: var(--color-frost-strong);
+  /* Dark low-alpha hairline (--color-border-frosted) so the line stays visible
+     even where the background layer behind the frost turns teal, unlike a
+     fixed light border which would wash out there. */
+  box-shadow: 0 1px 0 var(--color-border-frosted);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.topnav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-5);
+  max-width: var(--chrome-max); margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* LOGO — transparent mark + wordmark, matches the brand lockup elsewhere. */
+.topnav-logo {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl); font-weight: var(--font-weight-extra);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+.topnav-logo:hover { color: var(--color-text); }
+.topnav-logo img { height: 28px; width: auto; display: block; filter: var(--logo-filter); }
+
+/* DESKTOP LINKS — pill hover. */
+.topnav-links {
+  display: flex; align-items: center; gap: var(--space-2);
+  list-style: none; margin: 0; padding: 0;
+  margin-left: auto;   /* push links right, next to the actions */
+}
+.topnav-links > li { position: relative; }
+.topnav-links a, .topnav-sub-toggle {
+  display: inline-flex; align-items: center; gap: 0.45em;
+  font-family: inherit;
+  font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  transition: color var(--transition-base), background var(--transition-base),
+              box-shadow var(--transition-base);
+}
+.topnav-links a {
+  box-shadow: inset 0 0 0 0 transparent;
+}
+.topnav-links a:hover, .topnav-links a:focus-visible {
+  color: var(--color-primary-strong);
+  background: var(--color-primary-softer);
+  box-shadow: inset 0 0 0 1px var(--color-primary-soft);
+}
+.topnav-links a[aria-current="page"] {
+  color: var(--color-primary-strong);
+  background: var(--color-primary-softer);
+}
+
+/* PRIVACY DROPDOWN — opens on hover/focus (CSS) and click (JS). */
+.topnav-sub-toggle {
+  background: none; border: none; cursor: pointer;
+}
+.topnav-sub-toggle:hover, .topnav-sub-toggle:focus-visible,
+.topnav-has-sub:hover .topnav-sub-toggle,
+.topnav-has-sub:focus-within .topnav-sub-toggle {
+  color: var(--color-primary-strong);
+  background: var(--color-primary-softer);
+}
+.topnav-sub-toggle .chev { flex: none; transition: transform var(--transition-base); }
+.topnav-has-sub:hover .topnav-sub-toggle .chev,
+.topnav-has-sub:focus-within .topnav-sub-toggle .chev,
+.topnav-has-sub.open .topnav-sub-toggle .chev { transform: rotate(180deg); }
+
+.topnav-sub {
+  position: absolute; top: calc(100% + var(--space-2)); right: 0;
+  min-width: 200px;
+  list-style: none; margin: 0; padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+              visibility 0s var(--transition-base);
+}
+/* Invisible bridge across the gap between the toggle and the panel, so moving
+   the mouse onto the items keeps the hover chain and the menu doesn't close. */
+.topnav-sub::before {
+  content: ""; position: absolute;
+  left: 0; right: 0; top: calc(-1 * var(--space-2)); height: var(--space-2);
+}
+.topnav-has-sub:hover .topnav-sub,
+.topnav-has-sub:focus-within .topnav-sub,
+.topnav-has-sub.open .topnav-sub {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+              visibility 0s 0s;
+}
+.topnav-sub li { margin: 0; }
+.topnav-sub a {
+  display: block; white-space: nowrap;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  transition: color var(--transition-base), background var(--transition-base);
+}
+.topnav-sub a:hover, .topnav-sub a:focus-visible {
+  color: var(--color-primary-strong); background: var(--color-primary-softer);
+}
+
+/* ACTIONS — theme toggle (always) + hamburger (mobile only), right-aligned. */
+.topnav-actions { display: flex; align-items: center; gap: var(--space-2); }
+
+/* THEME TOGGLE — round icon button; shows the moon in light theme and the
+   sun in dark theme (the icon is the theme you'd switch TO). */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; padding: 0;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: color var(--transition-base), background var(--transition-base),
+              border-color var(--transition-base);
+}
+.theme-toggle:hover, .theme-toggle:focus-visible {
+  color: var(--color-primary-strong);
+  background: var(--color-primary-softer);
+  border-color: var(--color-primary-soft);
+}
+.theme-toggle__sun { display: none; }
+[data-theme="dark"] .theme-toggle__sun  { display: block; }
+[data-theme="dark"] .theme-toggle__moon { display: none; }
+
+/* LANGUAGE MENU — <lang-switch> (i18n.js): globe + language code button
+   that opens a small list of languages in their native names. */
+lang-switch { position: relative; display: block; }
+.lang-switch__toggle {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  height: 40px; padding: 0 var(--space-3);
+  font-family: inherit; font-size: var(--text-xs); font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: color var(--transition-base), background var(--transition-base),
+              border-color var(--transition-base);
+}
+.lang-switch__toggle:hover, .lang-switch__toggle:focus-visible,
+lang-switch.open .lang-switch__toggle {
+  color: var(--color-primary-strong);
+  background: var(--color-primary-softer);
+  border-color: var(--color-primary-soft);
+}
+.lang-switch__menu {
+  position: absolute; top: calc(100% + var(--space-2)); right: 0; z-index: var(--z-nav-toggle);
+  min-width: 168px;
+  list-style: none; margin: 0; padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+              visibility 0s var(--transition-base);
+}
+lang-switch.open .lang-switch__menu {
+  opacity: 1; visibility: visible; transform: translateY(0);
+  transition: opacity var(--transition-base), transform var(--transition-base), visibility 0s 0s;
+}
+.lang-switch__option {
+  display: block; width: 100%; text-align: left;
+  padding: var(--space-2) var(--space-3);
+  font-family: inherit; font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  background: none; border: 0; border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition-base), background var(--transition-base);
+}
+.lang-switch__option:hover, .lang-switch__option:focus-visible {
+  color: var(--color-primary-strong); background: var(--color-primary-softer);
+}
+.lang-switch__option[aria-current="true"] { color: var(--color-primary-strong); }
+.lang-switch__option[aria-current="true"]::after { content: " ✓"; }
+
+/* HAMBURGER — hidden on desktop, animates into an X when open. */
+.topnav-burger {
+  display: none; flex-direction: column; gap: 5px;
+  width: 30px; padding: 5px; cursor: pointer;
+  background: none; border: none;
+}
+.topnav-burger span {
+  display: block; width: 100%; height: 2px; border-radius: 2px;
+  background: var(--color-text);
+  transition: transform 0.35s var(--ease-out-expo), opacity var(--transition-fast);
+}
+.topnav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.topnav-burger.open span:nth-child(2) { opacity: 0; }
+.topnav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* FULLSCREEN MOBILE MENU. Items list from the top (below the bar) and the menu
+   scrolls if they don't all fit, so every option is always reachable — even on
+   short/narrow viewports. */
+.topnav-mobile {
+  display: none;
+  position: fixed; inset: 0; z-index: var(--z-nav);
+  flex-direction: column; justify-content: flex-start;
+  padding: calc(var(--topnav-h) + var(--space-4)) var(--space-6) var(--space-6);
+  overflow-y: auto;
+  background: var(--color-bg);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--transition-base), visibility 0s var(--transition-base);
+}
+.topnav-mobile.open {
+  opacity: 1; visibility: visible;
+  transition: opacity var(--transition-base), visibility 0s 0s;
+}
+.topnav-mobile a {
+  padding: var(--space-3) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl); font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-base);
+}
+.topnav-mobile a:hover, .topnav-mobile a:focus-visible,
+.topnav-mobile a[aria-current="page"] { color: var(--color-primary-strong); }
+
+/* "Privacy Policies" group heading above its links in the mobile menu. */
+.topnav-mobile-label {
+  margin-top: var(--space-5);
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm); font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-wider); text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+/* RESPONSIVE — swap inline links for the hamburger + fullscreen menu. */
+@media (max-width: 720px) {
+  .topnav-links { display: none; }
+  .topnav-burger { display: flex; }
+  .topnav-inner { padding: 0 var(--space-5); }
+  .topnav-mobile { display: flex; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The bar's frosted background/border/blur fade is a color change, not
+     vestibular motion, so it stays. Only suppress transform-driven movement:
+     the dropdown slide, the chevron rotation, and the hamburger morph. */
+  .topnav-sub, .topnav .chev, .topnav-burger span, .lang-switch__menu { transition: none; }
+}
+
+/* ACCESSIBILITY — reduced motion: stop continuous background motion */
+@media (prefers-reduced-motion: reduce) {
+  .home-bg__wave { animation: none; }
+}
+
+/* =========================================================================
+   <site-footer> — slim frosted footer bar. Mirrors the <top-nav> frosted
+   surface so the nav and footer bookend the page. Tokens only.
+   ========================================================================= */
+site-footer { display: block; position: relative; z-index: var(--z-content); }
+
+.site-footer {
+  background: var(--color-frost);   /* frosted, matches the nav */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* Dark low-alpha hairline (--color-border-frosted) for the top edge — same
+     token as the scrolled nav border, chosen so it stays visible over the
+     background layer regardless of how light or teal it is at this point
+     on the page. */
+  box-shadow: 0 -1px 0 var(--color-border-frosted);
+}
+.site-footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: var(--space-3) var(--space-5);
+  max-width: var(--chrome-max); margin: 0 auto;
+  padding: var(--space-5) var(--space-6) var(--space-4);
+}
+
+.site-footer-brand {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg); font-weight: var(--font-weight-extra);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+.site-footer-brand:hover { color: var(--color-text); }
+.site-footer-brand img { height: 24px; width: auto; display: block; filter: var(--logo-filter); }
+
+.site-footer-links {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+.site-footer-links a {
+  font-size: var(--text-sm); font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  transition: color var(--transition-base);
+}
+.site-footer-links a:hover,
+.site-footer-links a:focus-visible { color: var(--color-primary-strong); }
+.site-footer-links a[aria-current="page"] { color: var(--color-primary-strong); }
+
+/* Hairline divider between the site links and the privacy/email group. */
+.site-footer-sep {
+  width: 1px; height: 1em; background: var(--color-border-strong);
+}
+
+.site-footer-bottom {
+  max-width: var(--chrome-max); margin: 0 auto;
+  /* Left padding adds the logo's ~4px transparent inset (--space-1) on top of
+     the --space-6 gutter, so the © text lines up with the visible logo mark
+     in the row above (not the image's transparent left edge). */
+  padding: 0 var(--space-6) var(--space-5) calc(var(--space-6) + var(--space-1));
+  font-size: var(--text-xs); color: var(--color-text-subtle);
+}
+
+@media (max-width: 720px) {
+  .site-footer-inner { justify-content: center; text-align: center; }
+  .site-footer-links { justify-content: center; }
+  .site-footer-sep { display: none; }
+  /* Centered layout — drop the optical left nudge so the © sits truly centered. */
+  .site-footer-bottom { text-align: center; padding-left: var(--space-6); }
+}

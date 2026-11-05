@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dicty — Privacy Policy</title>
+<meta name="description" content="Privacy Policy for Dicty. No account, no internet, no data collected — your dictionaries stay on your device.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Dicty „Paper” paleta (izvor: dicty/docs/DESIGN.md). Samostalna stranica — iznimka od CSS sustava sitea. */
+  :root {
+    --ink-0: #122131; --ink-1: #1E3A57; --ink-2: #2B5D8A;
+    --paper: #F7F5F0; --paper-2: #ECE6D9; --text: #1B2430; --muted: #4f5b69;
+    --accent: #2B5D8A; --accent-soft: rgba(43, 93, 138, 0.10); --line: rgba(27, 36, 48, 0.10); --sky: #8AB8E6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(135deg, var(--ink-0) 0%, var(--ink-1) 48%, var(--ink-2) 100%) fixed;
+    min-height: 100vh; color: var(--text); padding: 24px 16px 64px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; }
+  header { text-align: center; padding: 24px 0 22px; color: var(--paper); }
+  .logo {
+    width: 76px; height: 76px; margin: 0 auto; border-radius: 18px; position: relative;
+    background: linear-gradient(160deg, #FBFAF6, var(--paper) 55%, #F1ECE2); box-shadow: 0 10px 28px rgba(0,0,0,.3);
+    display: flex; align-items: center; justify-content: center; font-family: Lora, Georgia, serif; font-weight: 700; font-size: 44px; color: var(--text);
+  }
+  .logo::after { content: ''; position: absolute; top: 0; right: 0; width: 20px; height: 20px; border-top-right-radius: 18px;
+    background: linear-gradient(225deg, transparent 50%, var(--paper-2) 50%); }
+  h1 { font-family: Lora, Georgia, serif; font-size: 34px; margin-top: 14px; letter-spacing: -0.5px; }
+  h1 span { color: var(--sky); }
+  .subtitle { font-weight: 700; font-size: 14px; letter-spacing: 0.4px; color: rgba(247,245,240,.82); margin-top: 4px; }
+  .lang-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 16px; }
+  .lang-btn {
+    font: inherit; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+    color: rgba(247,245,240,.9); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+  }
+  .lang-btn.active { color: var(--sky); border-color: var(--sky); background: rgba(138,184,230,.14); }
+  .card { background: var(--paper); border-radius: 22px; padding: 28px 24px; box-shadow: 0 18px 50px rgba(0,0,0,.28); line-height: 1.6; }
+  .tldr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px; }
+  .badge { text-align: center; padding: 12px 6px; border-radius: 16px; background: var(--accent-soft); border: 1px solid var(--line); }
+  .badge b { display: block; font-size: 15px; color: var(--accent); }
+  .badge span { font-size: 12px; font-weight: 700; color: var(--muted); }
+  .short { padding: 14px 16px; border-radius: 16px; background: #fff; border: 1px solid var(--line); }
+  h2 { font-family: Lora, Georgia, serif; font-size: 19px; margin: 24px 0 8px; color: var(--text); }
+  p, li { color: var(--muted); font-size: 15.5px; }
+  p + p { margin-top: 8px; }
+  ul { padding-left: 20px; margin-top: 6px; }
+  li { margin: 4px 0; }
+  strong { color: var(--text); }
+  a { color: var(--accent); font-weight: 700; }
+  .contact { padding: 14px 16px; border-radius: 16px; background: var(--accent-soft); border: 1px solid var(--line); }
+  .updated, footer { text-align: center; color: rgba(247,245,240,.75); font-size: 13px; margin-top: 18px; }
+  @media (max-width: 420px) { .card { padding: 22px 18px; } .badge { padding: 10px 4px; } .badge span { font-size: 11px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo" aria-hidden="true">D</div>
+    <h1>Dict<span>y</span></h1>
+    <p class="subtitle" id="subtitle">Privacy Policy</p>
+    <div class="lang-row" role="group" aria-label="Language" id="lang-row"></div>
+  </header>
+
+  <main class="card" id="policy-card"><!-- filled by script --></main>
+
+  <p class="updated"><span id="updated-label">Last updated:</span> October 31, 2026 · v1.0</p>
+  <footer>Dicty — Bearvil</footer>
+</div>
+
+<script>
+  // Prijevodi prate jezike aplikacije (src/i18n/locales): en, hr, de, es, fr, it, pt, ru, ja, zh.
+  // Izvor istine: dicty/docs/privacy/dicty-pp.html — objavljena kopija: bearvil.github.io/privacy-policies/dicty-pp.html (identična).
+  const EMAIL = 'bearvil.info@gmail.com';
+  const I18N = {
+    en: {
+      btn: 'English', subtitle: 'Privacy Policy', updated: 'Last updated:',
+      badges: [['0', 'data collected'], ['No', 'account'], ['No', 'internet']],
+      short: '<strong>The short version:</strong> Dicty collects no personal data. There is no account, no server, no analytics, no ads and no tracking. Your dictionaries are stored only on your device and leave it only if you export a backup yourself.',
+      sections: [
+        ['About the app', '<p>Dicty is a personal dictionary: you create dictionaries, add words with meanings, pronunciation, examples and notes, and link related words. It works entirely offline.</p>'],
+        ['Data we collect', '<p><strong>None.</strong> We (Bearvil) never receive any data from Dicty. The app has no account or sign-in, no analytics, crash-reporting or advertising SDKs, and no server. On Android the app does not even have the internet permission, so it technically cannot send anything.</p>'],
+        ['Data stored on your device', '<p>Everything you enter is saved in a database inside the app\'s private storage on your device:</p><ul><li>dictionaries (name, description, type, languages) and words (term, meaning, pronunciation, part of speech, example, notes), links between words, your custom types and items in the trash;</li><li>settings: theme, app language, vibration on/off and the date of your last backup.</li></ul><p>Dicty stores no name, e-mail, location, contacts, device identifiers or advertising ID. In the web version the data is kept in your browser\'s storage for this site and can be removed by the browser.</p>'],
+        ['When data leaves your device', '<p>Only when you choose to: <strong>Export backup</strong> creates a file with all your dictionaries and you decide where it goes (share sheet, Files, a drive…). <strong>Restore from backup</strong> reads only the file you pick. Dicty does not use Android\'s automatic cloud backup. On iOS, app data can be included in your own iCloud or computer backup of the device if you use that feature.</p>'],
+        ['Pronunciation', '<p>Pronouncing a word uses the speech synthesizer built into your device or browser. Dicty itself sends the word nowhere. On the web, Dicty uses only voices that run locally in your browser and does not pronounce the word if no such voice exists. On Android, the speech engine is a separate system app with its own settings and privacy policy.</p>'],
+        ['Permissions', '<p>The only permission Dicty uses on Android is <strong>vibration</strong>, for subtle haptic feedback. You can turn it off in Settings.</p>'],
+        ['Deleting your data', '<p>Deleting a dictionary or word moves it to the trash; deleting it from the trash removes it permanently. Uninstalling the app (or clearing its data in system settings) deletes everything. On the web, clearing this site\'s data in your browser does the same. Backup files you exported are yours to delete.</p>'],
+        ['Children', '<p>Dicty is not directed at children and collects no data from anyone.</p>'],
+        ['Changes to this policy', '<p>If this policy changes, the new version will be published at this address with an updated date.</p>'],
+      ],
+      contactTitle: 'Contact', contact: 'Questions about privacy? Write to us:',
+    },
+    hr: {
+      btn: 'Hrvatski', subtitle: 'Pravila privatnosti', updated: 'Zadnja izmjena:',
+      badges: [['0', 'prikupljenih podataka'], ['Bez', 'računa'], ['Bez', 'interneta']],
+      short: '<strong>Ukratko:</strong> Dicty ne prikuplja nikakve osobne podatke. Nema računa, poslužitelja, analitike, oglasa ni praćenja. Tvoji rječnici spremaju se samo na tvom uređaju i napuštaju ga samo ako sam izvezeš backup.',
+      sections: [
+        ['O aplikaciji', '<p>Dicty je osobni rječnik: stvaraš rječnike, dodaješ riječi sa značenjem, izgovorom, primjerima i bilješkama te povezuješ srodne riječi. Radi potpuno bez interneta.</p>'],
+        ['Podaci koje prikupljamo', '<p><strong>Nikakvi.</strong> Mi (Bearvil) ne primamo nikakve podatke iz Dictyja. Aplikacija nema račun ni prijavu, nema SDK-ove za analitiku, prijavu rušenja ni oglase i nema poslužitelj. Na Androidu nema ni dozvolu za internet, pa tehnički ne može ništa poslati.</p>'],
+        ['Podaci na tvom uređaju', '<p>Sve što uneseš sprema se u bazu u privatnom prostoru aplikacije na tvom uređaju:</p><ul><li>rječnici (naziv, opis, vrsta, jezici) i riječi (pojam, značenje, izgovor, vrsta riječi, primjer, bilješke), veze među riječima, tvoje vrste i stavke u košu;</li><li>postavke: tema, jezik aplikacije, vibracija i datum zadnjeg backupa.</li></ul><p>Dicty ne sprema ime, e-mail, lokaciju, kontakte, identifikatore uređaja ni oglašivački ID. U web inačici podaci su u spremištu preglednika za ovu stranicu i preglednik ih može ukloniti.</p>'],
+        ['Kad podaci napuštaju uređaj', '<p>Samo kad to ti odlučiš: <strong>Izvezi backup</strong> stvara datoteku sa svim rječnicima, a ti biraš kamo ide (dijeljenje, Datoteke, disk…). <strong>Vrati iz backupa</strong> čita samo datoteku koju odabereš. Dicty ne koristi automatski Android backup u oblak. Na iOS-u podaci aplikacije mogu biti dio tvog iCloud ili računalnog backupa uređaja ako ga koristiš.</p>'],
+        ['Izgovor', '<p>Izgovor riječi koristi sintetizator govora ugrađen u uređaj ili preglednik. Dicty sam riječ nikamo ne šalje. Na webu Dicty koristi samo glasove koji rade lokalno u pregledniku i ne izgovara riječ ako takvog glasa nema. Na Androidu je govorni engine zasebna aplikacija sustava sa svojim postavkama i pravilima privatnosti.</p>'],
+        ['Dozvole', '<p>Jedina dozvola koju Dicty koristi na Androidu je <strong>vibracija</strong>, za lagan haptički odziv. Možeš je isključiti u Postavkama.</p>'],
+        ['Brisanje podataka', '<p>Brisanje rječnika ili riječi premješta ih u koš, a brisanje iz koša trajno ih uklanja. Deinstalacija aplikacije (ili brisanje njezinih podataka u postavkama sustava) briše sve. Na webu isto čini brisanje podataka ove stranice u pregledniku. Izvezene datoteke backupa brišeš sam.</p>'],
+        ['Djeca', '<p>Dicty nije namijenjen djeci i ni od koga ne prikuplja podatke.</p>'],
+        ['Izmjene ovih pravila', '<p>Ako se pravila promijene, nova verzija bit će objavljena na ovoj adresi s novim datumom.</p>'],
+      ],
+      contactTitle: 'Kontakt', contact: 'Pitanja o privatnosti? Piši nam:',
+    },
+    de: {
+      btn: 'Deutsch', subtitle: 'Datenschutzerklärung', updated: 'Zuletzt aktualisiert:',
+      badges: [['0', 'Daten erfasst'], ['Kein', 'Konto'], ['Kein', 'Internet']],
+      short: '<strong>Kurz gesagt:</strong> Dicty erfasst keine personenbezogenen Daten. Kein Konto, kein Server, keine Analyse, keine Werbung, kein Tracking. Deine Wörterbücher bleiben auf deinem Gerät und verlassen es nur, wenn du selbst ein Backup exportierst.',
+      sections: [
+        ['Über die App', '<p>Dicty ist ein persönliches Wörterbuch: Du legst Wörterbücher an, fügst Wörter mit Bedeutung, Aussprache, Beispielen und Notizen hinzu und verknüpfst verwandte Wörter. Die App funktioniert vollständig offline.</p>'],
+        ['Welche Daten wir erfassen', '<p><strong>Keine.</strong> Wir (Bearvil) erhalten keinerlei Daten aus Dicty. Die App hat kein Konto, keine Anmeldung, keine Analyse-, Absturz- oder Werbe-SDKs und keinen Server. Unter Android hat sie nicht einmal die Internet-Berechtigung und kann technisch nichts senden.</p>'],
+        ['Daten auf deinem Gerät', '<p>Alles, was du eingibst, wird in einer Datenbank im privaten Speicher der App gespeichert:</p><ul><li>Wörterbücher (Name, Beschreibung, Typ, Sprachen) und Wörter (Begriff, Bedeutung, Aussprache, Wortart, Beispiel, Notizen), Verknüpfungen, eigene Typen und Einträge im Papierkorb;</li><li>Einstellungen: Design, App-Sprache, Vibration und Datum des letzten Backups.</li></ul><p>Dicty speichert keinen Namen, keine E-Mail, keinen Standort, keine Kontakte, keine Gerätekennungen und keine Werbe-ID. In der Web-Version liegen die Daten im Browserspeicher dieser Website und können vom Browser entfernt werden.</p>'],
+        ['Wann Daten dein Gerät verlassen', '<p>Nur wenn du es willst: <strong>Backup exportieren</strong> erstellt eine Datei mit allen Wörterbüchern, und du entscheidest, wohin sie geht. <strong>Aus Backup wiederherstellen</strong> liest nur die Datei, die du auswählst. Dicty nutzt kein automatisches Android-Cloud-Backup. Unter iOS können App-Daten Teil deines eigenen iCloud- oder Computer-Backups des Geräts sein, wenn du diese Funktion nutzt.</p>'],
+        ['Aussprache', '<p>Die Aussprache nutzt die Sprachausgabe deines Geräts oder Browsers. Dicty selbst sendet das Wort nirgendwohin. Im Web verwendet Dicty nur Stimmen, die lokal im Browser laufen, und spricht nichts aus, wenn keine solche Stimme vorhanden ist. Unter Android ist die Sprachausgabe eine eigene System-App mit eigenen Einstellungen und Datenschutzbestimmungen.</p>'],
+        ['Berechtigungen', '<p>Die einzige Berechtigung unter Android ist <strong>Vibration</strong> für dezentes haptisches Feedback. Du kannst sie in den Einstellungen ausschalten.</p>'],
+        ['Daten löschen', '<p>Gelöschte Wörterbücher oder Wörter landen im Papierkorb; dort gelöscht, sind sie endgültig entfernt. Das Deinstallieren der App (oder Löschen ihrer Daten in den Systemeinstellungen) löscht alles. Im Web genügt es, die Website-Daten im Browser zu löschen. Exportierte Backup-Dateien löschst du selbst.</p>'],
+        ['Kinder', '<p>Dicty richtet sich nicht an Kinder und erfasst von niemandem Daten.</p>'],
+        ['Änderungen', '<p>Ändert sich diese Erklärung, wird die neue Version unter dieser Adresse mit neuem Datum veröffentlicht.</p>'],
+      ],
+      contactTitle: 'Kontakt', contact: 'Fragen zum Datenschutz? Schreib uns:',
+    },
+    es: {
+      btn: 'Español', subtitle: 'Política de privacidad', updated: 'Última actualización:',
+      badges: [['0', 'datos recopilados'], ['Sin', 'cuenta'], ['Sin', 'internet']],
+      short: '<strong>En resumen:</strong> Dicty no recopila datos personales. No hay cuenta, servidor, analítica, anuncios ni seguimiento. Tus diccionarios se guardan solo en tu dispositivo y solo salen de él si tú exportas una copia.',
+      sections: [
+        ['Sobre la app', '<p>Dicty es un diccionario personal: creas diccionarios, añades palabras con significado, pronunciación, ejemplos y notas, y enlazas palabras relacionadas. Funciona totalmente sin conexión.</p>'],
+        ['Datos que recopilamos', '<p><strong>Ninguno.</strong> Nosotros (Bearvil) no recibimos ningún dato de Dicty. La app no tiene cuenta ni inicio de sesión, ni SDK de analítica, informes de errores o publicidad, ni servidor. En Android ni siquiera tiene permiso de internet, así que técnicamente no puede enviar nada.</p>'],
+        ['Datos en tu dispositivo', '<p>Todo lo que introduces se guarda en una base de datos en el almacenamiento privado de la app:</p><ul><li>diccionarios (nombre, descripción, tipo, idiomas) y palabras (término, significado, pronunciación, categoría, ejemplo, notas), enlaces, tus tipos y los elementos de la papelera;</li><li>ajustes: tema, idioma de la app, vibración y fecha de la última copia.</li></ul><p>Dicty no guarda nombre, correo, ubicación, contactos, identificadores del dispositivo ni ID de publicidad. En la versión web los datos se guardan en el almacenamiento del navegador para este sitio y el navegador puede borrarlos.</p>'],
+        ['Cuándo salen los datos', '<p>Solo cuando tú lo decides: <strong>Exportar copia</strong> crea un archivo con todos tus diccionarios y tú eliges a dónde va. <strong>Restaurar copia</strong> lee solo el archivo que elijas. Dicty no usa la copia automática en la nube de Android. En iOS, los datos de la app pueden formar parte de tu copia de iCloud o del ordenador si usas esa función.</p>'],
+        ['Pronunciación', '<p>La pronunciación usa el sintetizador de voz de tu dispositivo o navegador. Dicty no envía la palabra a ningún sitio. En la web, Dicty usa solo voces que funcionan localmente en el navegador y no pronuncia la palabra si no existe ninguna. En Android, el motor de voz es una app del sistema con su propia configuración y política de privacidad.</p>'],
+        ['Permisos', '<p>El único permiso que usa Dicty en Android es la <strong>vibración</strong>, para una respuesta háptica sutil. Puedes desactivarla en Ajustes.</p>'],
+        ['Borrar tus datos', '<p>Borrar un diccionario o palabra lo mueve a la papelera; borrarlo de la papelera lo elimina definitivamente. Desinstalar la app (o borrar sus datos en los ajustes del sistema) lo borra todo. En la web, borrar los datos de este sitio en el navegador hace lo mismo. Las copias exportadas las borras tú.</p>'],
+        ['Niños', '<p>Dicty no está dirigido a niños y no recopila datos de nadie.</p>'],
+        ['Cambios en esta política', '<p>Si esta política cambia, la nueva versión se publicará en esta dirección con una fecha actualizada.</p>'],
+      ],
+      contactTitle: 'Contacto', contact: '¿Preguntas sobre privacidad? Escríbenos:',
+    },
+    fr: {
+      btn: 'Français', subtitle: 'Politique de confidentialité', updated: 'Dernière mise à jour :',
+      badges: [['0', 'donnée collectée'], ['Aucun', 'compte'], ['Pas', "d'internet"]],
+      short: '<strong>En bref :</strong> Dicty ne collecte aucune donnée personnelle. Pas de compte, de serveur, d’analyse, de publicité ni de suivi. Vos dictionnaires restent sur votre appareil et n’en sortent que si vous exportez vous-même une sauvegarde.',
+      sections: [
+        ["À propos de l'app", '<p>Dicty est un dictionnaire personnel : vous créez des dictionnaires, ajoutez des mots avec leur sens, leur prononciation, des exemples et des notes, et reliez les mots apparentés. Il fonctionne entièrement hors ligne.</p>'],
+        ['Données collectées', '<p><strong>Aucune.</strong> Nous (Bearvil) ne recevons aucune donnée de Dicty. L’app n’a ni compte ni connexion, ni SDK d’analyse, de rapport de plantage ou de publicité, ni serveur. Sur Android, elle n’a même pas la permission internet et ne peut donc techniquement rien envoyer.</p>'],
+        ['Données sur votre appareil', '<p>Tout ce que vous saisissez est enregistré dans une base de données dans l’espace privé de l’app :</p><ul><li>dictionnaires (nom, description, type, langues) et mots (terme, sens, prononciation, catégorie, exemple, notes), liens, vos types et la corbeille ;</li><li>réglages : thème, langue, vibration et date de la dernière sauvegarde.</li></ul><p>Dicty n’enregistre ni nom, ni e-mail, ni position, ni contacts, ni identifiants d’appareil, ni identifiant publicitaire. Dans la version web, les données sont stockées par le navigateur pour ce site et peuvent être effacées par celui-ci.</p>'],
+        ['Quand les données quittent l’appareil', '<p>Uniquement si vous le décidez : <strong>Exporter la sauvegarde</strong> crée un fichier avec tous vos dictionnaires et vous choisissez sa destination. <strong>Restaurer</strong> lit uniquement le fichier choisi. Dicty n’utilise pas la sauvegarde automatique d’Android dans le cloud. Sur iOS, les données de l’app peuvent faire partie de votre sauvegarde iCloud ou ordinateur si vous l’utilisez.</p>'],
+        ['Prononciation', '<p>La prononciation utilise la synthèse vocale de votre appareil ou navigateur. Dicty n’envoie le mot nulle part. Sur le web, Dicty n’utilise que des voix locales du navigateur et ne prononce rien s’il n’y en a pas. Sur Android, le moteur vocal est une app système avec ses propres réglages et sa propre politique de confidentialité.</p>'],
+        ['Autorisations', '<p>La seule autorisation utilisée sur Android est la <strong>vibration</strong>, pour un léger retour haptique. Vous pouvez la désactiver dans les Réglages.</p>'],
+        ['Supprimer vos données', '<p>Supprimer un dictionnaire ou un mot le place dans la corbeille ; le supprimer de la corbeille l’efface définitivement. Désinstaller l’app (ou effacer ses données dans les réglages du système) supprime tout. Sur le web, effacer les données de ce site dans le navigateur a le même effet. Les sauvegardes exportées sont à supprimer par vous.</p>'],
+        ['Enfants', '<p>Dicty ne s’adresse pas aux enfants et ne collecte de données auprès de personne.</p>'],
+        ['Modifications', '<p>Si cette politique change, la nouvelle version sera publiée à cette adresse avec une date mise à jour.</p>'],
+      ],
+      contactTitle: 'Contact', contact: 'Des questions sur la confidentialité ? Écrivez-nous :',
+    },
+    it: {
+      btn: 'Italiano', subtitle: 'Informativa sulla privacy', updated: 'Ultimo aggiornamento:',
+      badges: [['0', 'dati raccolti'], ['Nessun', 'account'], ['Niente', 'internet']],
+      short: '<strong>In breve:</strong> Dicty non raccoglie dati personali. Nessun account, server, analisi, pubblicità o tracciamento. I tuoi dizionari restano sul dispositivo e ne escono solo se esporti tu un backup.',
+      sections: [
+        ["Informazioni sull'app", '<p>Dicty è un dizionario personale: crei dizionari, aggiungi parole con significato, pronuncia, esempi e note e colleghi le parole affini. Funziona completamente offline.</p>'],
+        ['Dati che raccogliamo', '<p><strong>Nessuno.</strong> Noi (Bearvil) non riceviamo alcun dato da Dicty. L’app non ha account né accesso, nessun SDK di analisi, segnalazione crash o pubblicità, e nessun server. Su Android non ha nemmeno il permesso internet, quindi tecnicamente non può inviare nulla.</p>'],
+        ['Dati sul tuo dispositivo', '<p>Tutto ciò che inserisci è salvato in un database nello spazio privato dell’app:</p><ul><li>dizionari (nome, descrizione, tipo, lingue) e parole (termine, significato, pronuncia, categoria, esempio, note), collegamenti, i tuoi tipi e il cestino;</li><li>impostazioni: tema, lingua, vibrazione e data dell’ultimo backup.</li></ul><p>Dicty non salva nome, email, posizione, contatti, identificativi del dispositivo né ID pubblicitario. Nella versione web i dati sono nello spazio del browser per questo sito e il browser può rimuoverli.</p>'],
+        ['Quando i dati lasciano il dispositivo', '<p>Solo se lo decidi tu: <strong>Esporta backup</strong> crea un file con tutti i dizionari e scegli tu dove inviarlo. <strong>Ripristina</strong> legge solo il file che scegli. Dicty non usa il backup automatico di Android nel cloud. Su iOS i dati dell’app possono far parte del tuo backup iCloud o su computer, se lo usi.</p>'],
+        ['Pronuncia', '<p>La pronuncia usa la sintesi vocale del dispositivo o del browser. Dicty non invia la parola da nessuna parte. Sul web, Dicty usa solo voci locali del browser e non pronuncia nulla se non ce ne sono. Su Android il motore vocale è un’app di sistema con impostazioni e informativa proprie.</p>'],
+        ['Autorizzazioni', '<p>L’unica autorizzazione usata su Android è la <strong>vibrazione</strong>, per un leggero feedback aptico. Puoi disattivarla nelle Impostazioni.</p>'],
+        ['Eliminare i dati', '<p>Eliminare un dizionario o una parola li sposta nel cestino; eliminarli dal cestino li rimuove definitivamente. Disinstallare l’app (o cancellarne i dati nelle impostazioni di sistema) elimina tutto. Sul web basta cancellare i dati di questo sito nel browser. I backup esportati li elimini tu.</p>'],
+        ['Bambini', '<p>Dicty non è rivolto ai bambini e non raccoglie dati da nessuno.</p>'],
+        ['Modifiche', '<p>Se questa informativa cambia, la nuova versione sarà pubblicata a questo indirizzo con una data aggiornata.</p>'],
+      ],
+      contactTitle: 'Contatti', contact: 'Domande sulla privacy? Scrivici:',
+    },
+    pt: {
+      btn: 'Português', subtitle: 'Política de privacidade', updated: 'Última atualização:',
+      badges: [['0', 'dados recolhidos'], ['Sem', 'conta'], ['Sem', 'internet']],
+      short: '<strong>Em resumo:</strong> o Dicty não recolhe dados pessoais. Não há conta, servidor, análises, anúncios nem rastreamento. Os seus dicionários ficam só no dispositivo e só saem dele se exportar uma cópia.',
+      sections: [
+        ['Sobre a app', '<p>O Dicty é um dicionário pessoal: cria dicionários, adiciona palavras com significado, pronúncia, exemplos e notas e liga palavras relacionadas. Funciona totalmente offline.</p>'],
+        ['Dados que recolhemos', '<p><strong>Nenhuns.</strong> Nós (Bearvil) não recebemos quaisquer dados do Dicty. A app não tem conta nem início de sessão, nem SDKs de análise, relatórios de falhas ou publicidade, nem servidor. No Android nem sequer tem permissão de internet, por isso tecnicamente não pode enviar nada.</p>'],
+        ['Dados no seu dispositivo', '<p>Tudo o que introduz é guardado numa base de dados no armazenamento privado da app:</p><ul><li>dicionários (nome, descrição, tipo, idiomas) e palavras (termo, significado, pronúncia, classe, exemplo, notas), ligações, os seus tipos e a reciclagem;</li><li>definições: tema, idioma, vibração e data da última cópia.</li></ul><p>O Dicty não guarda nome, email, localização, contactos, identificadores do dispositivo nem ID de publicidade. Na versão web os dados ficam no armazenamento do navegador para este site e o navegador pode removê-los.</p>'],
+        ['Quando os dados saem do dispositivo', '<p>Só quando decide: <strong>Exportar cópia</strong> cria um ficheiro com todos os dicionários e escolhe para onde vai. <strong>Restaurar cópia</strong> lê apenas o ficheiro escolhido. O Dicty não usa a cópia automática do Android na nuvem. No iOS, os dados da app podem fazer parte da sua cópia do iCloud ou do computador, se a usar.</p>'],
+        ['Pronúncia', '<p>A pronúncia usa o sintetizador de voz do dispositivo ou do navegador. O Dicty não envia a palavra para lado nenhum. Na web, usa apenas vozes locais do navegador e não pronuncia se não existir nenhuma. No Android, o motor de voz é uma app do sistema com definições e política de privacidade próprias.</p>'],
+        ['Permissões', '<p>A única permissão usada no Android é a <strong>vibração</strong>, para um feedback háptico subtil. Pode desativá-la nas Definições.</p>'],
+        ['Apagar os seus dados', '<p>Apagar um dicionário ou palavra move-o para a reciclagem; apagá-lo da reciclagem remove-o definitivamente. Desinstalar a app (ou limpar os seus dados nas definições do sistema) apaga tudo. Na web, limpar os dados deste site no navegador faz o mesmo. As cópias exportadas são apagadas por si.</p>'],
+        ['Crianças', '<p>O Dicty não se destina a crianças e não recolhe dados de ninguém.</p>'],
+        ['Alterações', '<p>Se esta política mudar, a nova versão será publicada neste endereço com data atualizada.</p>'],
+      ],
+      contactTitle: 'Contacto', contact: 'Dúvidas sobre privacidade? Escreva-nos:',
+    },
+    ru: {
+      btn: 'Русский', subtitle: 'Политика конфиденциальности', updated: 'Последнее обновление:',
+      badges: [['0', 'собранных данных'], ['Без', 'аккаунта'], ['Без', 'интернета']],
+      short: '<strong>Коротко:</strong> Dicty не собирает персональные данные. Нет аккаунта, сервера, аналитики, рекламы и отслеживания. Ваши словари хранятся только на устройстве и покидают его, только если вы сами экспортируете резервную копию.',
+      sections: [
+        ['О приложении', '<p>Dicty — личный словарь: вы создаёте словари, добавляете слова со значением, произношением, примерами и заметками и связываете родственные слова. Приложение полностью работает офлайн.</p>'],
+        ['Какие данные мы собираем', '<p><strong>Никаких.</strong> Мы (Bearvil) не получаем никаких данных из Dicty. В приложении нет аккаунта и входа, нет SDK аналитики, отчётов о сбоях или рекламы и нет сервера. На Android у него даже нет разрешения на интернет, поэтому технически оно ничего не может отправить.</p>'],
+        ['Данные на устройстве', '<p>Всё, что вы вводите, сохраняется в базе данных в закрытом хранилище приложения:</p><ul><li>словари (название, описание, тип, языки) и слова (термин, значение, произношение, часть речи, пример, заметки), связи, ваши типы и корзина;</li><li>настройки: тема, язык, вибрация и дата последней резервной копии.</li></ul><p>Dicty не хранит имя, e-mail, местоположение, контакты, идентификаторы устройства и рекламный ID. В веб-версии данные находятся в хранилище браузера для этого сайта, и браузер может их удалить.</p>'],
+        ['Когда данные покидают устройство', '<p>Только по вашему решению: <strong>Экспорт резервной копии</strong> создаёт файл со всеми словарями, и вы выбираете, куда его отправить. <strong>Восстановление</strong> читает только выбранный файл. Dicty не использует автоматическое облачное резервное копирование Android. На iOS данные приложения могут входить в вашу резервную копию iCloud или компьютера, если вы её используете.</p>'],
+        ['Произношение', '<p>Для произношения используется синтезатор речи устройства или браузера. Dicty никуда не отправляет слово. В веб-версии Dicty использует только локальные голоса браузера и не произносит слово, если такого голоса нет. На Android речевой движок — отдельное системное приложение со своими настройками и политикой конфиденциальности.</p>'],
+        ['Разрешения', '<p>Единственное разрешение на Android — <strong>вибрация</strong> для лёгкого тактильного отклика. Её можно отключить в настройках.</p>'],
+        ['Удаление данных', '<p>Удалённый словарь или слово попадают в корзину; удаление из корзины стирает их навсегда. Удаление приложения (или очистка его данных в настройках системы) стирает всё. В веб-версии то же делает очистка данных сайта в браузере. Экспортированные копии вы удаляете сами.</p>'],
+        ['Дети', '<p>Dicty не предназначен для детей и ни у кого не собирает данные.</p>'],
+        ['Изменения', '<p>Если политика изменится, новая версия будет опубликована по этому адресу с новой датой.</p>'],
+      ],
+      contactTitle: 'Контакты', contact: 'Вопросы о конфиденциальности? Напишите нам:',
+    },
+    ja: {
+      btn: '日本語', subtitle: 'プライバシーポリシー', updated: '最終更新日:',
+      badges: [['0', '収集データ'], ['なし', 'アカウント'], ['なし', 'インターネット']],
+      short: '<strong>概要:</strong> Dicty は個人データを一切収集しません。アカウント、サーバー、分析、広告、トラッキングはありません。辞書はお使いの端末にのみ保存され、ご自身でバックアップを書き出した場合にのみ端末の外に出ます。',
+      sections: [
+        ['アプリについて', '<p>Dicty は個人用の辞書アプリです。辞書を作り、意味・発音・例文・メモ付きで単語を追加し、関連語をつなげられます。完全にオフラインで動作します。</p>'],
+        ['収集するデータ', '<p><strong>ありません。</strong> 私たち（Bearvil）は Dicty からいかなるデータも受け取りません。アカウントやログイン、分析・クラッシュレポート・広告の SDK、サーバーはありません。Android ではインターネット権限すらないため、技術的に何も送信できません。</p>'],
+        ['端末に保存されるデータ', '<p>入力した内容はすべて、アプリ専用の領域にあるデータベースに保存されます。</p><ul><li>辞書（名前・説明・種類・言語）と単語（語・意味・発音・品詞・例文・メモ）、単語のつながり、独自の種類、ごみ箱の項目</li><li>設定：テーマ、アプリの言語、バイブレーション、最後のバックアップ日時</li></ul><p>名前、メール、位置情報、連絡先、端末識別子、広告 ID は保存しません。Web 版ではデータはこのサイト用のブラウザーの保存領域にあり、ブラウザーが削除する場合があります。</p>'],
+        ['データが端末の外に出るとき', '<p>ご自身で選んだときだけです。<strong>バックアップを書き出す</strong>とすべての辞書を含むファイルが作られ、送り先はご自身で選びます。<strong>バックアップから復元</strong>は選んだファイルだけを読み込みます。Dicty は Android の自動クラウドバックアップを使いません。iOS では、iCloud やコンピューターへの端末バックアップを使っている場合、アプリのデータが含まれることがあります。</p>'],
+        ['発音', '<p>発音には端末またはブラウザーの音声合成を使います。Dicty 自体が単語をどこかへ送ることはありません。Web 版ではブラウザー内で動く音声のみを使い、該当する音声がない場合は発音しません。Android の音声エンジンは独自の設定とプライバシーポリシーを持つシステムアプリです。</p>'],
+        ['権限', '<p>Android で使う権限は、控えめな触覚フィードバックのための<strong>バイブレーション</strong>だけです。設定でオフにできます。</p>'],
+        ['データの削除', '<p>辞書や単語を削除するとごみ箱に移り、ごみ箱から削除すると完全に消去されます。アプリのアンインストール（またはシステム設定でのデータ消去）ですべて削除されます。Web 版ではブラウザーでこのサイトのデータを消去すると同様です。書き出したバックアップファイルはご自身で削除してください。</p>'],
+        ['お子さまについて', '<p>Dicty は子ども向けではなく、誰からもデータを収集しません。</p>'],
+        ['ポリシーの変更', '<p>本ポリシーを変更する場合は、このアドレスで日付を更新して公開します。</p>'],
+      ],
+      contactTitle: 'お問い合わせ', contact: 'プライバシーに関するご質問はこちらへ:',
+    },
+    zh: {
+      btn: '中文', subtitle: '隐私政策', updated: '最后更新：',
+      badges: [['0', '收集的数据'], ['无', '账户'], ['无', '网络']],
+      short: '<strong>简而言之：</strong>Dicty 不收集任何个人数据。没有账户、服务器、分析、广告或追踪。你的词典只保存在你的设备上，只有在你自己导出备份时才会离开设备。',
+      sections: [
+        ['关于应用', '<p>Dicty 是个人词典：你可以创建词典，添加带有释义、发音、例句和笔记的单词，并关联相关词。应用完全离线运行。</p>'],
+        ['我们收集的数据', '<p><strong>没有。</strong>我们（Bearvil）不会从 Dicty 收到任何数据。应用没有账户或登录，没有分析、崩溃报告或广告 SDK，也没有服务器。在 Android 上它甚至没有联网权限，因此技术上无法发送任何内容。</p>'],
+        ['保存在设备上的数据', '<p>你输入的所有内容都保存在应用私有存储中的数据库里：</p><ul><li>词典（名称、描述、类型、语言）和单词（词条、释义、发音、词性、例句、笔记）、单词关联、自定义类型以及回收站中的项目；</li><li>设置：主题、应用语言、振动以及上次备份日期。</li></ul><p>Dicty 不保存姓名、邮箱、位置、联系人、设备标识符或广告 ID。网页版的数据保存在浏览器为本站提供的存储中，浏览器可能会将其清除。</p>'],
+        ['数据何时离开设备', '<p>只有在你选择时：<strong>导出备份</strong>会生成包含所有词典的文件，由你决定发送到哪里。<strong>从备份恢复</strong>只读取你选择的文件。Dicty 不使用 Android 的自动云备份。在 iOS 上，如果你使用 iCloud 或电脑备份，应用数据可能包含在设备备份中。</p>'],
+        ['发音', '<p>发音使用设备或浏览器内置的语音合成。Dicty 本身不会把单词发送到任何地方。网页版只使用浏览器本地运行的语音，若没有则不朗读。在 Android 上，语音引擎是独立的系统应用，有其自己的设置和隐私政策。</p>'],
+        ['权限', '<p>Dicty 在 Android 上唯一使用的权限是<strong>振动</strong>，用于轻微的触感反馈，可在设置中关闭。</p>'],
+        ['删除数据', '<p>删除词典或单词会将其移入回收站；从回收站删除则永久移除。卸载应用（或在系统设置中清除其数据）会删除所有内容。网页版中，在浏览器中清除本站数据效果相同。导出的备份文件需由你自行删除。</p>'],
+        ['儿童', '<p>Dicty 并非面向儿童，也不会向任何人收集数据。</p>'],
+        ['政策变更', '<p>如本政策有变更，新版本将在此地址发布并更新日期。</p>'],
+      ],
+      contactTitle: '联系方式', contact: '对隐私有疑问？请写信给我们：',
+    },
+  };
+  const LANG_ORDER = ['en', 'hr', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'ja', 'zh'];
+  const card = document.getElementById('policy-card');
+  const langRow = document.getElementById('lang-row');
+
+  LANG_ORDER.forEach((key) => {
+    const b = document.createElement('button');
+    b.className = 'lang-btn';
+    b.dataset.lang = key;
+    b.textContent = I18N[key].btn;
+    b.addEventListener('click', () => setLang(key));
+    langRow.appendChild(b);
+  });
+
+  function render(lang) {
+    const d = I18N[lang];
+    let html = '<div class="tldr">';
+    d.badges.forEach(([big, cap]) => { html += `<div class="badge"><b>${big}</b><span>${cap}</span></div>`; });
+    html += `</div><p class="short">${d.short}</p>`;
+    d.sections.forEach(([title, body]) => { html += `<h2>${title}</h2>${body}`; });
+    html += `<h2>${d.contactTitle}</h2><div class="contact"><p>${d.contact}<br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>`;
+    card.innerHTML = html;
+  }
+
+  function setLang(lang) {
+    if (!I18N[lang]) lang = 'en';
+    render(lang);
+    document.getElementById('subtitle').textContent = I18N[lang].subtitle;
+    document.getElementById('updated-label').textContent = I18N[lang].updated;
+    document.querySelectorAll('.lang-btn').forEach((b) => b.classList.toggle('active', b.dataset.lang === lang));
+    document.documentElement.lang = lang;
+  }
+
+  const nav = (navigator.language || 'en').toLowerCase().slice(0, 2);
+  setLang(LANG_ORDER.includes(nav) ? nav : 'en');
+</script>
+</body>
+</html>

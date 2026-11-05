@@ -1,0 +1,49 @@
+/* =========================================================================
+   index.css — landing page. The hero fills the first screen above the
+   <home-background> waves; the sections below (app tiles, principles, CTA
+   band) are shared patterns from patterns.css. This file only holds what is
+   unique to the Home hero.
+   Consumes tokens from tokens.css.
+   ========================================================================= */
+
+/* The hero sits flush under the nav, so drop the default top padding. */
+.home { padding-top: 0; gap: var(--space-8); }
+
+/* HERO — one viewport tall (minus the nav), content centered in the upper
+   part so the wave band at the bottom of <home-background> stays clear. */
+.hero {
+  min-height: calc(100svh - var(--topnav-h) - var(--space-6));
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--space-4);
+  padding-bottom: 16vh;
+  text-align: center;
+}
+
+.hero__logo {
+  width: clamp(4.5rem, 12vw, 7rem); height: auto;
+  margin-bottom: var(--space-2);
+  filter: var(--logo-filter);
+}
+
+.hero__title {
+  max-width: 16ch;
+  font-size: var(--text-display);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 1.05;
+}
+.hero__title em { font-style: italic; color: var(--color-accent-strong); }
+
+.hero__sub {
+  max-width: 50ch;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.hero__actions { justify-content: center; margin-top: var(--space-3); }
+
+/* Mobile — full-width, equal CTAs stacked. */
+@media (max-width: 720px) {
+  .home { gap: var(--space-8); }
+  .hero { padding-bottom: 18vh; }
+  .hero__actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 360px; }
+}

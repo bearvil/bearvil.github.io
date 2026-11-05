@@ -1,0 +1,348 @@
+/* =========================================================================
+   tokens.css — THE single source of truth for the design system.
+
+   Every other stylesheet (base.css, components.css, ui.css, patterns.css,
+   page CSS) and the styleguide consume ONLY these CSS custom properties —
+   no raw hex/rgba values live outside this file.
+
+   Link FIRST in <head>, before base.css:
+     <link rel="stylesheet" href="/assets/css/tokens.css" />
+
+   Structure:
+     1. Primitive palette      — raw color scales (never used by components)
+     2. Semantic tokens (light) — what components use; the default theme
+     3. Dark theme              — re-points ONLY semantic tokens
+     4–10. Type, space, radius, motion, z-index, layout — theme-independent
+
+   Theming: /assets/theme.js sets <html data-theme="light|dark"> before the
+   first paint (stored choice → system preference → light). Without JS the
+   site renders the light theme. To retheme, edit sections 2 and 3 only.
+
+   Theme: "Caribbean / beach" — turquoise sea + pastel orange sun on warm sand
+   neutrals (light), or on deep night-lagoon teal (dark).
+   Privacy-policy pages are standalone and do NOT use this file.
+   ========================================================================= */
+
+:root {
+  /* ---------------------------------------------------------------------
+     1. PRIMITIVE PALETTE — raw scales. Components never reference these
+     directly; they go through the semantic tokens in sections 2 and 3.
+     --------------------------------------------------------------------- */
+
+  /* Turquoise — primary / the Caribbean sea */
+  --turquoise-50:  #ebfafc;
+  --turquoise-100: #ccf2f5;
+  --turquoise-200: #9ee5eb;
+  --turquoise-300: #65d4de;
+  --turquoise-400: #33bfce;
+  --turquoise-500: #18a8ba;
+  --turquoise-600: #1090a0;
+  --turquoise-700: #0d7583;   /* solid fills under white text (AA) */
+  --turquoise-800: #0b5b66;
+  --turquoise-900: #083f47;
+
+  /* Orange — accent / the sun */
+  --orange-50:  #fff4ec;
+  --orange-100: #ffe6d3;
+  --orange-200: #ffcfac;
+  --orange-300: #ffb783;
+  --orange-400: #ff9e5c;   /* CTA fill */
+  --orange-500: #fb8742;
+  --orange-600: #e5702c;
+
+  /* Sand — warm light neutrals */
+  --sand-50:  #fdfcf9;
+  --sand-100: #fbf9f4;   /* light page background */
+  --sand-200: #f2eee6;
+  --sand-300: #dce6e1;
+  --sand-400: #b3b9b2;
+
+  /* Ink — deep teal-tinted text */
+  --ink-900: #143a40;
+  --ink-700: #2c565b;
+  --ink-500: #5a7a7e;
+  --ink-300: #8aa3a5;
+
+  /* Night — deep lagoon neutrals for the dark theme */
+  --night-950: #08171a;   /* dark page background */
+  --night-900: #0d2125;   /* raised surface */
+  --night-800: #132c31;   /* panel */
+  --night-700: #1d3b40;   /* border */
+  --night-600: #2a4f55;   /* strong border */
+  --mist-100:  #e6f1f0;   /* dark-theme text */
+  --mist-300:  #a6bfc0;   /* dark-theme muted text */
+  --mist-500:  #73908f;   /* dark-theme subtle text */
+
+  /* Semantic hues */
+  --green-500: #3dae6b;
+  --green-700: #237a47;
+  --green-300: #7fd6a2;
+  --amber-500: #f2b441;
+  --amber-700: #946514;
+  --amber-300: #f6cd7c;
+  --coral-500: #e5564b;
+  --coral-700: #b23529;
+  --coral-300: #f19087;
+
+  --white: #ffffff;
+  --black: #000000;
+
+  /* ---------------------------------------------------------------------
+     2. SEMANTIC TOKENS — LIGHT THEME (default). Components use only these.
+     --------------------------------------------------------------------- */
+  color-scheme: light;
+
+  /* Surfaces */
+  --color-bg:            var(--sand-100);
+  --color-bg-tint:       var(--turquoise-50);    /* <main-background> wash */
+  --color-surface:       var(--white);
+  --color-surface-2:     var(--sand-200);
+  --color-frost:         rgba(251, 249, 244, 0.6);   /* nav/footer at rest */
+  --color-frost-strong:  rgba(251, 249, 244, 0.88);  /* nav once scrolled */
+
+  /* Borders */
+  --color-border-subtle: #eaf1ef;
+  --color-border:        var(--sand-300);
+  --color-border-strong: var(--sand-400);
+  /* Dark low-alpha hairline for frosted surfaces over the background: stays
+     visible over both the light and the teal ends of the gradient. */
+  --color-border-frosted: rgba(20, 58, 64, 0.16);
+
+  /* Text */
+  --color-text:         var(--ink-900);
+  --color-text-muted:   var(--ink-500);
+  --color-text-subtle:  var(--ink-300);
+  --color-text-on-fill: var(--white);
+
+  /* Primary (turquoise) */
+  --color-primary:            var(--turquoise-500);   /* borders, focus, icons */
+  --color-primary-hover:      var(--turquoise-600);
+  --color-primary-strong:     var(--turquoise-700);   /* primary-colored TEXT */
+  --color-primary-fill:       var(--turquoise-700);   /* solid bg under white text */
+  --color-primary-fill-hover: var(--turquoise-800);
+  --color-primary-soft:       var(--turquoise-100);   /* tinted backgrounds */
+  --color-primary-softer:     var(--turquoise-50);
+
+  /* Accent (orange) */
+  --color-accent:        var(--orange-400);
+  --color-accent-hover:  var(--orange-500);
+  --color-accent-strong: var(--orange-600);   /* <em> accents in headings */
+  --color-accent-soft:   var(--orange-100);
+  --color-accent-text:   var(--ink-900);      /* dark text on orange CTA */
+
+  /* Links */
+  --color-link:       var(--turquoise-700);
+  --color-link-hover: var(--turquoise-800);
+
+  /* Focus */
+  --color-focus: var(--turquoise-500);
+
+  /* States — base hue, tinted background, readable text */
+  --color-success:      var(--green-500);
+  --color-success-soft: rgba(61, 174, 107, 0.16);
+  --color-success-text: var(--green-700);
+  --color-warning:      var(--amber-500);
+  --color-warning-soft: rgba(242, 180, 65, 0.20);
+  --color-warning-text: var(--amber-700);
+  --color-danger:       var(--coral-500);
+  --color-danger-soft:  rgba(229, 86, 75, 0.16);
+  --color-danger-text:  var(--coral-700);
+  --color-danger-ring:  rgba(229, 86, 75, 0.30);
+  --color-info:         var(--turquoise-500);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg,
+    var(--turquoise-800) 0%, var(--turquoise-600) 55%, var(--turquoise-400) 100%);
+  --gradient-sun: linear-gradient(135deg,
+    var(--orange-600) 0%, var(--orange-500) 60%, var(--turquoise-500) 130%);
+  --gradient-meter: linear-gradient(90deg, var(--turquoise-500), var(--turquoise-300));
+
+  /* <home-background> — sky gradient + three wave layers (back → front) */
+  --home-sky: linear-gradient(160deg,
+    var(--sand-50) 0%, var(--turquoise-50) 45%,
+    var(--turquoise-200) 75%, var(--turquoise-400) 100%);
+  --wave-back:  var(--turquoise-200);
+  --wave-mid:   var(--turquoise-400);
+  --wave-front: var(--color-bg);   /* blends the hero into the page */
+
+  /* Brand mark — the logo PNG is drawn for light backgrounds */
+  --logo-filter: none;
+
+  /* Shadows — tight contact layer + soft ambient layer */
+  --shadow-color: 20, 58, 64;   /* RGB triplet, used with alpha below */
+  --shadow-sm: 0 1px 1px rgba(var(--shadow-color), 0.04), 0 3px 8px rgba(var(--shadow-color), 0.06);
+  --shadow-md: 0 2px 3px rgba(var(--shadow-color), 0.05), 0 10px 24px rgba(var(--shadow-color), 0.10);
+  --shadow-lg: 0 4px 6px rgba(var(--shadow-color), 0.06), 0 24px 56px rgba(var(--shadow-color), 0.16);
+  --shadow-focus: 0 0 0 3px rgba(24, 168, 186, 0.35);
+
+  /* Component aliases */
+  --btn-primary-bg:       var(--color-primary-fill);
+  --btn-primary-bg-hover: var(--color-primary-fill-hover);
+  --btn-primary-text:     var(--color-text-on-fill);
+  --btn-accent-bg:        var(--color-accent);
+  --btn-accent-bg-hover:  var(--color-accent-hover);
+  --btn-accent-text:      var(--color-accent-text);
+}
+
+/* ---------------------------------------------------------------------
+   3. DARK THEME — re-points semantic tokens only. Everything else follows.
+   --------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg:            var(--night-950);
+  --color-bg-tint:       var(--night-950);
+  --color-surface:       var(--night-900);
+  --color-surface-2:     var(--night-800);
+  --color-frost:         rgba(8, 23, 26, 0.6);
+  --color-frost-strong:  rgba(8, 23, 26, 0.88);
+
+  --color-border-subtle:  #17333a;
+  --color-border:         var(--night-700);
+  --color-border-strong:  var(--night-600);
+  --color-border-frosted: rgba(166, 191, 192, 0.16);
+
+  --color-text:         var(--mist-100);
+  --color-text-muted:   var(--mist-300);
+  --color-text-subtle:  var(--mist-500);
+  --color-text-on-fill: var(--white);
+
+  --color-primary:            var(--turquoise-400);
+  --color-primary-hover:      var(--turquoise-300);
+  --color-primary-strong:     var(--turquoise-300);
+  --color-primary-fill:       var(--turquoise-700);
+  --color-primary-fill-hover: var(--turquoise-600);
+  --color-primary-soft:       rgba(51, 191, 206, 0.16);
+  --color-primary-softer:     rgba(51, 191, 206, 0.08);
+
+  --color-accent:        var(--orange-400);
+  --color-accent-hover:  var(--orange-300);
+  --color-accent-strong: var(--orange-400);
+  --color-accent-soft:   rgba(255, 158, 92, 0.14);
+  --color-accent-text:   var(--ink-900);
+
+  --color-link:       var(--turquoise-300);
+  --color-link-hover: var(--turquoise-200);
+
+  --color-focus: var(--turquoise-400);
+
+  --color-success-soft: rgba(61, 174, 107, 0.18);
+  --color-success-text: var(--green-300);
+  --color-warning-soft: rgba(242, 180, 65, 0.16);
+  --color-warning-text: var(--amber-300);
+  --color-danger-soft:  rgba(229, 86, 75, 0.18);
+  --color-danger-text:  var(--coral-300);
+  --color-danger-ring:  rgba(229, 86, 75, 0.40);
+
+  --gradient-brand: linear-gradient(135deg,
+    var(--turquoise-200) 0%, var(--turquoise-300) 50%, var(--turquoise-500) 100%);
+  --gradient-sun: linear-gradient(135deg,
+    var(--orange-300) 0%, var(--orange-400) 60%, var(--turquoise-300) 130%);
+
+  --home-sky: linear-gradient(160deg,
+    var(--night-950) 0%, var(--night-900) 45%,
+    var(--turquoise-900) 80%, var(--turquoise-800) 100%);
+  --wave-back:  var(--turquoise-800);
+  --wave-mid:   var(--turquoise-700);
+  --wave-front: var(--color-bg);
+
+  /* Re-colors the navy/teal line mark into a light mint on dark surfaces. */
+  --logo-filter: invert(1) hue-rotate(180deg) brightness(1.15);
+
+  --shadow-color: 0, 0, 0;
+  --shadow-sm: 0 1px 1px rgba(var(--shadow-color), 0.30), 0 3px 8px rgba(var(--shadow-color), 0.25);
+  --shadow-md: 0 2px 3px rgba(var(--shadow-color), 0.30), 0 10px 24px rgba(var(--shadow-color), 0.35);
+  --shadow-lg: 0 4px 6px rgba(var(--shadow-color), 0.30), 0 24px 56px rgba(var(--shadow-color), 0.50);
+  --shadow-focus: 0 0 0 3px rgba(51, 191, 206, 0.45);
+}
+
+:root {
+  /* ---------------------------------------------------------------------
+     4. TYPOGRAPHY — Inter everywhere, ~1.25 modular scale.
+     --------------------------------------------------------------------- */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: var(--font-sans);
+  --font-heading: var(--font-sans);
+
+  --text-xs:   0.75rem;    /* 12 */
+  --text-sm:   0.875rem;   /* 14 */
+  --text-base: 1rem;       /* 16 */
+  --text-lg:   1.125rem;   /* 18 */
+  --text-xl:   1.25rem;    /* 20 */
+  --text-2xl:  1.5rem;     /* 24 */
+  --text-3xl:  2rem;       /* 32 */
+  --text-4xl:  2.5rem;     /* 40 */
+  --text-5xl:  3.25rem;    /* 52 */
+  --text-display: clamp(2.5rem, 6vw, 4.5rem);   /* page hero headline */
+
+  --font-weight-normal:   400;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+  --font-weight-extra:    800;
+
+  --leading-tight:  1.15;
+  --leading-snug:   1.3;
+  --leading-normal: 1.6;
+
+  --tracking-tight:  -0.01em;
+  --tracking-tighter: -0.025em;   /* large display headings */
+  --tracking-normal: 0;
+  --tracking-wide:   0.08em;
+  --tracking-wider:  0.22em;      /* uppercase nav / labels */
+
+  /* ---------------------------------------------------------------------
+     5. SPACING — 4px base scale.
+     --------------------------------------------------------------------- */
+  --space-1:  0.25rem;   /* 4  */
+  --space-2:  0.5rem;    /* 8  */
+  --space-3:  0.75rem;   /* 12 */
+  --space-4:  1rem;      /* 16 */
+  --space-5:  1.5rem;    /* 24 */
+  --space-6:  2rem;      /* 32 */
+  --space-7:  3rem;      /* 48 */
+  --space-8:  4rem;      /* 64 */
+  --space-9:  6rem;      /* 96 */
+
+  /* ---------------------------------------------------------------------
+     6. RADIUS.
+     --------------------------------------------------------------------- */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-icon: 22.5%;   /* app-icon "squircle" corner, relative to size */
+  --radius-pill: 999px;
+
+  /* ---------------------------------------------------------------------
+     7. MOTION.
+     --------------------------------------------------------------------- */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---------------------------------------------------------------------
+     8. Z-INDEX.
+     --------------------------------------------------------------------- */
+  --z-background: 0;
+  --z-content:    10;
+  --z-overlay:    30;
+  --z-nav:        35;
+  --z-nav-toggle: 40;
+  --z-toast:      50;
+
+  /* ---------------------------------------------------------------------
+     9. LAYOUT — shared layout constants.
+     --------------------------------------------------------------------- */
+  --topnav-h: 72px;        /* fixed <top-nav> bar height */
+  --content-max: 1080px;   /* .page-sections column */
+  --chrome-max: 1160px;    /* nav / footer inner width */
+}
+
+/* CJK font stacks — Inter has no Chinese/Japanese glyphs, so name the native
+   system fonts for each script (keeps Latin words in Inter). */
+:root:lang(zh) {
+  --font-sans: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+}
+:root:lang(ja) {
+  --font-sans: 'Inter', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', 'Meiryo', system-ui, sans-serif;
+}
