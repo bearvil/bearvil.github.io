@@ -15,7 +15,7 @@ site that GitHub Pages can serve as-is.
 
 ```
 index.html            # Home — wave hero, app tiles, principles, CTA band
-work.html             # Our apps — Frend AI and Touchy Fingies showcases
+work.html             # Our apps — Frend AI, Touchy Fingies and Dicty showcases
 about.html            # About — studio story, values, FAQ
 contact.html          # Contact — click-to-copy email, privacy links
 404.html              # Custom not-found page (served for any missing path)
@@ -37,7 +37,7 @@ assets/
     contact.css       # Contact-page styles
     404.css           # 404-page styles
     styleguide.css    # Style-guide layout
-  apps/               # App icons (256×256 PNG): frend-ai.png, touchy-fingies.png
+  apps/               # App icons (256×256 PNG): frend-ai.png, touchy-fingies.png, dicty.png
   og-image.png        # Social preview image (1200×630)
   favicon.png         # Favicon (256×256 PNG)
   Bearvil-logo*.png   # Logo assets

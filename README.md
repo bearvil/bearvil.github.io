@@ -7,7 +7,7 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 ```
 .
 ├── index.html                          # Home — wave hero, app tiles, principles, CTA band
-├── work.html                           # Our apps — Frend AI and Touchy Fingies showcases (#frend-ai, #touchy-fingies)
+├── work.html                           # Our apps — Frend AI, Touchy Fingies and Dicty showcases (#frend-ai, #touchy-fingies, #dicty)
 ├── about.html                          # About — one-person studio story, values, FAQ
 ├── contact.html                        # Contact — click-to-copy email, FAQ cross-link, privacy-policy links
 ├── 404.html                            # Custom 404 page, served for all missing paths
@@ -19,7 +19,7 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 │   │   ├── boot.js                     # Picks the language before first paint (sync, after theme.js)
 │   │   ├── i18n.js                     # Applies translations, <lang-switch> menu (defer, after components.js)
 │   │   └── hr.js de.js es.js it.js zh.js ja.js  # Dictionaries (English is the HTML itself)
-│   ├── apps/                           # App icons, 256×256 PNG (frend-ai.png, touchy-fingies.png)
+│   ├── apps/                           # App icons, 256×256 PNG (frend-ai.png, touchy-fingies.png, dicty.png)
 │   ├── og-image.png                    # Social preview image, 1200×630
 │   ├── favicon.png                     # Favicon, 256×256 PNG
 │   ├── Bearvil-logo*.png               # Logo assets
@@ -35,7 +35,8 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 │       └── styleguide.css              # Style-guide layout
 ├── privacy-policies/
 │   ├── touchy-fingies-pp.html          # Privacy policy for the Touchy Fingies app
-│   └── frend-ai-pp.html                # Privacy policy for the Frend AI app
+│   ├── frend-ai-pp.html                # Privacy policy for the Frend AI app
+│   └── dicty-pp.html                   # Privacy policy for the Dicty app
 ├── docs/                               # Detailed documentation (see below)
 ├── serve.py                            # Dev-only local preview (mimics GitHub Pages routing)
 ├── .gitignore                          # Ignores macOS and editor files
@@ -89,6 +90,7 @@ To add a page, follow [docs/guides/adding-a-page.md](docs/guides/adding-a-page.m
 | `/` | `index.html` | Live |
 | `/privacy-policies/touchy-fingies-pp` | `privacy-policies/touchy-fingies-pp.html` | Live |
 | `/privacy-policies/frend-ai-pp` | `privacy-policies/frend-ai-pp.html` | Live |
+| `/privacy-policies/dicty-pp` | `privacy-policies/dicty-pp.html` | Live |
 | `/contact` | `contact.html` | Live |
 | `/work` | `work.html` | Live |
 | `/about` | `about.html` | Live |
@@ -101,7 +103,7 @@ GitHub Pages serves extensionless URLs (`/privacy-policies/touchy-fingies-pp` �
 - **Light and dark theme** — follows the system setting by default; the nav toggle stores an explicit choice. Set before the first paint, so there is no theme flash. See [theming](docs/theming.md).
 - **Seven languages** — English, Croatian, German, Spanish, Italian, Chinese and Japanese, picked from the browser languages or the nav menu, translated client-side with no English flash. Only English is indexed by search engines. See [i18n](docs/i18n.md).
 - **Token-driven design system** — "Caribbean / beach" palette (turquoise + pastel orange on warm sand, or on deep night teal in dark), Inter type. Every color and scale is a CSS custom property in one file (`tokens.css`). A living [`styleguide.html`](styleguide.html) renders every token and component.
-- **Real app pages** — Home tiles and Work showcases for Frend AI and Touchy Fingies, with app icons, "privacy at a glance" facts and privacy-policy links.
+- **Real app pages** — Home tiles and Work showcases for Frend AI, Touchy Fingies and Dicty, with app icons, "privacy at a glance" facts and privacy-policy links.
 - **Top navigation** — fixed top bar with inline links, a *Privacy Policies* dropdown, the theme toggle, and a fullscreen hamburger menu on small screens.
 - **Click-to-copy email** — falls back to a regular `mailto:` link when the Clipboard API is unavailable.
 - **Social previews** — Open Graph and `summary_large_image` Twitter cards with a shared 1200×630 image on the public pages.

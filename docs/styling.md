@@ -131,7 +131,7 @@ Reuse these rather than re-declaring rules per page:
 | `.split-section` (+ `__aside`/`__main`) | patterns.css | Static aside + content two-column layout (doesn't alternate); used for FAQs and long-form intros. |
 | `.app-icon` (+ `--md`/`--lg`) | patterns.css | Store-style rounded-square app icon (56 / 72 / 136px, corner `--radius-icon`). Icons live in `assets/apps/`. |
 | `.app-id` (+ `__name`/`__meta`) | patterns.css | Icon + app name + category line; the header of an app tile or showcase. |
-| `.app-showcase` | patterns.css | Add to a `.feature-row` that presents one app (Work page); gives the anchor (`#frend-ai`, `#touchy-fingies`) scroll clearance under the fixed nav. |
+| `.app-showcase` | patterns.css | Add to a `.feature-row` that presents one app (Work page); gives the anchor (`#frend-ai`, `#touchy-fingies`, `#dicty`) scroll clearance under the fixed nav. |
 | `.app-spotlight` (+ `__label`) | patterns.css | Big icon on a soft radial glow inside the `.feature-visual` panel, above the "privacy at a glance" `.data-list`. |
 | `.app-tile` (+ `__body`/`__more`) | patterns.css | Compact whole-card link to an app (Home). Use with `.card .card--interactive .card--link`. |
 | `.card__index` | patterns.css | Small accent number ("01") above a card title — the Home principles. |
