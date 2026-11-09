@@ -98,7 +98,7 @@
   "about.q5": "機能のリクエストや不具合の報告はできますか？",
   "about.a5": "もちろんです。<a href=\"mailto:bearvil.info@gmail.com\">bearvil.info@gmail.com</a> までメールしてください。すべてのメッセージに目を通しています。小さなスタジオだからこそ、良いアイデアにはすばやく対応できます。",
   "about.q6": "プライバシーポリシーはどこで確認できますか？",
-  "about.a6": "こちらです：<a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>、<a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a>、<a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a>。各ページ上部の「プライバシー」メニューからもご覧いただけます。",
+  "about.a6": "こちらです：<a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>、<a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a>、<a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a>、<a href=\"/privacy-policies/bookmark-tab-title-pp\" target=\"_blank\" rel=\"noopener\">Bookmark-Tab Title</a>。各ページ上部の「プライバシー」メニューからもご覧いただけます。",
   "about.metaTitle": "私たちについて — Bearvil",
   "about.metaDesc": "Bearvil は、ひとりで運営する独立系アプリスタジオです。私たちのこと、ものづくりの原則、よくある質問への回答をご紹介します。",
   "contact.eyebrow": "お問い合わせ",

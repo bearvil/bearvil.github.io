@@ -98,7 +98,7 @@
   "about.q5": "我可以提出功能建议或报告 bug 吗？",
   "about.a5": "随时欢迎。请发邮件至 <a href=\"mailto:bearvil.info@gmail.com\">bearvil.info@gmail.com</a>——每一条消息都会被阅读，小工作室遇到好点子也能迅速行动。",
   "about.q6": "在哪里可以找到你们的隐私政策？",
-  "about.a6": "在这里：<a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>、<a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a> 和 <a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a>。你也可以在每个页面顶部的“隐私政策”菜单中找到它们。",
+  "about.a6": "在这里：<a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>、<a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a>、<a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a> 和 <a href=\"/privacy-policies/bookmark-tab-title-pp\" target=\"_blank\" rel=\"noopener\">Bookmark-Tab Title</a>。你也可以在每个页面顶部的“隐私政策”菜单中找到它们。",
   "about.metaTitle": "关于 — Bearvil",
   "about.metaDesc": "Bearvil 是一家独立的一人应用工作室。了解我们是谁、我们坚持的原则，以及常见问题的解答。",
   "contact.eyebrow": "联系",

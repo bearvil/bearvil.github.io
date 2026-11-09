@@ -36,7 +36,9 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 ├── privacy-policies/
 │   ├── touchy-fingies-pp.html          # Privacy policy for the Touchy Fingies app
 │   ├── frend-ai-pp.html                # Privacy policy for the Frend AI app
-│   └── dicty-pp.html                   # Privacy policy for the Dicty app
+│   ├── dicty-pp.html                   # Privacy policy for the Dicty app
+│   ├── bookmark-tab-title-pp.html      # Privacy policy for the Bookmark-Tab Title browser extension
+│   └── bookmark-tab-title-icon.png     # Extension icon used by that policy page
 ├── docs/                               # Detailed documentation (see below)
 ├── serve.py                            # Dev-only local preview (mimics GitHub Pages routing)
 ├── .gitignore                          # Ignores macOS and editor files
@@ -91,6 +93,7 @@ To add a page, follow [docs/guides/adding-a-page.md](docs/guides/adding-a-page.m
 | `/privacy-policies/touchy-fingies-pp` | `privacy-policies/touchy-fingies-pp.html` | Live |
 | `/privacy-policies/frend-ai-pp` | `privacy-policies/frend-ai-pp.html` | Live |
 | `/privacy-policies/dicty-pp` | `privacy-policies/dicty-pp.html` | Live |
+| `/privacy-policies/bookmark-tab-title-pp` | `privacy-policies/bookmark-tab-title-pp.html` | Live |
 | `/contact` | `contact.html` | Live |
 | `/work` | `work.html` | Live |
 | `/about` | `about.html` | Live |

@@ -98,7 +98,7 @@
   "about.q5": "Kann ich eine Funktion vorschlagen oder einen Fehler melden?",
   "about.a5": "Jederzeit. Schreib an <a href=\"mailto:bearvil.info@gmail.com\">bearvil.info@gmail.com</a> — jede Nachricht wird gelesen, und ein kleines Studio kann eine gute Idee schnell umsetzen.",
   "about.q6": "Wo finde ich eure Datenschutzerklärungen?",
-  "about.a6": "Hier: <a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>, <a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a> und <a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a>. Du findest sie außerdem oben auf jeder Seite im Menü „Datenschutz“.",
+  "about.a6": "Hier: <a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>, <a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a>, <a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a> und <a href=\"/privacy-policies/bookmark-tab-title-pp\" target=\"_blank\" rel=\"noopener\">Bookmark-Tab Title</a>. Du findest sie außerdem oben auf jeder Seite im Menü „Datenschutz“.",
   "about.metaTitle": "Über uns — Bearvil",
   "about.metaDesc": "Bearvil ist ein unabhängiges App-Studio aus einer Person. Wer wir sind, nach welchen Prinzipien wir arbeiten, und Antworten auf häufige Fragen.",
   "contact.eyebrow": "Kontakt",

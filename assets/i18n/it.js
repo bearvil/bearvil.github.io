@@ -98,7 +98,7 @@
   "about.q5": "Posso richiedere una funzione o segnalare un bug?",
   "about.a5": "Certo. Scrivi a <a href=\"mailto:bearvil.info@gmail.com\">bearvil.info@gmail.com</a>: ogni messaggio viene letto, e un piccolo studio può muoversi in fretta su una buona idea.",
   "about.q6": "Dove trovo le vostre informative sulla privacy?",
-  "about.a6": "Qui: <a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>, <a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a> e <a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a>. Le trovi anche nel menu Privacy in cima a ogni pagina.",
+  "about.a6": "Qui: <a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>, <a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a>, <a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a> e <a href=\"/privacy-policies/bookmark-tab-title-pp\" target=\"_blank\" rel=\"noopener\">Bookmark-Tab Title</a>. Le trovi anche nel menu Privacy in cima a ogni pagina.",
   "about.metaTitle": "Chi siamo — Bearvil",
   "about.metaDesc": "Bearvil è uno studio di app indipendente fatto da una sola persona. Chi siamo, i principi che seguiamo e le risposte alle domande più comuni.",
   "contact.eyebrow": "Contatti",

@@ -98,7 +98,7 @@
   "about.q5": "Mogu li predložiti značajku ili prijaviti grešku?",
   "about.a5": "Uvijek. Piši na <a href=\"mailto:bearvil.info@gmail.com\">bearvil.info@gmail.com</a> — svaku poruku pročitamo, a mali studio može brzo pretočiti dobru ideju u djelo.",
   "about.q6": "Gdje mogu pronaći vaše politike privatnosti?",
-  "about.a6": "Ovdje: <a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>, <a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a> i <a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a>. Nalaze se i u izborniku Privatnost na vrhu svake stranice.",
+  "about.a6": "Ovdje: <a href=\"/privacy-policies/frend-ai-pp\" target=\"_blank\" rel=\"noopener\">Frend AI</a>, <a href=\"/privacy-policies/touchy-fingies-pp\" target=\"_blank\" rel=\"noopener\">Touchy Fingies</a>, <a href=\"/privacy-policies/dicty-pp\" target=\"_blank\" rel=\"noopener\">Dicty</a> i <a href=\"/privacy-policies/bookmark-tab-title-pp\" target=\"_blank\" rel=\"noopener\">Bookmark-Tab Title</a>. Nalaze se i u izborniku Privatnost na vrhu svake stranice.",
   "about.metaTitle": "O nama — Bearvil",
   "about.metaDesc": "Bearvil je neovisni studio za aplikacije koji vodi jedna osoba. Tko smo, po kojim načelima radimo i odgovori na česta pitanja.",
   "contact.eyebrow": "Kontakt",

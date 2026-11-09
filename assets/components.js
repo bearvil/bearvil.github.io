@@ -40,6 +40,7 @@ const PRIVACY_LINKS = [
   { href: '/privacy-policies/touchy-fingies-pp', label: 'Touchy Fingies' },
   { href: '/privacy-policies/frend-ai-pp',       label: 'Frend AI' },
   { href: '/privacy-policies/dicty-pp',          label: 'Dicty' },
+  { href: '/privacy-policies/bookmark-tab-title-pp', label: 'Bookmark-Tab Title' },
 ];
 
 /* Theme toggle icons — the moon shows in light theme (switch to dark) and the
