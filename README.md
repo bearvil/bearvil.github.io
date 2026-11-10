@@ -1,69 +1,91 @@
-# Bearvil — bearvil.github.io
+<div align="center">
 
-Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at **https://bearvil.github.io**.
+<img src="assets/Bearvil-logo-transparent.png" width="160" height="160" alt="Bearvil logo">
+
+# Bearvil
+
+**Calm, private software from an independent studio.**
+
+The source of the official Bearvil website: the studio's projects, an about page, contact details and the privacy policies of the published apps. A plain static site on GitHub Pages, with no build step.
+
+[![Website](https://img.shields.io/badge/website-bearvil.github.io-0B4F58)](https://bearvil.github.io)
+![GitHub Pages](https://img.shields.io/badge/hosted%20on-GitHub%20Pages-5EEAD4)
+![No build step](https://img.shields.io/badge/build-none-FB8742)
+![Languages](https://img.shields.io/badge/languages-7-0B4F58)
+
+Light and dark theme · Seven languages · No tracking
+
+</div>
+
+## What's here
+
+- **Home, Projects, About and Contact** pages sharing one navigation, footer, theme and language menu.
+- **Standalone privacy policy pages** for each published project.
+- **A token-driven design system** with a living style guide at [`/styleguide`](https://bearvil.github.io/styleguide) (internal, `noindex`, not linked from the navigation).
+- **Plain HTML, CSS and JavaScript.** No framework, no bundler, no dependencies beyond Google Fonts.
+
+## Features
+
+- **Light and dark theme.** Follows the system setting by default; the navigation toggle stores an explicit choice. The theme is set before the first paint, so there is no flash. See [theming](docs/theming.md).
+- **Seven languages.** English, Croatian, German, Spanish, Italian, Chinese and Japanese, picked from the browser languages or the navigation menu and translated client-side with no English flash. Only English is indexed by search engines. See [i18n](docs/i18n.md).
+- **Token-driven design.** A "Caribbean / beach" palette (turquoise and pastel orange on warm sand, or on deep night teal in dark) and Inter type. Every colour and scale is a CSS custom property in `assets/css/tokens.css`.
+- **Projects page.** All Bearvil software, not only apps: a project index on top, then showcases grouped by type (mobile apps: Frend AI, Touchy Fingies, Dicty; browser extensions: Bookmark-Tab Title), each with type and store-status badges, its icon, "privacy at a glance" facts and a privacy policy link. Home shows the same projects as tiles.
+- **Click-to-copy email** that falls back to a regular `mailto:` link when the Clipboard API is unavailable.
+- **Social previews.** Open Graph and `summary_large_image` Twitter cards with a shared 1200×630 image on the public pages.
+- **Accessibility.** Keyboard-friendly navigation with visible focus styles and ARIA attributes; separate text and fill tokens keep contrast in both themes; `prefers-reduced-motion` stops the wave motion and card lift; content is visible without JavaScript.
+- **Performance.** Non-blocking font loading, a tiny synchronous theme script, a CSS-only animated background and explicit image dimensions.
+- **Security.** A Content-Security-Policy meta tag (Google Fonts is the only external origin; `script-src 'self'`, no inline scripts), a strict referrer policy and no third-party scripts.
+
+## Pages
+
+| URL | File | Notes |
+|---|---|---|
+| [`/`](https://bearvil.github.io/) | `index.html` | Home: wave hero, project tiles, principles |
+| [`/work`](https://bearvil.github.io/work) | `work.html` | Projects: index and showcases by type |
+| [`/about`](https://bearvil.github.io/about) | `about.html` | Studio story, values, FAQ |
+| [`/contact`](https://bearvil.github.io/contact) | `contact.html` | Click-to-copy email, privacy policy links |
+| `/styleguide` | `styleguide.html` | Internal, `noindex`, not linked from the navigation or footer |
+| any missing path | `404.html` | Custom 404 page |
+
+GitHub Pages serves extensionless URLs (`/work` resolves to `work.html`) and uses the root `404.html` for any missing path.
+
+## Privacy policies
+
+Each policy is a standalone page with its own branding, published under `/privacy-policies/`.
+
+| Project | Policy |
+|---|---|
+| Frend AI | [bearvil.github.io/privacy-policies/frend-ai-pp](https://bearvil.github.io/privacy-policies/frend-ai-pp) |
+| Touchy Fingies | [bearvil.github.io/privacy-policies/touchy-fingies-pp](https://bearvil.github.io/privacy-policies/touchy-fingies-pp) |
+| Dicty | [bearvil.github.io/privacy-policies/dicty-pp](https://bearvil.github.io/privacy-policies/dicty-pp) |
+| Bookmark-Tab Title ([source](https://github.com/bearvil/bookmark-tab-title)) | [bearvil.github.io/privacy-policies/bookmark-tab-title-pp](https://bearvil.github.io/privacy-policies/bookmark-tab-title-pp) |
+
+To add one, follow [docs/guides/adding-a-privacy-policy.md](docs/guides/adding-a-privacy-policy.md): create `privacy-policies/<name>-pp.html` and add it to `PRIVACY_LINKS` in `assets/components.js`, so the navigation dropdown updates on every page.
 
 ## Structure
 
 ```
 .
-├── index.html                          # Home — wave hero, app tiles, principles, CTA band
-├── work.html                           # Projects — index + showcases grouped by type: mobile apps (#frend-ai, #touchy-fingies, #dicty), browser extensions (#bookmark-tab-title)
-├── about.html                          # About — one-person studio story, values, FAQ
-├── contact.html                        # Contact — click-to-copy email, FAQ cross-link, privacy-policy links
-├── 404.html                            # Custom 404 page, served for all missing paths
-├── styleguide.html                     # Living style guide / component playground (internal, noindex)
+├── index.html, work.html, about.html, contact.html, 404.html, styleguide.html
 ├── assets/
-│   ├── theme.js                        # Sets light/dark theme before first paint (sync, in <head>)
-│   ├── components.js                   # Shared Web Components (nav + theme toggle, backgrounds, footer, behaviors)
-│   ├── i18n/
-│   │   ├── boot.js                     # Picks the language before first paint (sync, after theme.js)
-│   │   ├── i18n.js                     # Applies translations, <lang-switch> menu (defer, after components.js)
-│   │   └── hr.js de.js es.js it.js zh.js ja.js  # Dictionaries (English is the HTML itself)
-│   ├── apps/                           # Project icons, 256×256 PNG (frend-ai, touchy-fingies, dicty, bookmark-tab-title)
-│   ├── og-image.png                    # Social preview image, 1200×630
-│   ├── favicon.png                     # Favicon, 256×256 PNG
-│   ├── Bearvil-logo*.png               # Logo assets
-│   └── css/
-│       ├── tokens.css                  # Design tokens (light + dark) — the single source of truth
-│       ├── base.css                    # Reset, base typography, layouts (.content, .page-sections), text utilities
-│       ├── components.css              # Styles for the shared Web Components
-│       ├── ui.css                      # UI primitives (buttons, cards, forms, badges, checklist, metric, data-list, FAQ, toast)
-│       ├── patterns.css                # Composed blocks (section-head, feature-row, card-grid, split-section, app blocks, cta-band)
-│       ├── index.css                   # Home hero styles
-│       ├── work.css                    # Projects page: project index + group headers
-│       ├── contact.css                 # Contact-page styles
-│       ├── 404.css                     # 404-page styles
-│       └── styleguide.css              # Style-guide layout
-├── privacy-policies/
-│   ├── touchy-fingies-pp.html          # Privacy policy for the Touchy Fingies app
-│   ├── frend-ai-pp.html                # Privacy policy for the Frend AI app
-│   ├── dicty-pp.html                   # Privacy policy for the Dicty app
-│   ├── bookmark-tab-title-pp.html      # Privacy policy for the Bookmark-Tab Title browser extension
-│   └── bookmark-tab-title-icon.png     # Extension icon used by that policy page
-├── docs/                               # Detailed documentation (see below)
-├── serve.py                            # Dev-only local preview (mimics GitHub Pages routing)
-├── .gitignore                          # Ignores macOS and editor files
-└── README.md
+│   ├── theme.js           # Sets the light/dark theme before first paint (sync, in <head>)
+│   ├── components.js      # Shared Web Components (navigation, backgrounds, footer, behaviours)
+│   ├── i18n/              # boot.js, i18n.js and the hr, de, es, it, zh, ja dictionaries
+│   ├── apps/              # Project icons, 256×256 PNG
+│   ├── css/               # tokens, base, components, ui, patterns and per-page styles
+│   ├── og-image.png       # Social preview image, 1200×630
+│   ├── favicon.png        # Favicon, 256×256
+│   └── Bearvil-logo*.png  # Logo assets
+├── privacy-policies/      # One standalone HTML page per project, plus its icon
+├── docs/                  # Detailed documentation
+└── serve.py               # Dev-only local preview (not part of the deployed site)
 ```
 
-Everything is plain static HTML/CSS/JS — no build step, no frameworks, no dependencies beyond Google Fonts.
-
-## Documentation
-
-This README is the overview. Deeper, "how it works / how to do X" documentation
-lives in [`docs/`](docs/README.md):
-
-- [Architecture](docs/architecture.md) — structure, GitHub Pages, page composition, routing, SEO, security.
-- [Design system](docs/design-system.md) — palette (light and dark), type and other scales, accessibility. Live: [`/styleguide.html`](styleguide.html).
-- [Theming](docs/theming.md) — how the light/dark theme works and how to add a theme-aware token.
-- [Languages (i18n)](docs/i18n.md) — the seven-language selector, translating new text, adding a language.
-- [Shared components](docs/components.md) — `<top-nav>`, `<main-background>`, `<home-background>`, `<site-footer>`, theme helpers, behaviors.
-- [Styling](docs/styling.md) — where styles live, the cascade, layouts, utility, primitive and pattern classes.
-- Guides: [adding a page](docs/guides/adding-a-page.md) · [adding a privacy policy](docs/guides/adding-a-privacy-policy.md)
+English is the HTML itself; the dictionaries in `assets/i18n/` translate it client-side.
 
 ## Shared components
 
-All main pages (Home, Work, About, Contact, 404, styleguide) share the theme, language, navigation, background, footer and behaviors through `assets/theme.js` (sets the theme before first paint), `assets/i18n/` (language and translations) and `assets/components.js` — vanilla [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components), no build step. Privacy policy pages are intentionally standalone (each carries its own app branding) and use none of them.
+All main pages (Home, Projects, About, Contact, 404, style guide) share the theme, language, navigation, background, footer and behaviours through `assets/theme.js`, `assets/i18n/` and `assets/components.js`: vanilla [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components), no build step. Privacy policy pages are intentionally standalone and use none of them.
 
 ```html
 <script src="/assets/theme.js"></script>                 <!-- sync, before the stylesheets -->
@@ -75,70 +97,42 @@ All main pages (Home, Work, About, Contact, 404, styleguide) share the theme, la
 
 | Usage | What it does |
 |---|---|
-| `<top-nav></top-nav>` | Fixed top bar: logo, inline links (Home, Projects, About, Contact), a Privacy Policies dropdown, the `<lang-switch>` language menu, a light/dark theme toggle, and a hamburger → fullscreen menu on small screens. Links are defined once in `NAV_LINKS` / `PRIVACY_LINKS` in `components.js`. |
-| `<main-background></main-background>` | Flat, subtle background wash. Every page except Home. |
-| `<home-background></home-background>` | Animated wave sky behind the Home hero only (one viewport tall, scrolls away). Waves are token-colored, so they follow the theme; frozen on `prefers-reduced-motion`. |
-| `<site-footer></site-footer>` | Slim frosted footer: brand lockup, the nav + privacy links, a `mailto:` email, `© <year> Bearvil`. |
-| `<a data-copy-email href="mailto:...">` | Click copies the address and shows feedback; falls back to `mailto:`. |
-| `data-font-reveal` attribute | Content fades in once the display font loads. Pair with a `<noscript>` fallback. |
+| `<top-nav>` | Fixed top bar: logo, inline links, a Privacy Policies dropdown, the language menu, a theme toggle, and a hamburger that opens a fullscreen menu on small screens. Links are defined once in `NAV_LINKS` / `PRIVACY_LINKS` in `components.js`. |
+| `<main-background>` | Flat, subtle background wash on every page except Home. |
+| `<home-background>` | Animated wave sky behind the Home hero only. Token-coloured, so it follows the theme; frozen on `prefers-reduced-motion`. |
+| `<site-footer>` | Slim frosted footer: brand lockup, navigation and privacy links, email, copyright. |
+| `<a data-copy-email href="mailto:…">` | Click copies the address and shows feedback; falls back to `mailto:`. |
+| `data-font-reveal` | Content fades in once the display font has loaded. Pair with a `<noscript>` fallback. |
 
-All colors and scales are tokens in `tokens.css` (with a dark-theme block), and no raw colors live anywhere else — see [design system](docs/design-system.md), [theming](docs/theming.md) and [styling](docs/styling.md). Two page layouts live in `base.css`: `.content` (centered single hero — Contact, 404) and `.page-sections` (stacked sections — Home, Work, About).
+All colours and scales are tokens in `tokens.css` (with a dark-theme block); no raw colours live anywhere else. Two page layouts live in `base.css`: `.content` (a centred single hero, used by Contact and 404) and `.page-sections` (stacked sections, used by Home, Projects and About).
 
-To add a page, follow [docs/guides/adding-a-page.md](docs/guides/adding-a-page.md) (copy an existing `<head>` incl. `theme.js` and the i18n scripts, pick a layout, add `data-i18n` keys and translations, add the chrome, register it in `NAV_LINKS`, update the docs).
+## Documentation
 
-## Pages
+This README is the overview. The "how it works / how to do X" documentation lives in [`docs/`](docs/README.md):
 
-| URL | File | Status |
-|---|---|---|
-| `/` | `index.html` | Live |
-| `/privacy-policies/touchy-fingies-pp` | `privacy-policies/touchy-fingies-pp.html` | Live |
-| `/privacy-policies/frend-ai-pp` | `privacy-policies/frend-ai-pp.html` | Live |
-| `/privacy-policies/dicty-pp` | `privacy-policies/dicty-pp.html` | Live |
-| `/privacy-policies/bookmark-tab-title-pp` | `privacy-policies/bookmark-tab-title-pp.html` | Live |
-| `/contact` | `contact.html` | Live |
-| `/work` | `work.html` | Live |
-| `/about` | `about.html` | Live |
-| `/styleguide` | `styleguide.html` | Live (internal, `noindex`, not linked from the nav or footer) |
+- [Architecture](docs/architecture.md): structure, GitHub Pages, page composition, routing, SEO, security.
+- [Design system](docs/design-system.md): palette (light and dark), type and other scales, accessibility. Live: [`/styleguide`](https://bearvil.github.io/styleguide).
+- [Theming](docs/theming.md): how the light/dark theme works and how to add a theme-aware token.
+- [Languages (i18n)](docs/i18n.md): the language selector, translating new text, adding a language.
+- [Shared components](docs/components.md): navigation, backgrounds, footer, theme helpers, behaviours.
+- [Styling](docs/styling.md): where styles live, the cascade, layouts, utility, primitive and pattern classes.
+- Guides: [adding a page](docs/guides/adding-a-page.md) · [adding a privacy policy](docs/guides/adding-a-privacy-policy.md)
 
-GitHub Pages serves extensionless URLs (`/privacy-policies/touchy-fingies-pp` → `touchy-fingies-pp.html`) and automatically uses the root `404.html` for any missing path.
+## Local preview
 
-## Features
-
-- **Light and dark theme** — follows the system setting by default; the nav toggle stores an explicit choice. Set before the first paint, so there is no theme flash. See [theming](docs/theming.md).
-- **Seven languages** — English, Croatian, German, Spanish, Italian, Chinese and Japanese, picked from the browser languages or the nav menu, translated client-side with no English flash. Only English is indexed by search engines. See [i18n](docs/i18n.md).
-- **Token-driven design system** — "Caribbean / beach" palette (turquoise + pastel orange on warm sand, or on deep night teal in dark), Inter type. Every color and scale is a CSS custom property in one file (`tokens.css`). A living [`styleguide.html`](styleguide.html) renders every token and component.
-- **Projects page** — all Bearvil software, not only apps: a project index on top, then showcases grouped by type (mobile apps: Frend AI, Touchy Fingies, Dicty; browser extensions: Bookmark-Tab Title), each with type and store-status badges, its icon, "privacy at a glance" facts and privacy-policy link. Home shows the same projects as tiles.
-- **Top navigation** — fixed top bar with inline links, a *Privacy Policies* dropdown, the theme toggle, and a fullscreen hamburger menu on small screens.
-- **Click-to-copy email** — falls back to a regular `mailto:` link when the Clipboard API is unavailable.
-- **Social previews** — Open Graph and `summary_large_image` Twitter cards with a shared 1200×630 image on the public pages.
-- **Accessibility** — keyboard-friendly nav with visible focus styles and correct ARIA attributes; separate text and fill tokens keep contrast in both themes; `prefers-reduced-motion` stops the wave motion and card lift; content is visible without JavaScript.
-- **Performance** — fonts loaded via `preconnect` + `<link>` (non render-blocking), tiny synchronous theme script, CSS-only animated background (no canvas/WebGL), explicit image dimensions.
-- **Security** — Content-Security-Policy meta tag (only Google Fonts allowed as an external origin; `script-src 'self'` — no inline scripts), strict referrer policy, no third-party scripts.
-
-## Development
-
-No tooling required. Open `index.html` in a browser, or serve locally:
+No tooling is required. Open `index.html` in a browser, or serve it locally:
 
 ```sh
-python3 serve.py            # http://localhost:8000  (recommended)
+python3 serve.py            # http://localhost:8000 (recommended)
 ```
 
-`serve.py` is a dev-only helper that mimics GitHub Pages routing: it resolves
-extensionless URLs to their `.html` file (`/contact` → `contact.html`) and serves
-the custom `404.html` for missing paths — so the nav links and 404 behave exactly
-as they do in production. It is not part of the deployed site.
+`serve.py` mimics GitHub Pages routing: it resolves extensionless URLs to their `.html` file (`/contact` serves `contact.html`) and serves the custom `404.html` for missing paths, so the navigation links and the 404 page behave as in production.
 
-The plain `python3 -m http.server 8000` also works, but extensionless URLs 404 and
-the custom 404 page isn't served (both are GitHub Pages features).
+`python3 -m http.server 8000` also works, but extensionless URLs return 404 and the custom 404 page is not served (both are GitHub Pages features).
 
 ## Deployment
 
-Push to the default branch — GitHub Pages publishes automatically.
-
-## Adding a new privacy policy
-
-1. Add `privacy-policies/<app-name>-pp.html`.
-2. Add it to `PRIVACY_LINKS` in `assets/components.js` — the submenu updates on every page automatically.
+Push to the default branch and GitHub Pages publishes the site automatically. Everything must keep working as a plain static site, with no server and no build step.
 
 ## Contact
 
