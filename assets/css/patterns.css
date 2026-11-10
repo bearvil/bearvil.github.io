@@ -156,6 +156,7 @@
   border-radius: var(--radius-icon);
   box-shadow: var(--shadow-sm);
 }
+.app-icon--sm { width: 44px; height: 44px; }
 .app-icon--md { width: 72px; height: 72px; }
 .app-icon--lg { width: 136px; height: 136px; box-shadow: var(--shadow-lg); }
 
@@ -165,9 +166,10 @@
 .app-id__meta { font-size: var(--text-sm); color: var(--color-text-muted); }
 
 /* =========================================================================
-   APP SHOWCASE — one app per .feature-row on the Work page: content column
-   (app id, badges, title, copy, checklist, links) + a visual panel with the
-   big icon and a "privacy at a glance" fact list (.data-list + __value).
+   APP SHOWCASE — one project per .feature-row on the Projects page (/work):
+   content column (app id, .badge-row with type + status, title, copy,
+   checklist, links) + a visual panel with the big icon and a "privacy at a
+   glance" fact list (.data-list + __value).
    ========================================================================= */
 .app-showcase { scroll-margin-top: calc(var(--topnav-h) + var(--space-5)); }
 
@@ -187,7 +189,7 @@
 .data-list__value { font-size: var(--text-sm); color: var(--color-text-muted); text-align: right; }
 
 /* =========================================================================
-   APP TILE — compact, whole-card link to an app (Home page).
+   APP TILE — compact, whole-card link to a project (Home page).
    <a class="card card--interactive card--link app-tile" href="/work#frend-ai"> … </a>
    ========================================================================= */
 .app-tile { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); }

@@ -156,6 +156,9 @@ textarea.field__input { min-height: 6rem; resize: vertical; }
 .badge--warning { background: var(--color-warning-soft); color: var(--color-warning-text); }
 .badge--danger  { background: var(--color-danger-soft);  color: var(--color-danger-text); }
 
+/* A wrapping row of badges, e.g. project type + store status. */
+.badge-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
 /* =========================================================================
    TOAST — appearance (the .show state lives in base.css).
    ========================================================================= */

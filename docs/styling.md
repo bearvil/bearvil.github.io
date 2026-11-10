@@ -19,7 +19,7 @@ All stylesheets are under [`assets/css/`](../assets/css/):
 | `components.css` | Visual styles for the shared Web Components (`<top-nav>` incl. the `.theme-toggle` and the `<lang-switch>` language menu, `<main-background>`, `<home-background>`, `<site-footer>`). |
 | `ui.css` | Reusable UI primitives as utility classes: `.btn` (+ variants/sizes), `.card` (+ `--soft`/`--interactive`/`--feature`/`--link`), `.field` (forms), `.badge`, `.checklist`, `.metric`, `.data-list`, `.faq-list`/`.faq-item` (accordion), toast appearance. |
 | `patterns.css` | Composed, section-level blocks built from the primitives: `.section-head`, `.feature-row` (+ `--reverse`), `.feature-visual`, `.metric-grid`, `.card-grid` (+ `--3`), `.split-section`, and the app blocks `.app-icon`, `.app-id`, `.app-showcase`, `.app-spotlight`, `.data-list__value`, `.app-tile`, `.card__index`, `.cta-band`. The "organism" layer above `ui.css`. |
-| `<page>.css` | Styles unique to one page: `index.css` (only `.home` and the `.hero` block), `contact.css` (email card, note, `.contact-links` privacy row), `404.css` (code, message, `.not-found__actions`), `styleguide.css`. Pages built entirely from `.page-sections` + the shared primitives/patterns (Work, About) need no page-specific file — only add one once a page has a genuine one-off style. |
+| `<page>.css` | Styles unique to one page: `index.css` (only `.home` and the `.hero` block), `contact.css` (email card, note, `.contact-links` privacy row), `404.css` (code, message, `.not-found__actions`), `work.css` (Projects page: `.project-index`, `.project-link`, `.project-group`), `styleguide.css`. Pages built entirely from `.page-sections` + the shared primitives/patterns (About) need no page-specific file — only add one once a page has a genuine one-off style. |
 
 **No raw hex or `rgba()` colors outside `tokens.css`.** If a stylesheet needs a
 color that has no token yet, add a semantic token (with a dark value) first —
@@ -129,11 +129,14 @@ Reuse these rather than re-declaring rules per page:
 | `.feature-visual` / `.metric-grid` | patterns.css | Framed mockup panel and a two-up grid of metrics inside it. |
 | `.card-grid` (+ `--3`) | patterns.css | Responsive grid of standalone `.card` elements — 2-up by default, `--3` for equal-weight rows (e.g. the Home principles). Both collapse to one column below 720px. |
 | `.split-section` (+ `__aside`/`__main`) | patterns.css | Static aside + content two-column layout (doesn't alternate); used for FAQs and long-form intros. |
-| `.app-icon` (+ `--md`/`--lg`) | patterns.css | Store-style rounded-square app icon (56 / 72 / 136px, corner `--radius-icon`). Icons live in `assets/apps/`. |
+| `.app-icon` (+ `--sm`/`--md`/`--lg`) | patterns.css | Store-style rounded-square app icon (56 default; 44 / 72 / 136px, corner `--radius-icon`). Icons live in `assets/apps/`. |
 | `.app-id` (+ `__name`/`__meta`) | patterns.css | Icon + app name + category line; the header of an app tile or showcase. |
-| `.app-showcase` | patterns.css | Add to a `.feature-row` that presents one app (Work page); gives the anchor (`#frend-ai`, `#touchy-fingies`, `#dicty`) scroll clearance under the fixed nav. |
+| `.app-showcase` | patterns.css | Add to a `.feature-row` that presents one project (Projects page, `/work`); gives the anchor (`#frend-ai`, `#touchy-fingies`, `#dicty`, `#bookmark-tab-title`) scroll clearance under the fixed nav. Put the type and store-status badges in a `.badge-row`. |
 | `.app-spotlight` (+ `__label`) | patterns.css | Big icon on a soft radial glow inside the `.feature-visual` panel, above the "privacy at a glance" `.data-list`. |
-| `.app-tile` (+ `__body`/`__more`) | patterns.css | Compact whole-card link to an app (Home). Use with `.card .card--interactive .card--link`. |
+| `.badge-row` | ui.css | Wrapping row of `.badge`s, e.g. a project's type + store status. |
+| `.project-index` / `.project-link` (+ `__text`/`__name`/`__type`) | work.css | Grid of compact cards at the top of the Projects page, one per project (icon, name, type), linking to its showcase. 4-up, 2-up below 960px, 1-up below 480px. |
+| `.project-group` | work.css | A `.section-head` that starts one type of software on the Projects page (`#mobile-apps`, `#browser-extensions`); hairline on top, anchor clears the nav. A new type of software gets a new group. |
+| `.app-tile` (+ `__body`/`__more`) | patterns.css | Compact whole-card link to a project (Home, 2-up `.card-grid`). Use with `.card .card--interactive .card--link`. |
 | `.card__index` | patterns.css | Small accent number ("01") above a card title — the Home principles. |
 | `.cta-band` (+ `__text`/`__title`) | patterns.css | Closing call-to-action panel on `--color-primary-fill` with white text and a `.btn-row` (Home, Work). Stacks full-width on mobile. |
 

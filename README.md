@@ -7,7 +7,7 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 ```
 .
 ├── index.html                          # Home — wave hero, app tiles, principles, CTA band
-├── work.html                           # Our apps — Frend AI, Touchy Fingies and Dicty showcases (#frend-ai, #touchy-fingies, #dicty)
+├── work.html                           # Projects — index + showcases grouped by type: mobile apps (#frend-ai, #touchy-fingies, #dicty), browser extensions (#bookmark-tab-title)
 ├── about.html                          # About — one-person studio story, values, FAQ
 ├── contact.html                        # Contact — click-to-copy email, FAQ cross-link, privacy-policy links
 ├── 404.html                            # Custom 404 page, served for all missing paths
@@ -19,7 +19,7 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 │   │   ├── boot.js                     # Picks the language before first paint (sync, after theme.js)
 │   │   ├── i18n.js                     # Applies translations, <lang-switch> menu (defer, after components.js)
 │   │   └── hr.js de.js es.js it.js zh.js ja.js  # Dictionaries (English is the HTML itself)
-│   ├── apps/                           # App icons, 256×256 PNG (frend-ai.png, touchy-fingies.png, dicty.png)
+│   ├── apps/                           # Project icons, 256×256 PNG (frend-ai, touchy-fingies, dicty, bookmark-tab-title)
 │   ├── og-image.png                    # Social preview image, 1200×630
 │   ├── favicon.png                     # Favicon, 256×256 PNG
 │   ├── Bearvil-logo*.png               # Logo assets
@@ -30,6 +30,7 @@ Official Bearvil website, hosted on [GitHub Pages](https://pages.github.com/) at
 │       ├── ui.css                      # UI primitives (buttons, cards, forms, badges, checklist, metric, data-list, FAQ, toast)
 │       ├── patterns.css                # Composed blocks (section-head, feature-row, card-grid, split-section, app blocks, cta-band)
 │       ├── index.css                   # Home hero styles
+│       ├── work.css                    # Projects page: project index + group headers
 │       ├── contact.css                 # Contact-page styles
 │       ├── 404.css                     # 404-page styles
 │       └── styleguide.css              # Style-guide layout
@@ -74,7 +75,7 @@ All main pages (Home, Work, About, Contact, 404, styleguide) share the theme, la
 
 | Usage | What it does |
 |---|---|
-| `<top-nav></top-nav>` | Fixed top bar: logo, inline links (Home, Apps, About, Contact), a Privacy Policies dropdown, the `<lang-switch>` language menu, a light/dark theme toggle, and a hamburger → fullscreen menu on small screens. Links are defined once in `NAV_LINKS` / `PRIVACY_LINKS` in `components.js`. |
+| `<top-nav></top-nav>` | Fixed top bar: logo, inline links (Home, Projects, About, Contact), a Privacy Policies dropdown, the `<lang-switch>` language menu, a light/dark theme toggle, and a hamburger → fullscreen menu on small screens. Links are defined once in `NAV_LINKS` / `PRIVACY_LINKS` in `components.js`. |
 | `<main-background></main-background>` | Flat, subtle background wash. Every page except Home. |
 | `<home-background></home-background>` | Animated wave sky behind the Home hero only (one viewport tall, scrolls away). Waves are token-colored, so they follow the theme; frozen on `prefers-reduced-motion`. |
 | `<site-footer></site-footer>` | Slim frosted footer: brand lockup, the nav + privacy links, a `mailto:` email, `© <year> Bearvil`. |
@@ -106,7 +107,7 @@ GitHub Pages serves extensionless URLs (`/privacy-policies/touchy-fingies-pp` �
 - **Light and dark theme** — follows the system setting by default; the nav toggle stores an explicit choice. Set before the first paint, so there is no theme flash. See [theming](docs/theming.md).
 - **Seven languages** — English, Croatian, German, Spanish, Italian, Chinese and Japanese, picked from the browser languages or the nav menu, translated client-side with no English flash. Only English is indexed by search engines. See [i18n](docs/i18n.md).
 - **Token-driven design system** — "Caribbean / beach" palette (turquoise + pastel orange on warm sand, or on deep night teal in dark), Inter type. Every color and scale is a CSS custom property in one file (`tokens.css`). A living [`styleguide.html`](styleguide.html) renders every token and component.
-- **Real app pages** — Home tiles and Work showcases for Frend AI, Touchy Fingies and Dicty, with app icons, "privacy at a glance" facts and privacy-policy links.
+- **Projects page** — all Bearvil software, not only apps: a project index on top, then showcases grouped by type (mobile apps: Frend AI, Touchy Fingies, Dicty; browser extensions: Bookmark-Tab Title), each with type and store-status badges, its icon, "privacy at a glance" facts and privacy-policy link. Home shows the same projects as tiles.
 - **Top navigation** — fixed top bar with inline links, a *Privacy Policies* dropdown, the theme toggle, and a fullscreen hamburger menu on small screens.
 - **Click-to-copy email** — falls back to a regular `mailto:` link when the Clipboard API is unavailable.
 - **Social previews** — Open Graph and `summary_large_image` Twitter cards with a shared 1200×630 image on the public pages.

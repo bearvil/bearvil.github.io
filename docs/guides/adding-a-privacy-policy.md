@@ -32,8 +32,10 @@ when selected from the menu.
      (`data-i18n="about.a6"`). Its links live inside the translated HTML, so also
      update `about.a6` in all six dictionaries in `assets/i18n/` (see
      [i18n.md](../i18n.md));
-   - `work.html` and the Home app tiles in `index.html` — only if the app gets a
-     showcase/tile there (with its icon in `assets/apps/`).
+   - `work.html` and the Home tiles in `index.html` — only if the project gets a
+     showcase/tile there (with its icon in `assets/apps/`). On `work.html` the
+     showcase goes into the group for its type (or a new `.project-group`), and
+     gets a card in the `.project-index` at the top.
 
 4. **Test locally** with `python3 serve.py`, then open
    `http://localhost:8000/privacy-policies/<app-name>-pp` (the dev server resolves

@@ -31,7 +31,7 @@
  * ------------------------------------------------------------------ */
 const NAV_LINKS = [
   { href: '/',        label: 'Home',    key: 'nav.home' },
-  { href: '/work',    label: 'Apps',    key: 'nav.work' },
+  { href: '/work',    label: 'Projects', key: 'nav.work' },
   { href: '/about',   label: 'About',   key: 'nav.about' },
   { href: '/contact', label: 'Contact', key: 'nav.contact' },
 ];

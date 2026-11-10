@@ -9,12 +9,12 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- SEO / social -->
-  <title data-i18n="work.metaTitle">Apps — Bearvil</title>
-  <meta name="description" content="Frend AI, Touchy Fingies and Dicty — calm, private mobile apps from Bearvil, an independent app studio. Coming soon to Google Play." data-i18n-attr="content:work.metaDesc" />
+  <title data-i18n="work.metaTitle">Projects — Bearvil</title>
+  <meta name="description" content="Mobile apps and browser extensions from Bearvil, an independent software studio: Frend AI, Touchy Fingies, Dicty and Bookmark-Tab Title — calm, private, no accounts." data-i18n-attr="content:work.metaDesc" />
   <link rel="canonical" href="https://bearvil.github.io/work" />
   <meta property="og:site_name" content="Bearvil" />
-  <meta property="og:title" content="Apps — Bearvil" />
-  <meta property="og:description" content="Frend AI, Touchy Fingies and Dicty — calm, private mobile apps from an independent studio." />
+  <meta property="og:title" content="Projects — Bearvil" />
+  <meta property="og:description" content="Frend AI, Touchy Fingies, Dicty and Bookmark-Tab Title — calm, private software from an independent studio." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bearvil.github.io/work" />
   <meta property="og:image" content="https://bearvil.github.io/assets/og-image.png" />
@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/ui.css" />
   <link rel="stylesheet" href="/assets/css/patterns.css" />
+  <link rel="stylesheet" href="/assets/css/work.css" />
 
   <!-- Shared components: <top-nav>, <main-background>, email copy, font reveal -->
   <script src="/assets/components.js" defer></script>
@@ -58,9 +59,48 @@
 
     <!-- Intro -->
     <header class="section-head section-head--center">
-      <p class="section-head__eyebrow" data-i18n="work.eyebrow">Our apps</p>
-      <h1 class="section-head__title" data-i18n="work.title">Small apps, made with <em>care</em></h1>
-      <p class="section-head__sub" data-i18n="work.sub">Each Bearvil app does one thing well, works without an account, and keeps your data on your device. All three are in final testing and coming soon to Google Play.</p>
+      <p class="section-head__eyebrow" data-i18n="work.eyebrow">What we build</p>
+      <h1 class="section-head__title" data-i18n="work.title">Software, made with <em>care</em></h1>
+      <p class="section-head__sub" data-i18n="work.sub">Mobile apps, browser extensions and other small tools. Each one does one thing well, works without an account and keeps your data on your device.</p>
+    </header>
+
+    <!-- Project index: one compact link per project, grouped by type below -->
+    <nav class="project-index" aria-label="All projects" data-i18n-attr="aria-label:work.indexLabel">
+      <a class="card card--interactive card--link project-link" href="#frend-ai">
+        <img class="app-icon app-icon--sm" src="/assets/apps/frend-ai.png" alt="" width="44" height="44" />
+        <span class="project-link__text">
+          <span class="project-link__name">Frend AI</span>
+          <span class="project-link__type" data-i18n="type.mobile">Mobile app</span>
+        </span>
+      </a>
+      <a class="card card--interactive card--link project-link" href="#touchy-fingies">
+        <img class="app-icon app-icon--sm" src="/assets/apps/touchy-fingies.png" alt="" width="44" height="44" />
+        <span class="project-link__text">
+          <span class="project-link__name">Touchy Fingies</span>
+          <span class="project-link__type" data-i18n="type.mobile">Mobile app</span>
+        </span>
+      </a>
+      <a class="card card--interactive card--link project-link" href="#dicty">
+        <img class="app-icon app-icon--sm" src="/assets/apps/dicty.png" alt="" width="44" height="44" />
+        <span class="project-link__text">
+          <span class="project-link__name">Dicty</span>
+          <span class="project-link__type" data-i18n="type.mobile">Mobile app</span>
+        </span>
+      </a>
+      <a class="card card--interactive card--link project-link" href="#bookmark-tab-title">
+        <img class="app-icon app-icon--sm" src="/assets/apps/bookmark-tab-title.png" alt="" width="44" height="44" />
+        <span class="project-link__text">
+          <span class="project-link__name">Bookmark-Tab Title</span>
+          <span class="project-link__type" data-i18n="type.extension">Browser extension</span>
+        </span>
+      </a>
+    </nav>
+
+    <!-- Group: mobile apps -->
+    <header class="section-head project-group" id="mobile-apps">
+      <p class="section-head__eyebrow" data-i18n="work.mobile.eyebrow">Mobile apps</p>
+      <h2 class="section-head__title" data-i18n="work.mobile.title">Calm apps for your <em>phone</em></h2>
+      <p class="section-head__sub" data-i18n="work.mobile.sub">In final testing and coming soon to Google Play.</p>
     </header>
 
     <!-- Frend AI -->
@@ -69,11 +109,14 @@
         <div class="app-id">
           <img class="app-icon app-icon--md" src="/assets/apps/frend-ai.png" alt="" width="72" height="72" />
           <div>
-            <h2 class="app-id__name" id="app-frend">Frend AI</h2>
+            <h3 class="app-id__name" id="app-frend">Frend AI</h3>
             <p class="app-id__meta" data-i18n="app.frend.meta">AI chat · Bring your own key</p>
           </div>
         </div>
-        <div><span class="badge badge--accent" data-i18n="common.comingSoon">Coming soon to Google Play</span></div>
+        <div class="badge-row">
+          <span class="badge badge--primary" data-i18n="type.mobile">Mobile app</span>
+          <span class="badge badge--accent" data-i18n="common.comingSoon">Coming soon to Google Play</span>
+        </div>
         <p class="feature-row__title" data-i18n="work.frend.title">All the top AI models, <em>one calm app</em></p>
         <p class="feature-row__desc" data-i18n="work.frend.desc">Chat with models from OpenAI, Anthropic, Google, xAI, DeepSeek, Groq and OpenRouter using your own API keys. There is no account and no Bearvil server in between — your keys live in your device's secure storage and your conversations are stored only on your phone.</p>
         <ul class="checklist">
@@ -106,11 +149,14 @@
         <div class="app-id">
           <img class="app-icon app-icon--md" src="/assets/apps/touchy-fingies.png" alt="" width="72" height="72" />
           <div>
-            <h2 class="app-id__name" id="app-touchy">Touchy Fingies</h2>
+            <h3 class="app-id__name" id="app-touchy">Touchy Fingies</h3>
             <p class="app-id__meta" data-i18n="app.touchy.meta">Babies &amp; toddlers · Sensory play</p>
           </div>
         </div>
-        <div><span class="badge badge--accent" data-i18n="common.comingSoon">Coming soon to Google Play</span></div>
+        <div class="badge-row">
+          <span class="badge badge--primary" data-i18n="type.mobile">Mobile app</span>
+          <span class="badge badge--accent" data-i18n="common.comingSoon">Coming soon to Google Play</span>
+        </div>
         <p class="feature-row__title" data-i18n="work.touchy.title">A tap-and-giggle toy for <em>tiny hands</em></p>
         <p class="feature-row__desc" data-i18n="work.touchy.desc">A fullscreen smash toy for babies and toddlers: every touch bursts into colorful emojis, letters and numbers with playful sounds and gentle haptics. A hidden parent panel keeps little fingers out of the settings.</p>
         <ul class="checklist">
@@ -143,11 +189,14 @@
         <div class="app-id">
           <img class="app-icon app-icon--md" src="/assets/apps/dicty.png" alt="" width="72" height="72" />
           <div>
-            <h2 class="app-id__name" id="app-dicty">Dicty</h2>
+            <h3 class="app-id__name" id="app-dicty">Dicty</h3>
             <p class="app-id__meta" data-i18n="app.dicty.meta">Dictionary · Vocabulary &amp; glossaries</p>
           </div>
         </div>
-        <div><span class="badge badge--accent" data-i18n="common.comingSoon">Coming soon to Google Play</span></div>
+        <div class="badge-row">
+          <span class="badge badge--primary" data-i18n="type.mobile">Mobile app</span>
+          <span class="badge badge--accent" data-i18n="common.comingSoon">Coming soon to Google Play</span>
+        </div>
         <p class="feature-row__title" data-i18n="work.dicty.title">Your words, <em>your dictionary</em></p>
         <p class="feature-row__desc" data-i18n="work.dicty.desc">A personal dictionary for learning languages or building your own glossaries of specialist terms. Create dictionaries of different types and add words with a description, pronunciation, part of speech and an example. Everything stays on your device — there is no account and nothing to sync.</p>
         <ul class="checklist">
@@ -170,6 +219,54 @@
           <div class="data-list__item"><span class="data-list__name" data-i18n="work.touchy.r1">Internet access</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
           <div class="data-list__item"><span class="data-list__name" data-i18n="work.frend.r3">Analytics &amp; ads</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
           <div class="data-list__item"><span class="data-list__name" data-i18n="work.dicty.r4">Backup</span><span class="data-list__value" data-i18n="work.dicty.r4v">To a file you control</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Group: browser extensions -->
+    <header class="section-head project-group" id="browser-extensions">
+      <p class="section-head__eyebrow" data-i18n="work.ext.eyebrow">Browser extensions</p>
+      <h2 class="section-head__title" data-i18n="work.ext.title">Small tools for your <em>browser</em></h2>
+      <p class="section-head__sub" data-i18n="work.ext.sub">For Chrome and other Chromium-based browsers: Edge, Opera, Brave and Vivaldi.</p>
+    </header>
+
+    <!-- Bookmark-Tab Title -->
+    <section class="feature-row feature-row--reverse app-showcase" id="bookmark-tab-title" aria-labelledby="app-btt">
+      <div class="feature-row__content">
+        <div class="app-id">
+          <img class="app-icon app-icon--md" src="/assets/apps/bookmark-tab-title.png" alt="" width="72" height="72" />
+          <div>
+            <h3 class="app-id__name" id="app-btt">Bookmark-Tab Title</h3>
+            <p class="app-id__meta" data-i18n="app.btt.meta">Tabs · Bookmark names as tab titles</p>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="badge badge--primary" data-i18n="type.extension">Browser extension</span>
+          <span class="badge badge--accent" data-i18n="common.comingSoonChrome">Coming soon to the Chrome Web Store</span>
+        </div>
+        <p class="feature-row__title" data-i18n="work.btt.title">Your tabs, <em>named your way</em></p>
+        <p class="feature-row__desc" data-i18n="work.btt.desc">When the page in a tab is one of your bookmarks, the tab shows the bookmark's name instead of the page title. Rename a bookmark to “Mail – work” and the tab stays “Mail – work”, even when the page keeps changing its own title.</p>
+        <ul class="checklist">
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.btt.f1">Choose per bookmark how far the name reaches: one address, a section or the whole site</span></li>
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.btt.f2">Tells several accounts apart, such as Google's /u/1/ or authuser=1</span></li>
+          <li class="checklist__item"><span class="checklist__icon" aria-hidden="true">✓</span><span data-i18n="work.btt.f3">Set it from the toolbar popup, the settings page or the right-click menu</span></li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn--secondary btn--sm" href="/privacy-policies/bookmark-tab-title-pp" target="_blank" rel="noopener" data-i18n="common.privacyPolicy">Privacy policy</a>
+          <a class="btn btn--secondary btn--sm" href="https://github.com/bearvil/bookmark-tab-title" target="_blank" rel="noopener" data-i18n="common.source">Source on GitHub</a>
+          <a class="btn btn--link btn--sm" href="/contact" data-i18n="common.questions">Questions? Get in touch <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="feature-row__visual feature-visual">
+        <div class="app-spotlight">
+          <img class="app-icon app-icon--lg" src="/assets/apps/bookmark-tab-title.png" alt="Bookmark-Tab Title extension icon" width="136" height="136" />
+          <span class="app-spotlight__label" data-i18n="work.glance">Privacy at a glance</span>
+        </div>
+        <div class="data-list">
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.btt.r1">Network requests</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.frend.r1">Account required</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.frend.r3">Analytics &amp; ads</span><span class="badge badge--success" data-i18n="common.none">None</span></div>
+          <div class="data-list__item"><span class="data-list__name" data-i18n="work.btt.r4">Source code</span><span class="data-list__value" data-i18n="work.btt.r4v">Open (MIT license)</span></div>
         </div>
       </div>
     </section>

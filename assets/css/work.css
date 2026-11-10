@@ -1,0 +1,50 @@
+/* =========================================================================
+   work.css — Projects page (/work). The showcases are shared patterns from
+   patterns.css (.feature-row + .app-showcase); this file only holds the
+   project index at the top and the group headers that split the page by
+   type of software (mobile apps, browser extensions, …).
+   Consumes tokens from tokens.css.
+   ========================================================================= */
+
+/* PROJECT INDEX — one compact card per project, linking to its showcase.
+   <nav class="project-index">
+     <a class="card card--interactive card--link project-link" href="#dicty">
+       <img class="app-icon app-icon--sm" …>
+       <span class="project-link__text">
+         <span class="project-link__name">Dicty</span>
+         <span class="project-link__type">Mobile app</span>
+       </span>
+     </a>
+   </nav> */
+.project-index {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.project-link {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-4);
+}
+.project-link__text { display: flex; flex-direction: column; min-width: 0; }
+.project-link__name {
+  font-weight: var(--font-weight-extra);
+  line-height: var(--leading-snug);
+}
+.project-link__type { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+/* GROUP HEADER — starts each type of software; a hairline separates the
+   groups, and the anchor clears the fixed nav like .app-showcase. */
+.project-group {
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--color-border-subtle);
+  scroll-margin-top: calc(var(--topnav-h) + var(--space-5));
+}
+
+@media (max-width: 960px) {
+  .project-index { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .project-index { grid-template-columns: 1fr; }
+}

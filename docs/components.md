@@ -89,13 +89,14 @@ translation `key`, then add that key to every dictionary in `assets/i18n/`
 ```js
 const NAV_LINKS = [
   { href: '/',        label: 'Home',    key: 'nav.home' },
-  { href: '/work',    label: 'Apps',    key: 'nav.work' },
+  { href: '/work',    label: 'Projects', key: 'nav.work' },
   …
 ];
 ```
 
-Note: the `/work` page is labelled **Apps** in the nav and footer (the URL and
-the `nav.work` key stay `work`).
+Note: the `/work` page is labelled **Projects** in the nav and footer (the URL and
+the `nav.work` key stay `work`). It lists every kind of Bearvil software, not
+only apps, so its label stays generic.
 
 ## `<main-background>`
 
